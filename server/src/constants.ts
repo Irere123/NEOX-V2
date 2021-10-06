@@ -6,7 +6,7 @@ export const redirectUrl = !__prod__
 
 export const apiBaseUrl = !__prod__
   ? "http://localhost:4000"
-  : "https://api-neox-next.herokuapp.com/";
+  : "https://api-neox-next.herokuapp.com";
 
 export const clientAppUrl = !__prod__
   ? "http://localhost:3000"
