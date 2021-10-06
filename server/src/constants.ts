@@ -2,7 +2,7 @@ export const __prod__ = process.env.NODE_ENV === "production";
 
 export const redirectUrl = !__prod__
   ? "http://localhost:3000/home"
-  : "https://next-neox.vervel.app/home";
+  : "https://next-neox.vercel.app/home";
 
 export const apiBaseUrl = !__prod__
   ? "http://localhost:4000"
@@ -10,4 +10,4 @@ export const apiBaseUrl = !__prod__
 
 export const clientAppUrl = !__prod__
   ? "http://localhost:3000"
-  : "https://next-neox.vervel.app";
+  : "https://next-neox.vercel.app";
