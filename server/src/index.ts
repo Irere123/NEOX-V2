@@ -79,7 +79,7 @@ const main = async () => {
         secure: __prod__,
         sameSite: "lax",
         maxAge: 1000 * 60 * 60 * 24 * 365 * 4, // 4 years
-        domain: __prod__ ? ".next-neox.vercel.app" : undefined,
+        domain: __prod__ ? "next-neox.vercel.app" : undefined,
       },
     })
   );
