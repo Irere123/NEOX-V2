@@ -16,7 +16,7 @@ export const RedirectRoute: React.FC<any> = ({
     }
 
     if (data?.me) {
-      // user not logged in
+      // user logged in
       return <Redirect to={{ pathname: "/home" }} />;
     } else {
       return <Component {...routeProps} />;
