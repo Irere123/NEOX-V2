@@ -78,9 +78,7 @@ const main = async () => {
         path: "/",
         httpOnly: true,
         secure: __prod__,
-        sameSite: "lax",
         maxAge: 1000 * 60 * 60 * 24 * 365 * 4, // 4 years
-        domain: __prod__ ? ".vercel.app" : undefined,
       },
     })
   );
