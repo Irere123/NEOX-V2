@@ -75,11 +75,12 @@ const main = async () => {
       saveUninitialized: false,
       resave: false,
       cookie: {
+        path: "/",
         httpOnly: true,
         secure: __prod__,
         sameSite: "lax",
         maxAge: 1000 * 60 * 60 * 24 * 365 * 4, // 4 years
-        domain: __prod__ ? "vercel.app" : undefined,
+        domain: __prod__ ? ".vercel.app" : undefined,
       },
     })
   );
