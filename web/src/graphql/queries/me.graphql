@@ -1,0 +1,23 @@
+query Me {
+  me {
+    id
+    username
+    email
+    bio
+    pictureUrl
+    teams {
+      id
+      name
+      rooms {
+        id
+        name
+      }
+      isPublic
+    }
+    myFriends {
+      id
+      username
+      username
+    }
+  }
+}

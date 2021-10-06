@@ -1,0 +1,133 @@
+.MyCreateTeamModal__header {
+  display: flex;
+  align-items: center;
+}
+
+.MyCreateTeamModal__header > span {
+  display: flex;
+  flex: 0.1;
+  justify-content: flex-end;
+  cursor: pointer;
+  align-items: center;
+}
+
+.MyCreateTeamModal__header > h4 {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  flex: 0.9;
+  font-weight: 400;
+  color: #060607;
+}
+
+.createTeamChoices {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.createTeamChoice__card {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(6, 6, 7, 0.08);
+  padding: 0px 20px 0px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.createTeamChoice__card:hover {
+  background-color: rgba(116, 127, 141, 0.08);
+}
+
+.createTeamChoice__card > .createTeamChoice__card_iconNword {
+  flex: 0.9;
+}
+
+.createTeamChoice__card > span {
+  display: flex;
+  flex: 0.1;
+}
+
+.createTeamTemplate__choices {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.createTeamChoice__card_iconNword {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.createTeamChoice__card_iconNword > p {
+  color: #2e3338;
+}
+
+.createTeamChoice__card_iconNword > span {
+  flex: 0.2;
+}
+
+.Page2Content {
+  margin-top: 20px;
+}
+
+.Page2Content > .Page2Content__input > input {
+  background-color: transparent;
+  border: 1px solid rgba(6, 6, 7, 0.08);
+  width: 95%;
+  height: 40px;
+  outline: none;
+  padding: 0px 10px 0px 10px;
+  font-size: 17px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.Page2Content > .Page2Content__input > input:focus-visible {
+  border: 2px solid lightblue;
+  border-radius: 4px;
+}
+
+.Page2Content__toggle {
+  display: flex;
+  flex-direction: column;
+}
+
+.Page2Content__toggle > p {
+  margin-bottom: 0;
+}
+
+.Page2Content__footer {
+  margin-top: 20px;
+  display: flex;
+}
+
+.Page2Content__footer > div:nth-child(1) {
+  flex: 0.9;
+  display: flex;
+  align-items: center;
+}
+
+.Page2Content__footer > div:nth-child(1) > button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.Page2Content__footer > div:nth-child(2) > button {
+  background-color: var(--color-accent);
+  color: var(--color-button-text);
+  outline: none;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.Page2Content__footer > div:nth-child(2) > button:hover {
+  background-color: var(--color-accent-hover);
+}

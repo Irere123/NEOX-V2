@@ -1,0 +1,215 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.18.0/inter.css");
+
+a {
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  line-height: 1.6;
+  color: var(--color-primary-100);
+}
+
+h1,
+h2,
+h3,
+h4,
+p.bold {
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 2.8rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.4rem;
+}
+
+p {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+p.small {
+  font-size: 0.85rem;
+}
+
+/* for firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary-700) rgba(0, 0, 0, 0);
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* for non-firefox */
+::-webkit-scrollbar {
+  overflow: overlay;
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  display: initial;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary-700);
+  border-radius: 5px;
+}
+
+html,
+body,
+#root {
+  background-color: var(--color-primary-900);
+  height: 100%;
+  display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  position: fixed;
+}
+
+#root {
+  overflow-y: auto;
+}
+
+:root {
+  --color-button-text: #fff;
+  --color-primary-100: #dee3ea;
+  --color-primary-200: #b2bdcd;
+  --color-primary-300: #5d7290;
+  --color-primary-600: #323d4d;
+  --color-primary-700: #242c37;
+  --color-primary-800: #151a21;
+  --color-primary-900: #0b0e11;
+  --color-secondary-washed-out: #879eed;
+  --color-secondary: #5575e7;
+  --color-accent-glow: rgba(253, 77, 77, 0.3);
+  --color-accent: #fd4d4d;
+  --color-accent-hover: #fd6868;
+  --color-accent-disabled: #f5bfbf;
+  --screen-height-reduction: 0px;
+  --color-primary-100-translucent: rgba(222, 227, 234, 0.15);
+  --elevation-stroke: 0 0 0 1px rgba(4, 4, 5, 0.15);
+  --elevation-low: 0 1px 0 rgba(4, 4, 5, 0.2), 0 1.5px 0 rgba(6, 6, 7, 0.05),
+    0 2px 0 rgba(4, 4, 5, 0.05);
+  --elevation-medium: 0 4px 4px rgba(0, 0, 0, 0.16);
+  --elevation-high: 0 8px 16px rgba(0, 0, 0, 0.24);
+  --tooltip-text-color: white;
+  --tooltip-background-color: var(--color-primary-900);
+  --tooltip-margin: 22px;
+  --tooltip-arrow-size: 7px;
+}
+
+button:focus {
+  outline: none;
+}
+
+.active {
+  border-left: 4px solid var(--color-accent);
+}
+
+.appSidebar {
+  background-color: var(--color-primary-800);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.appSidebar__Avatar {
+  width: 50px;
+  height: 50px;
+  margin-top: 20px;
+}
+
+.separator {
+  border: 1px solid var(--color-primary-600);
+  width: 30px;
+}
+
+.appSidebar__Avatar > img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.appSidebar__Teams_container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.teamLogo {
+  background-color: var(--color-primary-700);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-accent);
+  cursor: pointer;
+}
+
+.teamContainer > div:hover {
+  border-radius: 18px;
+  background-color: var(--color-primary-600);
+}
+
+.teamContainer > span {
+  top: 50%;
+  bottom: 50%;
+  background: var(--color-accent);
+}
+
+.appSidebar__Buttons_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.appSidebarTeam__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.appSidebarTeam__button > div > button {
+  background-color: var(--color-primary-700);
+  border: none;
+  outline: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.appSidebarTeam__button > div > button:hover {
+  border-radius: 18px;
+  background-color: var(--color-primary-600);
+}

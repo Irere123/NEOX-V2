@@ -1,0 +1,14 @@
+mutation CreateTeam($public: Boolean!, $name: String!) {
+  createTeam(public: $public, name: $name) {
+    ok
+    errors {
+      field
+      message
+    }
+    team {
+      id
+      name
+      isPublic
+    }
+  }
+}
