@@ -10,7 +10,7 @@ import "./styles/globals.css";
 import Routes from "./Routes";
 
 const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
-  uri: "http://localhost:4000/graphql",
+  uri: "https://api-neox-next.herokuapp.com//graphql",
   cache: new InMemoryCache(),
   credentials: "include",
 });
