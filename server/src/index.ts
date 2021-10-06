@@ -41,6 +41,12 @@ const main = async () => {
     logging: !__prod__,
     synchronize: true,
     entities: [join(__dirname, "./entity/**/*.*")],
+    ssl: true,
+    extra: {
+      ssl: {
+        rejectUnauthorized: false,
+      },
+    },
   });
 
   const app = express();
