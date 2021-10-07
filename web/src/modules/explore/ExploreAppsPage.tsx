@@ -1,8 +1,15 @@
 import React from "react";
-import { ExtensionsIcon, SearchIcon, SettingsIcon } from "../../icons";
+import {
+  ExtensionsIcon,
+  GroupIcon,
+  SearchIcon,
+  SettingsIcon,
+} from "../../icons";
 import DefaultPageLayout from "../../layouts/DefaultPageLayout";
 
 interface Props {}
+
+const appsPlaceholder = [1, 3, 4, 5, 6, 7, 8, 9, 10];
 
 export const ExploreAppsPage: React.FC<Props> = () => {
   return (
@@ -35,7 +42,20 @@ export const ExploreAppsPage: React.FC<Props> = () => {
           </div>
         </div>
         <div className="ExploreAppPage__bottomSection">
-          <div></div>
+          <div className="ExploreAppPage__bottomSection__apps">
+            {appsPlaceholder.map((p) => (
+              <div className="ExploreAppPage__bottomSection_appCard">
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                <p>Irere</p>
+                <span>
+                  <span>
+                    <GroupIcon />
+                  </span>
+                  <p>100K</p>
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </DefaultPageLayout>
