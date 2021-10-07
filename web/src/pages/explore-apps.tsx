@@ -5,7 +5,7 @@ import { ExploreAppsPage } from "../modules/explore/ExploreAppsPage";
 
 export default function ExploreApps() {
   return (
-    <Layout title="Explore Apps - NEOX">
+    <Layout title="App Store - NEOX">
       <ExploreAppsPage />
     </Layout>
   );
