@@ -41,3 +41,72 @@
 .activeExplorePage > p {
   color: var(--color-accent);
 }
+
+.ExploreAppPage__header {
+  display: flex;
+  align-items: center;
+  padding: 0px 10px 0px 10px;
+}
+
+.ExploreAppPage__title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ExploreAppPage__header > span:nth-child(2) {
+  display: flex;
+  flex: 1 1;
+  justify-content: flex-end;
+}
+
+.ExploreAppPage__topSection {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.ExploreAppPage__topSection__search {
+  border: 2px solid var(--color-accent);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 60%;
+  height: 40px;
+  border-radius: 5px;
+}
+
+.ExploreAppPage__topSection__search > input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  outline-width: 0;
+  flex: 0.9;
+  height: 87%;
+  color: #fff;
+  font-size: 17px;
+}
+
+.ExploreAppPage__topSection__search > input::placeholder {
+  color: #fff !important;
+  opacity: 0.8;
+}
+
+.ExploreAppPage__topSection__search > input::-moz-placeholder {
+  color: #fff !important;
+  opacity: 0.8;
+}
+
+.ExploreAppPage__topSection__search > span {
+  display: flex;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 890px) {
+  .ExploreAppPage__topSection__search {
+    width: 100%;
+  }
+}

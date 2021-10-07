@@ -126,16 +126,6 @@
   grid-template-columns: 3fr 1fr;
 }
 
-.HomePage__top {
-  background-color: var(--color-primary-600);
-  opacity: 0.8;
-  height: 50px;
-  box-shadow: var(--elevation-low);
-  width: 100%;
-  display: flex;
-  align-items: center;
-}
-
 .HomePage__layoutPageTitle {
   display: flex;
   align-items: center;
@@ -170,6 +160,11 @@
 }
 
 .homePage__layout_mainMiddle__sendInvite > input::placeholder {
+  color: var(--color-buttton-text);
+  font-size: 18px;
+}
+
+.homePage__layout_mainMiddle__sendInvite > input::-moz-placeholder {
   color: var(--color-buttton-text);
   font-size: 18px;
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { Friends } from "../../icons";
 
 import DefaultPageLayout from "../../layouts/DefaultPageLayout";
-import HomePageTop from "../../layouts/HomePageTop";
+import MainPageTop from "../../layouts/MainPageTop";
 import { Middle } from "./Middle";
 import { RightSide } from "./RightSide";
 
@@ -12,7 +12,7 @@ const HomePage: React.FC<Props> = () => {
   return (
     <DefaultPageLayout>
       <div className="homePage__layout">
-        <HomePageTop>
+        <MainPageTop>
           <div>
             <div className="HomePage__layoutPageTitle">
               <span>
@@ -21,7 +21,7 @@ const HomePage: React.FC<Props> = () => {
               <p style={{ color: "white" }}>Friends</p>
             </div>
           </div>
-        </HomePageTop>
+        </MainPageTop>
         <div className="homePage__layout__main">
           <Middle />
           <RightSide />

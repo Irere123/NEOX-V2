@@ -11,6 +11,7 @@ export { default as SettingsIcon } from "./Settings";
 export { default as PlusIcon } from "./SolidPlusIcon";
 export { default as FireIcon } from "./SvgSolidFire";
 export { default as SchoolIcon } from "./SvgSolidSchool";
+export { default as SearchIcon } from "./SolidSearch";
 export { default as LightIcon } from "./SvgSolidLight";
 export { default as BackpackIcon } from "./SvgSolidBackpack";
 export { default as PodcastsIcon } from "./SvgSolidPodcasts";
