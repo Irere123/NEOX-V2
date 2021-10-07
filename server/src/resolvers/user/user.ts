@@ -27,6 +27,7 @@ export default class UserResolver {
   @FieldResolver(() => [Team])
   async teams(@Ctx() { req }: MyContext) {
     const userId = (req.session as any).userId;
+    // This query is weird for some reason typeorm was switching stuff mess up ids
     const teams = await getConnection().query(
       `
     select * from members as m join teams as t on t."id" = m."teamId"  where m."userId" = $1
@@ -40,7 +41,7 @@ export default class UserResolver {
   @FieldResolver(() => [User])
   async myFriends(@Ctx() { req }: MyContext) {
     const userId = (req.session as any).userId;
-
+    //TODO: Fix Query
     return await getConnection().query(
       `select * from users as u join friends as f on f."friendId" = u."id"
        where f."userId" = $1`,
