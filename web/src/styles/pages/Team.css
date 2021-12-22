@@ -1,3 +1,5 @@
+/* Team Page Left Sidebar */
+
 .teamPageLayout__leftSidebar {
   background-color: var(--color-primary-700);
 }
@@ -9,6 +11,17 @@
   align-items: center;
 }
 
+.teamPageLayout__channelName > p {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+.teamChannelName__hashtag {
+  font-size: 25px;
+}
+
 .teamPageLayout__leftSidebar_header > p {
   display: flex;
   align-items: center;
@@ -18,6 +31,15 @@
   text-transform: capitalize;
 }
 
+.teamPageLayout__leftSidebar__rooms {
+  margin-left: 0.4rem;
+}
+
+.teamPageLayout__leftSidebar__rooms > h4 {
+  margin-top: 4px;
+}
+
+/* Team Page chat header */
 .teamPageChatHeader {
   background-color: #2a3341;
   height: 50px;
@@ -40,4 +62,50 @@
   justify-content: flex-end;
   gap: 10px;
   margin-right: 1rem;
+}
+
+/* Chat Container */
+
+.teamPageLayout__chat {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0px 10px 0px 10px;
+}
+
+.teamPageLayout__chatMsgContainer {
+  flex: 0.9;
+}
+
+.teamPageLayout__chatInput {
+  flex: 0.1;
+}
+
+.teamPageLayout__chatInput > div {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px 5px 10px;
+  background-color: var(--color-primary-700);
+  height: 75%;
+  border-radius: 3px;
+}
+
+.teamPageLayout__chatInput > div > span {
+  padding: 0px 10px 0px 10px;
+}
+
+.teamPageLayout__chatInput > div > input {
+  width: 99%;
+  height: 85%;
+  font-size: 17px;
+  color: var(--color-primary-100) !important;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+.teamPageLayout__chatInput > div > input::placeholder {
+  display: flex;
+  align-items: center;
+  color: var(--color-primary-100);
 }

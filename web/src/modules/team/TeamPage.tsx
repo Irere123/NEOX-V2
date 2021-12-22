@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { useTeamQuery } from "../../generated/graphql";
 import Layout from "../../layouts/Layout";
 import ViewTeamLayout from "../../layouts/ViewTeamLayout";
-import TeamPageChatHeader from "./TeamPageChatHeader";
+import TeamPageChatLayout from "../../layouts/TeamPageChatLayout";
 
 interface Params {
   teamId: string;
@@ -29,7 +29,7 @@ const TeamPage: React.FC = () => {
   return (
     <Layout title={`${team?.name}`}>
       <ViewTeamLayout>
-        <TeamPageChatHeader room={room} team={team} />
+        <TeamPageChatLayout room={room} team={team} />
       </ViewTeamLayout>
     </Layout>
   );

@@ -20,5 +20,6 @@ export { default as ExtensionsIcon } from "./SvgSolidExtensions";
 export { default as KeyIcon } from "./SvgSolidVpnKey";
 export { default as GroupIcon } from "./SvgSolidGroup";
 export { default as ArrowLeft } from "./SvgSolidArrowLeft";
+export { default as EmojiIcon } from "./SolidEmojiIcon";
 export { default as CompassIcon } from "./SolidCompass";
 export { default as NeoxNitro } from "./SolidNeoxNitro";
