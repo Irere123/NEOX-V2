@@ -19,8 +19,7 @@
 }
 
 .teamPageChatHeader {
-  background-color: var(--color-primary-600);
-  opacity: 0.8;
+  background-color: #2a3341;
   height: 50px;
   display: flex;
   align-items: center;

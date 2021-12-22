@@ -21,7 +21,9 @@ const TeamPage: React.FC = () => {
   const team = data?.team;
 
   const roomIdInteger = parseInt(roomId, 10);
-  const roomIdx = roomIdInteger ? findIndex(team?.rooms, ["id", roomId]) : 0;
+  const roomIdx = roomIdInteger
+    ? findIndex(team?.rooms, ["id", roomIdInteger])
+    : 0;
   const room = roomIdx === -1 ? team?.rooms[0] : team?.rooms[roomIdx];
 
   return (
