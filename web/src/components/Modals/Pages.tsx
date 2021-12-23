@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
 
 import {
@@ -8,7 +9,6 @@ import {
   KeyIcon,
   LightIcon,
 } from "../../icons";
-import Switch from "../../ui/Switch";
 import { useCreateTeamMutation } from "../../generated/graphql";
 import toErrorMap from "../../lib/toErrorMap";
 
@@ -83,6 +83,9 @@ export const Page1: React.FC<Props> = ({ setPage }) => {
             <ArrowLeft fill="#4f5760" />
           </span>
         </div>
+        <div className="HaveAnInvite__button">
+          <p>Already have an invite</p>
+        </div>
       </div>
     </div>
   );
@@ -90,7 +93,7 @@ export const Page1: React.FC<Props> = ({ setPage }) => {
 
 export const Page2: React.FC<Props> = ({ prevPage, onRequestClose }) => {
   const [createTeam] = useCreateTeamMutation();
-  const [isPublic, setIsPublic] = useState(false);
+  const history = useHistory();
 
   return (
     <div>
@@ -103,11 +106,10 @@ export const Page2: React.FC<Props> = ({ prevPage, onRequestClose }) => {
         <Formik
           initialValues={{ name: `${testUsername}'s team`, isPublic: false }}
           onSubmit={async (values, { setSubmitting, setErrors }) => {
-            const isPub = (values.isPublic = isPublic);
             const resp = await createTeam({
               variables: {
                 name: values.name,
-                public: isPub,
+                public: values.isPublic,
               },
               update: (store) => {
                 store.evict({ fieldName: "me" });
@@ -119,6 +121,7 @@ export const Page2: React.FC<Props> = ({ prevPage, onRequestClose }) => {
             } else if (resp.data?.createTeam.ok) {
               setSubmitting(false);
               onRequestClose!();
+              history.push(`/team/${resp.data.createTeam.team?.id}`);
             }
           }}
         >
@@ -136,13 +139,6 @@ export const Page2: React.FC<Props> = ({ prevPage, onRequestClose }) => {
                 />
               </div>
               {errors ? <span>{errors.name}</span> : null}
-              <div className="Page2Content__toggle">
-                <p style={{ color: "#060607" }}>Public</p>
-                <Switch
-                  checked={isPublic}
-                  handleToogle={() => setIsPublic(!isPublic)}
-                />
-              </div>
 
               <div className="Page2Content__footer">
                 <div>

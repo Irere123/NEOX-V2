@@ -107,5 +107,5 @@
 .teamPageLayout__chatInput > div > input::placeholder {
   display: flex;
   align-items: center;
-  color: var(--color-primary-100);
+  color: var(--color-primary-200);
 }
