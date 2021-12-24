@@ -12,7 +12,7 @@ const TeamPageChatLayout: React.FC<Props> = ({ room, team }) => {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <TeamPageChatHeader room={room} team={team} />
-      <div style={{ height: "100%" }}>
+      <div style={{ height: "100%", display: "flex" }}>
         <TeamPageChat room={room} />
       </div>
     </div>
