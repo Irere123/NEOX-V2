@@ -14,6 +14,7 @@ import { ObjectType, Field, Int } from "type-graphql";
 import { User } from "./User";
 import { Team } from "./Team";
 import { PRMember } from "./PRMember";
+import { Message } from "./Message";
 
 @ObjectType()
 @Entity("rooms")
@@ -44,6 +45,9 @@ export class Room extends BaseEntity {
 
   @OneToMany(() => RMember, (rm) => rm.room, { onDelete: "CASCADE" })
   members: RMember[];
+
+  @OneToMany(() => Message, (rm) => rm.room, { onDelete: "CASCADE" })
+  messages: Message[];
 
   @OneToMany(() => PRMember, (cm) => cm.room, { onDelete: "CASCADE" })
   prmembers: PRMember[];
