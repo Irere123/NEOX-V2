@@ -1,0 +1,68 @@
+.userSettingsPage__layout {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.userSettingsPage__layoutLeftSidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  grid-gap: 10px;
+  gap: 10px;
+  flex: 0.15;
+  align-content: stretch;
+  align-items: flex-end;
+}
+
+.userSettingsPage__layoutRightSide {
+  flex: 0.7;
+}
+
+.Tab {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.Tab:nth-child(2) {
+  border-bottom: 1px solid var(--color-primary-600);
+}
+
+.TabsCategoryTitle {
+  color: var(--color-primary-200);
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
+.TabLink {
+  color: var(--color-primary-100);
+  cursor: pointer;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  border-radius: 3px;
+}
+
+.TabLink--active {
+  background-color: var(--color-primary-600);
+}
+
+.Additional__Info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  gap: 15px;
+  color: var(--color-primary-200);
+}
+
+.Additional__Info > .logout_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-accent);
+  border: 1.5px solid var(--color-accent);
+  padding: 5px;
+  border-radius: 2px;
+  cursor: pointer;
+}
