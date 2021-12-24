@@ -56,6 +56,7 @@ const main = async () => {
 
   const RedisStore = connectRedis(session);
 
+  // CORS Set up
   app.use(
     cors({
       origin: clientAppUrl,

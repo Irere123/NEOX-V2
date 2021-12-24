@@ -26,7 +26,7 @@ function Routes() {
           exact
           component={ExploreMoments}
         />
-        <ProtectedRoute path="/user-settings" exact component={UserSettings} />
+        <ProtectedRoute path="/settings" exact component={UserSettings} />
         <ProtectedRoute
           path="/campus-discovery"
           exact

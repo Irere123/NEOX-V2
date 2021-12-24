@@ -22,14 +22,23 @@ const LeftSidebar: React.FC<Props> = () => {
   return (
     <div className="teamPageLayout__leftSidebar">
       <LeftSidebarHeader teamName={team?.name} />
-      <div>
-        {team?.rooms.map((room) => (
-          <div key={room.id}>
-            <Link to={`/team/${team.id}/${room.id}`}>
-              <p>{room.name}</p>
-            </Link>
-          </div>
-        ))}
+      <div className="teamPageLayout__leftSidebar__rooms">
+        <h4>Channels</h4>
+        <div className="teamPageLayout__leftSidebar__roomsList">
+          {team?.rooms.map((room) => (
+            <div key={room.id}>
+              <Link
+                to={`/team/${team.id}/${room.id}`}
+                className="teamPageLayout__channelName"
+              >
+                <p>
+                  <span className="teamChannelName__hashtag">#</span>
+                  <span>{room.name}</span>
+                </p>
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

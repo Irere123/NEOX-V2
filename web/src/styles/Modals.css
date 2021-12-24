@@ -131,3 +131,18 @@
 .Page2Content__footer > div:nth-child(2) > button:hover {
   background-color: var(--color-accent-hover);
 }
+
+.HaveAnInvite__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 0px 20px 0px 20px;
+  border: 1px solid rgba(6, 6, 7, 0.08);
+  background-color: rgba(116, 127, 141, 0.08);
+  border-radius: 7px;
+}
+
+.HaveAnInvite__button > p {
+  color: var(--color-primary-500);
+}

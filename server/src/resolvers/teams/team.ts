@@ -85,19 +85,6 @@ export default class TeamsResolver {
     @Ctx() { req }: MyContext
   ): Promise<TeamResponse> {
     const userId = (req.session as any).userId;
-    const dbTeam = await Team.findOne({ where: { name } });
-
-    if (dbTeam) {
-      return {
-        ok: false,
-        errors: [
-          {
-            field: "name",
-            message: "The name is already taken",
-          },
-        ],
-      };
-    }
 
     if (name === "") {
       return {
@@ -117,6 +104,20 @@ export default class TeamsResolver {
       await getConnection().transaction(async () => {
         team = await Team.create({ name, isPublic }).save();
         await Member.create({ admin: true, userId, teamId: team.id }).save();
+
+        await Room.create({
+          dm: false,
+          public: true,
+          teamId: team.id,
+          name: "announcements",
+        }).save();
+
+        await Room.create({
+          dm: false,
+          public: isPublic,
+          teamId: team.id,
+          name: "off-topic",
+        }).save();
 
         await Room.create({
           dm: false,

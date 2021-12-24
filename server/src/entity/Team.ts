@@ -19,7 +19,7 @@ export class Team extends BaseEntity {
   id: string;
 
   @Field()
-  @Column({ type: "text", unique: true })
+  @Column({ type: "text" })
   name: string;
 
   @Field()

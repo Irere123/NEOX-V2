@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { useTeamQuery } from "../../generated/graphql";
 import Layout from "../../layouts/Layout";
 import ViewTeamLayout from "../../layouts/ViewTeamLayout";
-import TeamPageChatHeader from "./TeamPageChatHeader";
+import TeamPageChatLayout from "../../layouts/TeamPageChatLayout";
 
 interface Params {
   teamId: string;
@@ -21,13 +21,15 @@ const TeamPage: React.FC = () => {
   const team = data?.team;
 
   const roomIdInteger = parseInt(roomId, 10);
-  const roomIdx = roomIdInteger ? findIndex(team?.rooms, ["id", roomId]) : 0;
+  const roomIdx = roomIdInteger
+    ? findIndex(team?.rooms, ["id", roomIdInteger])
+    : 0;
   const room = roomIdx === -1 ? team?.rooms[0] : team?.rooms[roomIdx];
 
   return (
     <Layout title={`${team?.name}`}>
       <ViewTeamLayout>
-        <TeamPageChatHeader room={room} team={team} />
+        <TeamPageChatLayout room={room} team={team} />
       </ViewTeamLayout>
     </Layout>
   );
