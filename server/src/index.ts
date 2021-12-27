@@ -78,7 +78,7 @@ const main = async () => {
       cookie: {
         path: "/",
         httpOnly: true,
-        sameSite: !__prod__ ? "none" : "lax",
+        sameSite: !__prod__ ? "lax" : "none",
         secure: __prod__,
         maxAge: 1000 * 60 * 60 * 24 * 365 * 4, // 4 years
       },
