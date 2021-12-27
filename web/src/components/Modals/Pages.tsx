@@ -9,7 +9,10 @@ import {
   KeyIcon,
   LightIcon,
 } from "../../icons";
-import { useCreateTeamMutation } from "../../generated/graphql";
+import {
+  useCreateTeamByTemplateMutation,
+  useCreateTeamMutation,
+} from "../../generated/graphql";
 import toErrorMap from "../../lib/toErrorMap";
 
 interface Props {
@@ -50,7 +53,7 @@ export const Page1: React.FC<Props> = ({ setPage }) => {
         start from a template
       </p>
       <div className="createTeamTemplate__choices">
-        <div className="createTeamChoice__card">
+        <div className="createTeamChoice__card" onClick={() => setPage?.(2)}>
           <span className="createTeamChoice__card_iconNword">
             <span>
               <BackpackIcon fill="#4f5760" />
@@ -61,7 +64,7 @@ export const Page1: React.FC<Props> = ({ setPage }) => {
             <ArrowLeft fill="#4f5760" />
           </span>
         </div>
-        <div className="createTeamChoice__card">
+        <div className="createTeamChoice__card" onClick={() => setPage?.(2)}>
           <span className="createTeamChoice__card_iconNword">
             <span>
               <LightIcon fill="#4f5760" />
@@ -72,7 +75,7 @@ export const Page1: React.FC<Props> = ({ setPage }) => {
             <ArrowLeft fill="#4f5760" />
           </span>
         </div>
-        <div className="createTeamChoice__card">
+        <div className="createTeamChoice__card" onClick={() => setPage?.(2)}>
           <span className="createTeamChoice__card_iconNword">
             <span>
               <GroupIcon fill="#4f5760" />
@@ -83,7 +86,7 @@ export const Page1: React.FC<Props> = ({ setPage }) => {
             <ArrowLeft fill="#4f5760" />
           </span>
         </div>
-        <div className="HaveAnInvite__button">
+        <div className="HaveAnInvite__button" onClick={() => setPage?.(3)}>
           <p>Already have an invite</p>
         </div>
       </div>
@@ -164,10 +167,83 @@ export const Page2: React.FC<Props> = ({ prevPage, onRequestClose }) => {
   );
 };
 
-export const Page3: React.FC<Props> = () => {
+export const Page3: React.FC<Props> = ({ onRequestClose, prevPage }) => {
+  const [createTeam] = useCreateTeamByTemplateMutation();
+  const history = useHistory();
+
   return (
     <div>
-      <h4>Page3</h4>
+      <p style={{ color: "#4f5660", textAlign: "center" }}>
+        Give your new team a personality with a name and online visibility you
+        can always change it later.
+      </p>
+      <div className="Page2Content">
+        <p style={{ color: "#060607" }}>Team name</p>
+        <Formik
+          initialValues={{ name: `${testUsername}'s team`, isPublic: false }}
+          onSubmit={async (values, { setSubmitting, setErrors }) => {
+            const resp = await createTeam({
+              variables: {
+                name: values.name,
+                template: "study_group",
+              },
+              update: (store) => {
+                store.evict({ fieldName: "me" });
+              },
+            });
+            if (resp.data?.createTeamByTemplate.errors) {
+              setErrors(toErrorMap(resp.data.createTeamByTemplate.errors));
+              return;
+            } else if (resp.data?.createTeamByTemplate.ok) {
+              setSubmitting(false);
+              onRequestClose!();
+              history.push(`/team/${resp.data.createTeamByTemplate.team?.id}`);
+            }
+          }}
+        >
+          {({ values, handleChange, handleSubmit, isSubmitting, errors }) => (
+            <>
+              <div className="Page2Content__input">
+                <input
+                  type="text"
+                  name="name"
+                  onChange={handleChange}
+                  value={values.name}
+                  spellCheck={false}
+                  autoCorrect="false"
+                  autoComplete="off"
+                />
+              </div>
+              {errors ? <span>{errors.name}</span> : null}
+
+              <div className="Page2Content__footer">
+                <div>
+                  <button type="button" onClick={() => prevPage?.(1)}>
+                    Back
+                  </button>
+                </div>
+                <div>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    onClick={() => handleSubmit()}
+                  >
+                    Create
+                  </button>
+                </div>
+              </div>
+            </>
+          )}
+        </Formik>
+      </div>
+    </div>
+  );
+};
+
+export const Page4: React.FC<Props> = () => {
+  return (
+    <div>
+      <h4>Join a server</h4>
     </div>
   );
 };

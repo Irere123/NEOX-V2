@@ -12,3 +12,18 @@ mutation CreateTeam($public: Boolean!, $name: String!) {
     }
   }
 }
+
+mutation CreateTeamByTemplate($name: String!, $template: String!) {
+  createTeamByTemplate(name: $name, template: $template) {
+    ok
+    errors {
+      field
+      message
+    }
+    team {
+      id
+      name
+      isPublic
+    }
+  }
+}
