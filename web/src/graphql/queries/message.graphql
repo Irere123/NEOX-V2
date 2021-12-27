@@ -1,0 +1,13 @@
+query Messages($roomId: Int!) {
+  messages(roomId: $roomId) {
+    id
+    text
+    createdAt
+    updatedAt
+    user {
+      id
+      username
+      pictureUrl
+    }
+  }
+}

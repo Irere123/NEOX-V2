@@ -28,6 +28,7 @@ export type Message = {
   id: Scalars['String'];
   text: Scalars['String'];
   updatedAt: Scalars['DateTime'];
+  user: User;
 };
 
 export type Mutation = {
@@ -60,6 +61,7 @@ export type MutationAddTeamMemberArgs = {
 
 
 export type MutationCreateMessageArgs = {
+  roomId: Scalars['Int'];
   text: Scalars['String'];
 };
 
@@ -121,6 +123,7 @@ export type Query = {
   allUsers: Array<User>;
   getTeamMembers: Array<User>;
   me?: Maybe<User>;
+  messages: Array<Message>;
   publicTeams: Array<Team>;
   rooms: Array<Room>;
   team?: Maybe<Team>;
@@ -131,6 +134,11 @@ export type Query = {
 
 export type QueryGetTeamMembersArgs = {
   teamId: Scalars['ID'];
+};
+
+
+export type QueryMessagesArgs = {
+  roomId: Scalars['Int'];
 };
 
 
@@ -207,6 +215,14 @@ export type LogoutMutationVariables = Exact<{ [key: string]: never; }>;
 
 export type LogoutMutation = { __typename?: 'Mutation', logout: boolean };
 
+export type CreateMessageMutationVariables = Exact<{
+  roomId: Scalars['Int'];
+  text: Scalars['String'];
+}>;
+
+
+export type CreateMessageMutation = { __typename?: 'Mutation', createMessage: boolean };
+
 export type CreateTeamMutationVariables = Exact<{
   public: Scalars['Boolean'];
   name: Scalars['String'];
@@ -227,6 +243,13 @@ export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type MeQuery = { __typename?: 'Query', me?: Maybe<{ __typename?: 'User', id: number, username: string, email?: Maybe<string>, bio?: Maybe<string>, pictureUrl?: Maybe<string>, teams: Array<{ __typename?: 'Team', id: string, name: string, isPublic: boolean, rooms: Array<{ __typename?: 'Room', id: number, name: string }> }>, myFriends: Array<{ __typename?: 'User', id: number, username: string }> }> };
+
+export type MessagesQueryVariables = Exact<{
+  roomId: Scalars['Int'];
+}>;
+
+
+export type MessagesQuery = { __typename?: 'Query', messages: Array<{ __typename?: 'Message', id: string, text: string, createdAt: any, updatedAt: any, user: { __typename?: 'User', id: number, username: string, pictureUrl?: Maybe<string> } }> };
 
 export type TeamsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -271,6 +294,38 @@ export function useLogoutMutation(baseOptions?: Apollo.MutationHookOptions<Logou
 export type LogoutMutationHookResult = ReturnType<typeof useLogoutMutation>;
 export type LogoutMutationResult = Apollo.MutationResult<LogoutMutation>;
 export type LogoutMutationOptions = Apollo.BaseMutationOptions<LogoutMutation, LogoutMutationVariables>;
+export const CreateMessageDocument = gql`
+    mutation CreateMessage($roomId: Int!, $text: String!) {
+  createMessage(text: $text, roomId: $roomId)
+}
+    `;
+export type CreateMessageMutationFn = Apollo.MutationFunction<CreateMessageMutation, CreateMessageMutationVariables>;
+
+/**
+ * __useCreateMessageMutation__
+ *
+ * To run a mutation, you first call `useCreateMessageMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateMessageMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createMessageMutation, { data, loading, error }] = useCreateMessageMutation({
+ *   variables: {
+ *      roomId: // value for 'roomId'
+ *      text: // value for 'text'
+ *   },
+ * });
+ */
+export function useCreateMessageMutation(baseOptions?: Apollo.MutationHookOptions<CreateMessageMutation, CreateMessageMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateMessageMutation, CreateMessageMutationVariables>(CreateMessageDocument, options);
+      }
+export type CreateMessageMutationHookResult = ReturnType<typeof useCreateMessageMutation>;
+export type CreateMessageMutationResult = Apollo.MutationResult<CreateMessageMutation>;
+export type CreateMessageMutationOptions = Apollo.BaseMutationOptions<CreateMessageMutation, CreateMessageMutationVariables>;
 export const CreateTeamDocument = gql`
     mutation CreateTeam($public: Boolean!, $name: String!) {
   createTeam(public: $public, name: $name) {
@@ -409,6 +464,49 @@ export function useMeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MeQuery
 export type MeQueryHookResult = ReturnType<typeof useMeQuery>;
 export type MeLazyQueryHookResult = ReturnType<typeof useMeLazyQuery>;
 export type MeQueryResult = Apollo.QueryResult<MeQuery, MeQueryVariables>;
+export const MessagesDocument = gql`
+    query Messages($roomId: Int!) {
+  messages(roomId: $roomId) {
+    id
+    text
+    createdAt
+    updatedAt
+    user {
+      id
+      username
+      pictureUrl
+    }
+  }
+}
+    `;
+
+/**
+ * __useMessagesQuery__
+ *
+ * To run a query within a React component, call `useMessagesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMessagesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMessagesQuery({
+ *   variables: {
+ *      roomId: // value for 'roomId'
+ *   },
+ * });
+ */
+export function useMessagesQuery(baseOptions: Apollo.QueryHookOptions<MessagesQuery, MessagesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MessagesQuery, MessagesQueryVariables>(MessagesDocument, options);
+      }
+export function useMessagesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MessagesQuery, MessagesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MessagesQuery, MessagesQueryVariables>(MessagesDocument, options);
+        }
+export type MessagesQueryHookResult = ReturnType<typeof useMessagesQuery>;
+export type MessagesLazyQueryHookResult = ReturnType<typeof useMessagesLazyQuery>;
+export type MessagesQueryResult = Apollo.QueryResult<MessagesQuery, MessagesQueryVariables>;
 export const TeamsDocument = gql`
     query Teams {
   teams {
