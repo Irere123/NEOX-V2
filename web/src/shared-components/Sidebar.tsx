@@ -5,7 +5,7 @@ import "../styles/Modals.css";
 import placeholder from "../img/neox.png";
 import Teams from "./Sidebar/Teams";
 import { useMeQuery } from "../generated/graphql";
-import { CompassIcon, PlusIcon } from "../icons";
+import { PlusIcon, SettingsIcon } from "../icons";
 import { Tooltip } from "../ui/Tooltip";
 import CreateTeamModal from "../components/Modals/CreateTeamModal";
 
@@ -47,7 +47,7 @@ const Sidebar = withRouter(({ history }) => {
             </button>
           </Tooltip>
         </div>
-        <div className="appSidebarTeam__button">
+        {/* <div className="appSidebarTeam__button">
           <Tooltip content="Explore" direction="right">
             <button
               onClick={() => {
@@ -55,6 +55,17 @@ const Sidebar = withRouter(({ history }) => {
               }}
             >
               <CompassIcon fill="lightgreen" />
+            </button>
+          </Tooltip>
+        </div> */}
+        <div className="appSidebarTeam__button">
+          <Tooltip content="Settings" direction="right">
+            <button
+              onClick={() => {
+                history.push("/settings");
+              }}
+            >
+              <SettingsIcon fill="lightgreen" />
             </button>
           </Tooltip>
         </div>

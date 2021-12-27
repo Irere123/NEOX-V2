@@ -2,6 +2,7 @@ import React from "react";
 import { Redirect, Route, RouteComponentProps } from "react-router";
 
 import { useMeQuery } from "../generated/graphql";
+import { LoadingScreen } from "../shared-components/LoadingScreen";
 
 export const RedirectRoute: React.FC<any> = ({
   component: Component,
@@ -12,7 +13,7 @@ export const RedirectRoute: React.FC<any> = ({
   const renderRoute = (routeProps: RouteComponentProps<{}>) => {
     if (!data || loading) {
       // loading screen
-      return null;
+      return <LoadingScreen />;
     }
 
     if (data?.me) {

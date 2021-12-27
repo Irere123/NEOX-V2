@@ -64,6 +64,9 @@ export class User extends BaseEntity {
   @OneToMany(() => Member, (t) => t.teams, { onDelete: "CASCADE" })
   teamsRel: Member[];
 
+  @OneToMany(() => Team, (t) => t.user, { onDelete: "CASCADE" })
+  teamRel: Team[];
+
   @OneToMany(() => Message, (t) => t.user, { onDelete: "CASCADE" })
   msgsRel: Message[];
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation, useHistory } from "react-router-dom";
 
-import { Friends, NeoxNitro, PlusIcon, SchoolIcon } from "../icons";
+import { CompassIcon, Friends, NeoxNitro, PlusIcon } from "../icons";
 
 const loopArray = [1, 3, 4, 5];
 
@@ -9,7 +9,7 @@ export const LeftSide = () => {
   const pathname = useLocation().pathname;
   const history = useHistory();
   const defaultPage = pathname === "/home";
-  const campusDisPage = pathname === "/campus-discovery";
+  const explorePage = pathname === "/explore";
   const nitroPage = pathname === "/nitro";
 
   return (
@@ -35,16 +35,16 @@ export const LeftSide = () => {
         </div>
         <div
           className={`homePage__layout_leftside_link ${
-            campusDisPage
+            explorePage
               ? "homePage__layout_leftside_link_active"
               : "homeLink_hover"
           }`}
           onClick={() => {
-            history.push("/campus-discovery");
+            history.push("/explore");
           }}
         >
-          <SchoolIcon />
-          <p>Campus Discovery</p>
+          <CompassIcon />
+          <p>Explore</p>
         </div>
         <div
           className={`homePage__layout_leftside_link ${

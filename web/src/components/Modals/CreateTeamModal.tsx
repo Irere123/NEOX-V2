@@ -2,7 +2,7 @@ import React, { ReactNode, useState } from "react";
 import ReactModal from "react-modal";
 
 import { CloseIcon } from "../../icons";
-import { Page1, Page2, Page3 } from "./Pages";
+import { Page1, Page2, Page3, Page4 } from "./Pages";
 
 const customStyles = {
   default: {
@@ -61,6 +61,10 @@ const Modal: React.FC<
     pageToRender = (
       <Page3 prevPage={prevPage} onRequestClose={onRequestClose} />
     );
+  } else if (page === 3) {
+    pageToRender = (
+      <Page4 prevPage={prevPage} onRequestClose={onRequestClose} />
+    );
   }
 
   let cardTitle: string | null = null;
@@ -70,7 +74,9 @@ const Modal: React.FC<
   } else if (page === 1) {
     cardTitle = "Customize your team";
   } else if (page === 2) {
-    cardTitle = "Create a study group";
+    cardTitle = "Start from a template";
+  } else if (page === 3) {
+    cardTitle = "Join a team";
   }
 
   return (

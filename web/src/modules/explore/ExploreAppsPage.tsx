@@ -5,7 +5,7 @@ import {
   SearchIcon,
   SettingsIcon,
 } from "../../icons";
-import DefaultPageLayout from "../../layouts/DefaultPageLayout";
+import DefaultPageLayout from "../layouts/DefaultPageLayout";
 
 interface Props {}
 

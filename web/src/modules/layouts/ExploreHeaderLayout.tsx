@@ -1,6 +1,6 @@
 import React from "react";
 
-import placeholder from "../img/placeholder.jpg";
+import placeholder from "../../img/placeholder.jpg";
 
 interface Props {
   title: string;

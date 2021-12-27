@@ -37,6 +37,7 @@ export type Mutation = {
   createMessage: Scalars['Boolean'];
   createRoom: RoomResponse;
   createTeam: TeamResponse;
+  createTeamByTemplate: TeamResponse;
   deleteTeam: Scalars['Boolean'];
   deleteUser: Scalars['Boolean'];
   leaveTeam: Scalars['Boolean'];
@@ -74,6 +75,12 @@ export type MutationCreateRoomArgs = {
 export type MutationCreateTeamArgs = {
   name: Scalars['String'];
   public?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationCreateTeamByTemplateArgs = {
+  name: Scalars['String'];
+  template: Scalars['String'];
 };
 
 
@@ -195,6 +202,11 @@ export type AddMemberResponse = {
   ok: Scalars['Boolean'];
 };
 
+export type LogoutMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type LogoutMutation = { __typename?: 'Mutation', logout: boolean };
+
 export type CreateTeamMutationVariables = Exact<{
   public: Scalars['Boolean'];
   name: Scalars['String'];
@@ -202,6 +214,14 @@ export type CreateTeamMutationVariables = Exact<{
 
 
 export type CreateTeamMutation = { __typename?: 'Mutation', createTeam: { __typename?: 'TeamResponse', ok: boolean, errors?: Maybe<Array<{ __typename?: 'FieldError', field: string, message: string }>>, team?: Maybe<{ __typename?: 'Team', id: string, name: string, isPublic: boolean }> } };
+
+export type CreateTeamByTemplateMutationVariables = Exact<{
+  name: Scalars['String'];
+  template: Scalars['String'];
+}>;
+
+
+export type CreateTeamByTemplateMutation = { __typename?: 'Mutation', createTeamByTemplate: { __typename?: 'TeamResponse', ok: boolean, errors?: Maybe<Array<{ __typename?: 'FieldError', field: string, message: string }>>, team?: Maybe<{ __typename?: 'Team', id: string, name: string, isPublic: boolean }> } };
 
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -221,6 +241,36 @@ export type TeamQueryVariables = Exact<{
 export type TeamQuery = { __typename?: 'Query', team?: Maybe<{ __typename?: 'Team', id: string, name: string, createdAt: string, rooms: Array<{ __typename?: 'Room', id: number, name: string, public: boolean, teamId: string, createdAt: string }> }> };
 
 
+export const LogoutDocument = gql`
+    mutation Logout {
+  logout
+}
+    `;
+export type LogoutMutationFn = Apollo.MutationFunction<LogoutMutation, LogoutMutationVariables>;
+
+/**
+ * __useLogoutMutation__
+ *
+ * To run a mutation, you first call `useLogoutMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useLogoutMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [logoutMutation, { data, loading, error }] = useLogoutMutation({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useLogoutMutation(baseOptions?: Apollo.MutationHookOptions<LogoutMutation, LogoutMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<LogoutMutation, LogoutMutationVariables>(LogoutDocument, options);
+      }
+export type LogoutMutationHookResult = ReturnType<typeof useLogoutMutation>;
+export type LogoutMutationResult = Apollo.MutationResult<LogoutMutation>;
+export type LogoutMutationOptions = Apollo.BaseMutationOptions<LogoutMutation, LogoutMutationVariables>;
 export const CreateTeamDocument = gql`
     mutation CreateTeam($public: Boolean!, $name: String!) {
   createTeam(public: $public, name: $name) {
@@ -264,6 +314,49 @@ export function useCreateTeamMutation(baseOptions?: Apollo.MutationHookOptions<C
 export type CreateTeamMutationHookResult = ReturnType<typeof useCreateTeamMutation>;
 export type CreateTeamMutationResult = Apollo.MutationResult<CreateTeamMutation>;
 export type CreateTeamMutationOptions = Apollo.BaseMutationOptions<CreateTeamMutation, CreateTeamMutationVariables>;
+export const CreateTeamByTemplateDocument = gql`
+    mutation CreateTeamByTemplate($name: String!, $template: String!) {
+  createTeamByTemplate(name: $name, template: $template) {
+    ok
+    errors {
+      field
+      message
+    }
+    team {
+      id
+      name
+      isPublic
+    }
+  }
+}
+    `;
+export type CreateTeamByTemplateMutationFn = Apollo.MutationFunction<CreateTeamByTemplateMutation, CreateTeamByTemplateMutationVariables>;
+
+/**
+ * __useCreateTeamByTemplateMutation__
+ *
+ * To run a mutation, you first call `useCreateTeamByTemplateMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateTeamByTemplateMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createTeamByTemplateMutation, { data, loading, error }] = useCreateTeamByTemplateMutation({
+ *   variables: {
+ *      name: // value for 'name'
+ *      template: // value for 'template'
+ *   },
+ * });
+ */
+export function useCreateTeamByTemplateMutation(baseOptions?: Apollo.MutationHookOptions<CreateTeamByTemplateMutation, CreateTeamByTemplateMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateTeamByTemplateMutation, CreateTeamByTemplateMutationVariables>(CreateTeamByTemplateDocument, options);
+      }
+export type CreateTeamByTemplateMutationHookResult = ReturnType<typeof useCreateTeamByTemplateMutation>;
+export type CreateTeamByTemplateMutationResult = Apollo.MutationResult<CreateTeamByTemplateMutation>;
+export type CreateTeamByTemplateMutationOptions = Apollo.BaseMutationOptions<CreateTeamByTemplateMutation, CreateTeamByTemplateMutationVariables>;
 export const MeDocument = gql`
     query Me {
   me {

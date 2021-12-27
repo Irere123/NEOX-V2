@@ -2,7 +2,7 @@ import React from "react";
 
 import "../styles/pages/Explore.css";
 import ExplorePage from "../modules/explore/ExplorePage";
-import Layout from "../layouts/Layout";
+import Layout from "../modules/layouts/Layout";
 
 export default function Explore() {
   return (

@@ -1,9 +1,9 @@
 import React from "react";
 import { useLocation } from "react-router";
-import { LeftSide } from "../shared-components/LeftSidebar";
-import LeftSideExplorePage from "../modules/explore/LeftSide";
+import { LeftSide } from "../../shared-components/LeftSidebar";
+import LeftSideExplorePage from "../explore/LeftSide";
 
-import Sidebar from "../shared-components/Sidebar";
+import Sidebar from "../../shared-components/Sidebar";
 
 const defaultPageLayout = {
   display: "grid",

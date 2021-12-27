@@ -1,7 +1,7 @@
 import React from "react";
 
-import LeftSidebar from "../modules/team/LeftSidebar";
-import Sidebar from "../shared-components/Sidebar";
+import LeftSidebar from "../team/LeftSidebar";
+import Sidebar from "../../shared-components/Sidebar";
 
 interface Props {}
 
