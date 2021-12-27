@@ -1,5 +1,5 @@
 import React from "react";
-import DefaultPageLayout from "../../layouts/DefaultPageLayout";
+import DefaultPageLayout from "../layouts/DefaultPageLayout";
 
 const NitroHomePage: React.FC = () => {
   return (

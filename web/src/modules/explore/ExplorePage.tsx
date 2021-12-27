@@ -1,7 +1,7 @@
 import React from "react";
 
-import DefaultPageLayout from "../../layouts/DefaultPageLayout";
-import { ExploreHeaderLayout } from "../../layouts/ExploreHeaderLayout";
+import DefaultPageLayout from "../layouts/DefaultPageLayout";
+import { ExploreHeaderLayout } from "../layouts/ExploreHeaderLayout";
 
 interface Props {}
 

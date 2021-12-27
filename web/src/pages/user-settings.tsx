@@ -1,7 +1,7 @@
 import React from "react";
 
 import "../styles/pages/Settings.css";
-import Layout from "../layouts/Layout";
+import Layout from "../modules/layouts/Layout";
 import UserSettingsPage from "../modules/settings/userSettings/userSettingsPage";
 
 function UserSettings() {

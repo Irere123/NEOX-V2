@@ -1,8 +1,8 @@
 import React from "react";
 import { Friends } from "../../icons";
 
-import DefaultPageLayout from "../../layouts/DefaultPageLayout";
-import MainPageTop from "../../layouts/MainPageTop";
+import DefaultPageLayout from "../layouts/DefaultPageLayout";
+import MainPageTop from "../layouts/MainPageTop";
 import { Middle } from "./Middle";
 import { RightSide } from "./RightSide";
 

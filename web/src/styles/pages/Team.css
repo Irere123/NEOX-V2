@@ -70,6 +70,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  max-width: 70%;
   padding: 0px 10px 0px 10px;
   overflow: hidden;
   position: fixed;
@@ -80,7 +81,7 @@
 }
 
 .teamPageLayout__chatInput {
-  flex: 0.2;
+  padding: 0px 10px 10px 10px;
 }
 
 .teamPageLayout__chatInput > div {

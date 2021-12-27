@@ -6,10 +6,13 @@ import {
   UpdateDateColumn,
   OneToMany,
   PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
 } from "typeorm";
 import { ObjectType, Field, ID } from "type-graphql";
 import { Member } from "./Member";
 import { Room } from "./Room";
+import { User } from "./User";
 
 @ObjectType()
 @Entity("teams")
@@ -42,4 +45,11 @@ export class Team extends BaseEntity {
 
   @OneToMany(() => Room, (c) => c.team, { onDelete: "CASCADE" })
   roomsRel: Room[];
+
+  @Column()
+  userId: number;
+
+  @ManyToOne(() => User, (user) => user.teamRel, { onDelete: "CASCADE" })
+  @JoinColumn({ name: "userId" })
+  user: User;
 }

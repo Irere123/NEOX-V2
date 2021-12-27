@@ -23,12 +23,68 @@ import {
   TransferTeamResponse,
 } from "./Responses";
 import { isAuth } from "../../utils/isAuth";
+import {
+  friendsTemplate,
+  schoolClubTemplate,
+  studyGroupTemplate,
+} from "./teamTemplates";
 
 @Resolver(Team)
 export default class TeamsResolver {
   @Query(() => [Team])
   teams() {
     return Team.find();
+  }
+
+  @Mutation(() => TeamResponse)
+  @UseMiddleware(isAuth)
+  async createTeamByTemplate(
+    @Arg("template") template: string,
+    @Arg("name") name: string,
+    @Ctx() { req }: MyContext
+  ) {
+    const userId = (req.session as any).userId;
+    const uTeamNum = await Team.count({ where: { userId } });
+
+    if (uTeamNum === 5) {
+      return {
+        ok: false,
+        errors: [
+          {
+            field: "name",
+            message:
+              "You can not create more teams. You need to upgrade to nitro to create more teams",
+          },
+        ],
+      };
+    }
+
+    if (name === "") {
+      return {
+        ok: false,
+        errors: [
+          {
+            field: "name",
+            message: "You must provide the team name",
+          },
+        ],
+      };
+    }
+
+    let team;
+
+    if (template === "study_group") {
+      team = await studyGroupTemplate(name, userId);
+    } else if (template === "school_club") {
+      team = await schoolClubTemplate(name, userId);
+    } else if (template === "friends") {
+      team = friendsTemplate(name, userId);
+    }
+
+    return {
+      ok: true,
+      team,
+    };
   }
 
   @Query(() => Team, { nullable: true })
@@ -85,6 +141,20 @@ export default class TeamsResolver {
     @Ctx() { req }: MyContext
   ): Promise<TeamResponse> {
     const userId = (req.session as any).userId;
+    const uTeamNum = await Team.count({ where: { userId } });
+
+    if (uTeamNum === 5) {
+      return {
+        ok: false,
+        errors: [
+          {
+            field: "name",
+            message:
+              "You can not create more teams. You need to upgrade to create more teams",
+          },
+        ],
+      };
+    }
 
     if (name === "") {
       return {
@@ -102,7 +172,7 @@ export default class TeamsResolver {
 
     try {
       await getConnection().transaction(async () => {
-        team = await Team.create({ name, isPublic }).save();
+        team = await Team.create({ name, isPublic, userId }).save();
         await Member.create({ admin: true, userId, teamId: team.id }).save();
 
         await Room.create({

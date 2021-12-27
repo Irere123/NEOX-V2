@@ -3,9 +3,9 @@ import findIndex from "lodash/findIndex";
 import { useParams } from "react-router-dom";
 
 import { useTeamQuery } from "../../generated/graphql";
-import Layout from "../../layouts/Layout";
-import ViewTeamLayout from "../../layouts/ViewTeamLayout";
-import TeamPageChatLayout from "../../layouts/TeamPageChatLayout";
+import Layout from "../layouts/Layout";
+import ViewTeamLayout from "../layouts/ViewTeamLayout";
+import TeamPageChatLayout from "../layouts/TeamPageChatLayout";
 
 interface Params {
   teamId: string;

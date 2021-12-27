@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { TabPanel, useTabs } from "react-headless-tabs";
 import { Logo } from "../../../icons";
+import { Layout } from "./Layout";
 import Logout from "./Logout";
+import { MyAccount } from "./MyAccount";
+import { Profile } from "./Profile";
 
 import { TabSelector } from "./TabSelector";
 
@@ -74,10 +77,14 @@ const UserSettingsPage: React.FC = () => {
       </div>
       <div className="userSettingsPage__layoutRightSide">
         <TabPanel hidden={selectedTab !== "My acccount"}>
-          <div>My account</div>
+          <Layout>
+            <MyAccount />
+          </Layout>
         </TabPanel>
         <TabPanel hidden={selectedTab !== "User profile"}>
-          <div>User profile</div>
+          <Layout>
+            <Profile />
+          </Layout>
         </TabPanel>
         <TabPanel hidden={selectedTab !== "Appearance"}>
           <div>Appearance</div>
