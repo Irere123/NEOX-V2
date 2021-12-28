@@ -11,4 +11,6 @@ export type TranslationKeys =
 	| "footer.link_2"
 	| "modals.createTeamModal.title"
 	| "modals.createTeamModal.subtitle"
-	| "modals.createTeamModal.text";
+	| "modals.createTeamModal.text"
+	| "modals.createChannelModal.title"
+	| "modals.createChannelModal.text";

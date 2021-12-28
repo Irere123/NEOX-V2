@@ -3,7 +3,15 @@ import { Link } from "react-router-dom";
 
 import { NeoxNitro, FriendsAdd, SettingsIcon, PlusIcon } from "../../icons";
 
-const TeamDropDown: React.FC = () => {
+interface Props {
+  setOpenInviteModal: () => void;
+  setOpenChannelModal: () => void;
+}
+
+const TeamDropDown: React.FC<Props> = ({
+  setOpenChannelModal,
+  setOpenInviteModal,
+}) => {
   return (
     <div className="teamDropDown__overlay">
       <div className="teamDropDown__overlay__btn">
@@ -12,7 +20,10 @@ const TeamDropDown: React.FC = () => {
           <NeoxNitro />
         </span>
       </div>
-      <div className="teamDropDown__overlay__btn marked">
+      <div
+        className="teamDropDown__overlay__btn marked"
+        onClick={setOpenInviteModal}
+      >
         <p>Invite people</p>
         <span>
           <FriendsAdd fill="var(--color-accent-disabled)" />
@@ -26,7 +37,7 @@ const TeamDropDown: React.FC = () => {
           </span>
         </div>
       </Link>
-      <div className="teamDropDown__overlay__btn">
+      <div className="teamDropDown__overlay__btn" onClick={setOpenChannelModal}>
         <p>Create channel</p>
         <span>
           <PlusIcon />

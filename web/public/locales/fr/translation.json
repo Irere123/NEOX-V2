@@ -25,6 +25,10 @@
       "title": "Creer une equipe",
       "subtitle": "Personnalisez votre equipe",
       "text": "Give your new team a personality with a name and online visibility you can always change it later."
+    },
+    "createChannelModal": {
+      "title": "Creer une chennel",
+      "text": "Give your new channel a personality with a name and online visibility you can always change it later."
     }
   }
 }
