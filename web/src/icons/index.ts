@@ -25,3 +25,4 @@ export { default as CompassIcon } from "./SolidCompass";
 export { default as NeoxNitro } from "./SolidNeoxNitro";
 export { default as SolidGif } from "./SolidGif";
 export { default as SolidPoll } from "./SolidPoll";
+export { default as SolidHashTag } from "./SolidHashTag";

@@ -11,7 +11,7 @@ const TeamPageChat: React.FC<Props> = ({ room }) => {
   return (
     <div className="teamPageLayout__chat">
       <div className="teamPageLayout__chatMsgContainer">
-        <MessagesContainer />
+        <MessagesContainer room={room} />
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import ReactModal from "react-modal";
 
 import { CloseIcon } from "../../icons";
 import { Page1, Page2, Page3, Page4 } from "./Pages";
+import { useTypeSafeTranslation } from "../../hooks/useTypeSafeTranslation";
 
 const customStyles = {
   default: {
@@ -36,6 +37,7 @@ const Modal: React.FC<
   }
 > = ({ variant = "default", onRequestClose, ...props }) => {
   const [page, setPage] = useState(0);
+  const { t } = useTypeSafeTranslation();
 
   const setNewPage = (page: number) => {
     setPage(page);
@@ -70,9 +72,9 @@ const Modal: React.FC<
   let cardTitle: string | null = null;
 
   if (page === 0) {
-    cardTitle = "Create a team";
+    cardTitle = t("modals.createTeamModal.title");
   } else if (page === 1) {
-    cardTitle = "Customize your team";
+    cardTitle = t("modals.createTeamModal.subtitle");
   } else if (page === 2) {
     cardTitle = "Start from a template";
   } else if (page === 3) {

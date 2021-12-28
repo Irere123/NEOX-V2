@@ -1,0 +1,27 @@
+{
+  "_comment": "if you change this file, do yarn i18n",
+  "common": {
+    "ok": "Ok",
+    "yes": "Yes",
+    "no": "No",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "header": {
+    "_comment": "Main Header UI Internationalization Strings",
+    "title": "Wiomi"
+  },
+  "footer": {
+    "_comment": "Main Footer UI Internationalization Strings",
+    "link_1": "Report a Bug",
+    "link_2": "Features"
+  },
+  "modals": {
+    "createTeamModal": {
+      "title": "Create a team",
+      "subtitle": "Customize your team",
+      "text": "Give your new team a personality with a name and online visibility you can always change it later."
+    }
+  }
+}

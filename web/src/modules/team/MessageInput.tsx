@@ -1,4 +1,6 @@
 import React from "react";
+import { Formik } from "formik";
+import { useCreateMessageMutation } from "../../generated/graphql";
 
 import { EmojiIcon, PlusIcon, SolidPoll } from "../../icons";
 
@@ -7,13 +9,47 @@ interface Props {
 }
 
 const MessageInput: React.FC<Props> = ({ room }) => {
+  const [createMessage] = useCreateMessageMutation();
+
   return (
     <div className="teamPageLayout__chatInput">
       <div>
         <span>
           <PlusIcon fill="white" />
         </span>
-        <input type="text" placeholder={`Message #${room?.name}`} />
+        <Formik
+          initialValues={{ text: "" }}
+          onSubmit={(values) => {
+            createMessage({
+              variables: {
+                roomId: room?.id,
+                text: values.text,
+              },
+            });
+          }}
+        >
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            isSubmitting,
+            values,
+          }) => (
+            <input
+              type="text"
+              name="text"
+              value={values.text}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              onKeyDown={(e: any) => {
+                if (e.keyCode === 13 && !isSubmitting) {
+                  handleSubmit(e);
+                }
+              }}
+              placeholder={`Message #${room?.name}`}
+            />
+          )}
+        </Formik>
 
         <span>
           <EmojiIcon />

@@ -99,7 +99,7 @@
 
 .teamPageLayout__chatInput > div > input {
   width: 99%;
-  height: 85%;
+  height: 90%;
   font-size: 17px;
   color: var(--color-primary-100) !important;
   outline: none;
@@ -116,7 +116,11 @@
 /* Message Container */
 
 .teamPageLayout__chatMsgContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   overflow-y: auto;
+  margin-bottom: 10px;
 }
 
 .MessageContainer__message {
@@ -126,7 +130,7 @@
   padding-left: 10px;
 }
 
-.MessageContainer__messageAvatar {
+.MessageContainer__messageAvatar > img {
   display: flex;
   justify-content: center;
   align-items: center;

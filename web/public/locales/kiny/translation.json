@@ -1,0 +1,30 @@
+{
+  "common": {
+    "ok": "ok",
+    "yes": "yego",
+    "no": "oya",
+    "cancel": "annuler",
+    "save": "sauvegarder",
+    "edit": "éditer",
+    "delete": "supprimer",
+    "joinRoom": "rejoindre la salle",
+    "copyLink": "copier le lien",
+    "copied": "copié"
+  },
+  "header": {
+    "_comment": "Main Header UI Internationalization Strings",
+    "title": "DogeHouse"
+  },
+  "footer": {
+    "link_1": "Histoire d'origine",
+    "link_2": "Discord",
+    "link_3": "Signaler un bug"
+  },
+  "modals": {
+    "createTeamModal": {
+      "title": "Kora ikipe",
+      "subtitle": "Hindura ikipe yawe",
+      "text": "Give your new team a personality with a name and online visibility you can always change it later."
+    }
+  }
+}
