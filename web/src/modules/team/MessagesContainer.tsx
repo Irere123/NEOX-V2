@@ -1,6 +1,7 @@
 import React from "react";
 import dayjs from "dayjs";
 
+import { useTypeSafeTranslation } from "../../hooks/useTypeSafeTranslation";
 import { useMessagesQuery } from "../../generated/graphql";
 import { MessagesLoadingScreen } from "../../shared-components/LoadingScreens";
 import { SolidHashTag } from "../../icons";
@@ -15,6 +16,7 @@ const MessagesContainer: React.FC<Props> = ({ room }) => {
       roomId: room?.id,
     },
   });
+  const { t } = useTypeSafeTranslation();
 
   if (loading) {
     return <MessagesLoadingScreen />;
@@ -51,9 +53,11 @@ const MessagesContainer: React.FC<Props> = ({ room }) => {
           >
             <SolidHashTag />
           </span>
-          <h3 style={{ margin: "0" }}>Welcome to #{room?.name}</h3>
+          <h3 style={{ margin: "0" }}>
+            {t("pages.team.channelEmptyWelcome", { channel: room?.name })}
+          </h3>
           <p style={{ margin: "0" }}>
-            This is the beginning of the #{room?.name} channel
+            {t("pages.team.channelEmptyWelcomeTXt", { channel: room?.name })}
           </p>
         </div>
       ) : null}

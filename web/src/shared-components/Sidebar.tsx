@@ -8,6 +8,7 @@ import { useMeQuery } from "../generated/graphql";
 import { PlusIcon, SettingsIcon } from "../icons";
 import { Tooltip } from "../ui/Tooltip";
 import CreateTeamModal from "../components/Modals/CreateTeamModal";
+import { useTypeSafeTranslation } from "../hooks/useTypeSafeTranslation";
 
 const Sidebar = withRouter(({ history }) => {
   const [isError, setError] = React.useState(false);
@@ -15,6 +16,7 @@ const Sidebar = withRouter(({ history }) => {
   const { data } = useMeQuery();
   const me = data?.me;
   const hasTeams = me?.teams.length! > 0;
+  const { t } = useTypeSafeTranslation();
 
   return (
     <div className="appSidebar">
@@ -41,7 +43,7 @@ const Sidebar = withRouter(({ history }) => {
       ) : null}
       <div className="appSidebar__Buttons_container">
         <div className="appSidebarTeam__button">
-          <Tooltip content="Create a team" direction="right">
+          <Tooltip content={t("tooltips.create_team")} direction="right">
             <button onClick={() => setModal(!modal)}>
               <PlusIcon fill="lightgreen" />
             </button>
@@ -49,7 +51,7 @@ const Sidebar = withRouter(({ history }) => {
         </div>
 
         <div className="appSidebarTeam__button">
-          <Tooltip content="Settings" direction="right">
+          <Tooltip content={t("tooltips.settings")} direction="right">
             <button
               onClick={() => {
                 history.push("/settings");

@@ -76,7 +76,7 @@ const Modal: React.FC<
   } else if (page === 1) {
     cardTitle = t("modals.createTeamModal.subtitle");
   } else if (page === 2) {
-    cardTitle = "Start from a template";
+    cardTitle = t("modals.createTeamModal.start_from_template");
   } else if (page === 3) {
     cardTitle = "Join a team";
   }

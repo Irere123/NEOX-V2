@@ -17,15 +17,40 @@
     "link_1": "Report a Bug",
     "link_2": "Features"
   },
+  "pages": {
+    "team": {
+      "channelEmptyWelcome": "Welcome to #{{channel}}",
+      "channelEmptyWelcomeTXt": "This is the beginning of the #{{channel}} channel"
+    }
+  },
   "modals": {
     "createTeamModal": {
       "title": "Create a team",
       "subtitle": "Customize your team",
-      "text": "Give your new team a personality with a name and online visibility you can always change it later."
+      "create_my_own": "Create my own",
+      "study_group": "Study group",
+      "school_club": "School club",
+      "friends": "Friends",
+      "back": "Back",
+      "create": "Create",
+      "team_name": "Team name",
+      "start_from_template": "Start from a template",
+      "already_have_invite": "Already have an invite",
+      "text": "Your team is where you and your friends hangout Make yours and start talking.",
+      "text2": "Give your new team a personality with a name and online visibility you can always change it later."
     },
     "createChannelModal": {
       "title": "Create a channel",
       "text": "Give your new channel a personality with a name and online visibility you can always change it later."
     }
-  }
+  },
+  "overlays": {
+    "teamOverlay": {
+      "invite_people": "Invite People",
+      "create_channel": "Create channel",
+      "team_settings": "Team Settings",
+      "team_boost": "Team boost"
+    }
+  },
+  "tooltips": { "settings": "Settings", "create_team": "Create a team" }
 }
