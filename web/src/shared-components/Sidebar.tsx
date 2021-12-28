@@ -47,17 +47,7 @@ const Sidebar = withRouter(({ history }) => {
             </button>
           </Tooltip>
         </div>
-        {/* <div className="appSidebarTeam__button">
-          <Tooltip content="Explore" direction="right">
-            <button
-              onClick={() => {
-                history.push("/explore/trending");
-              }}
-            >
-              <CompassIcon fill="lightgreen" />
-            </button>
-          </Tooltip>
-        </div> */}
+
         <div className="appSidebarTeam__button">
           <Tooltip content="Settings" direction="right">
             <button

@@ -26,3 +26,5 @@ export { default as NeoxNitro } from "./SolidNeoxNitro";
 export { default as SolidGif } from "./SolidGif";
 export { default as SolidPoll } from "./SolidPoll";
 export { default as SolidHashTag } from "./SolidHashTag";
+export { default as SolidExpandMore } from "./SolidExpandMore";
+export { default as SolidExpandLess } from "./SolidExpandLess";

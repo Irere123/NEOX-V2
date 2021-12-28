@@ -11,6 +11,15 @@
   align-items: center;
 }
 
+.teamPageLayout__leftSidebar_header_icon {
+  display: flex;
+  align-items: center;
+  flex: 1 1;
+  justify-content: flex-end;
+  padding-right: 10px;
+  cursor: pointer;
+}
+
 .teamPageLayout__channelName > p {
   display: flex;
   align-items: center;
@@ -147,4 +156,46 @@
 
 .MessageContainer__messageContent > p {
   margin-top: 0;
+}
+
+.z-20 {
+  z-index: 20;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.top-9 {
+  top: 60px;
+}
+
+.left {
+  left: 130px;
+}
+
+.drop-button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.teamDropDown__overlay {
+  background-color: var(--color-primary-800);
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: var(--elevation-high);
+  /* border: 2px solid var(--color-accent); */
+}
+
+.teamDropDown__overlay__btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.marked > p {
+  color: var(--color-accent-disabled);
 }

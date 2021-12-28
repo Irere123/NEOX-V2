@@ -7,7 +7,7 @@ interface Props {
   handleToggle?: () => void;
 }
 
-const TeamPageChatHeader: React.FC<Props> = ({ room, handleToggle }) => {
+const TeamPageChatHeader: React.FC<Props> = ({ room }) => {
   return (
     <div className="teamPageChatHeader">
       <div className="teamPageChatHeader__left">
@@ -17,7 +17,7 @@ const TeamPageChatHeader: React.FC<Props> = ({ room, handleToggle }) => {
         </p>
       </div>
       <div className="teamPageChatHeader__right">
-        <span onClick={handleToggle}>
+        <span>
           <GroupIcon style={{ cursor: "pointer" }} />
         </span>
         <span>
