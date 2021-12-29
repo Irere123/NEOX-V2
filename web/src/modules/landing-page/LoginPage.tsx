@@ -1,6 +1,6 @@
 import React from "react";
 
-import { apiBaseUrl } from "../../constants";
+import { apiBaseUrl } from "../../lib/constants";
 import {
   Facebook,
   Github,

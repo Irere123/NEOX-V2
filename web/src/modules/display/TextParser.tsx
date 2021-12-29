@@ -1,5 +1,5 @@
 import React from "react";
-import { codeBlockRegex, linkRegex3 } from "../../constants";
+import { codeBlockRegex, linkRegex3 } from "../../lib/constants";
 
 interface TextParserProps {
   children: string;
