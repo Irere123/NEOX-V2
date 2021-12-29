@@ -83,7 +83,6 @@ const Modal: React.FC<
 
   return (
     <ReactModal
-      appElement={document.getElementById("#root") as HTMLElement}
       shouldCloseOnEsc
       shouldFocusAfterRender
       style={customStyles[variant]}

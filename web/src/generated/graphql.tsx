@@ -39,12 +39,14 @@ export type Mutation = {
   createRoom: RoomResponse;
   createTeam: TeamResponse;
   createTeamByTemplate: TeamResponse;
+  deleteRoom: Scalars['Boolean'];
   deleteTeam: Scalars['Boolean'];
   deleteUser: Scalars['Boolean'];
   leaveTeam: Scalars['Boolean'];
   logout: Scalars['Boolean'];
   removeFriend: Scalars['Boolean'];
   transferTeam: TransferTeamResponse;
+  updateRoom: Room;
   updateTeam: TeamResponse;
 };
 
@@ -87,6 +89,11 @@ export type MutationCreateTeamByTemplateArgs = {
 };
 
 
+export type MutationDeleteRoomArgs = {
+  roomId: Scalars['Int'];
+};
+
+
 export type MutationDeleteTeamArgs = {
   teamId: Scalars['ID'];
 };
@@ -110,6 +117,12 @@ export type MutationRemoveFriendArgs = {
 export type MutationTransferTeamArgs = {
   receiverId: Scalars['Int'];
   teamId: Scalars['ID'];
+};
+
+
+export type MutationUpdateRoomArgs = {
+  name: Scalars['String'];
+  roomId: Scalars['Int'];
 };
 
 
@@ -175,6 +188,7 @@ export type Team = {
   __typename?: 'Team';
   createdAt: Scalars['String'];
   id: Scalars['ID'];
+  isAdmin: Scalars['Boolean'];
   isPublic: Scalars['Boolean'];
   name: Scalars['String'];
   rooms: Array<Room>;
@@ -275,6 +289,13 @@ export type TeamQueryVariables = Exact<{
 
 
 export type TeamQuery = { __typename?: 'Query', team?: Maybe<{ __typename?: 'Team', id: string, name: string, createdAt: string, rooms: Array<{ __typename?: 'Room', id: number, name: string, ann: boolean, public: boolean, teamId: string, createdAt: string }> }> };
+
+export type TeamMembersQueryVariables = Exact<{
+  teamId: Scalars['ID'];
+}>;
+
+
+export type TeamMembersQuery = { __typename?: 'Query', getTeamMembers: Array<{ __typename?: 'User', id: number, username: string, pictureUrl?: Maybe<string>, teams: Array<{ __typename?: 'Team', isAdmin: boolean }> }> };
 
 
 export const CreateChannelDocument = gql`
@@ -657,3 +678,43 @@ export function useTeamLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TeamQ
 export type TeamQueryHookResult = ReturnType<typeof useTeamQuery>;
 export type TeamLazyQueryHookResult = ReturnType<typeof useTeamLazyQuery>;
 export type TeamQueryResult = Apollo.QueryResult<TeamQuery, TeamQueryVariables>;
+export const TeamMembersDocument = gql`
+    query TeamMembers($teamId: ID!) {
+  getTeamMembers(teamId: $teamId) {
+    id
+    username
+    pictureUrl
+    teams {
+      isAdmin
+    }
+  }
+}
+    `;
+
+/**
+ * __useTeamMembersQuery__
+ *
+ * To run a query within a React component, call `useTeamMembersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTeamMembersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTeamMembersQuery({
+ *   variables: {
+ *      teamId: // value for 'teamId'
+ *   },
+ * });
+ */
+export function useTeamMembersQuery(baseOptions: Apollo.QueryHookOptions<TeamMembersQuery, TeamMembersQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<TeamMembersQuery, TeamMembersQueryVariables>(TeamMembersDocument, options);
+      }
+export function useTeamMembersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TeamMembersQuery, TeamMembersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<TeamMembersQuery, TeamMembersQueryVariables>(TeamMembersDocument, options);
+        }
+export type TeamMembersQueryHookResult = ReturnType<typeof useTeamMembersQuery>;
+export type TeamMembersLazyQueryHookResult = ReturnType<typeof useTeamMembersLazyQuery>;
+export type TeamMembersQueryResult = Apollo.QueryResult<TeamMembersQuery, TeamMembersQueryVariables>;

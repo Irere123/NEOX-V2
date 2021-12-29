@@ -73,6 +73,10 @@
   margin-right: 1rem;
 }
 
+.teamPageChatHeader__right > span {
+  cursor: pointer;
+}
+
 /* Chat Container */
 
 .teamPageLayout__chat {

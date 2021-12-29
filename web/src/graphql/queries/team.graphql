@@ -30,3 +30,14 @@ query Team($teamId: ID!) {
     createdAt
   }
 }
+
+query TeamMembers($teamId: ID!) {
+  getTeamMembers(teamId: $teamId) {
+    id
+    username
+    pictureUrl
+    teams {
+      isAdmin
+    }
+  }
+}
