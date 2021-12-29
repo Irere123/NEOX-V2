@@ -28,3 +28,4 @@ export { default as SolidPoll } from "./SolidPoll";
 export { default as SolidHashTag } from "./SolidHashTag";
 export { default as SolidExpandMore } from "./SolidExpandMore";
 export { default as SolidExpandLess } from "./SolidExpandLess";
+export { default as SolidMicrophone } from "./SolidMicrophone";

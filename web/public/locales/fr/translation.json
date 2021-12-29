@@ -1,15 +1,12 @@
 {
   "common": {
-    "ok": "ok",
-    "yes": "oui",
-    "no": "non",
-    "cancel": "annuler",
-    "save": "sauvegarder",
-    "edit": "éditer",
-    "delete": "supprimer",
-    "joinRoom": "rejoindre la salle",
-    "copyLink": "copier le lien",
-    "copied": "copié"
+    "ok": "Ok",
+    "yes": "Qui",
+    "no": "Non",
+    "back": "Retour",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "create": "Creer"
   },
   "header": {
     "_comment": "Main Header UI Internationalization Strings",
@@ -30,8 +27,6 @@
       "study_group": "Groupe d'etude",
       "school_club": "Club de l'ecole",
       "friends": "Amis",
-      "back": "Retour",
-      "create": "Creer",
       "team_name": "Nom de equipe",
       "start_from_template": "Partir d'un modele",
       "already_have_invite": "Avez deja une invitation",

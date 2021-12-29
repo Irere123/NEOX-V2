@@ -5,6 +5,7 @@ import { useTypeSafeTranslation } from "../../hooks/useTypeSafeTranslation";
 import { useMessagesQuery } from "../../generated/graphql";
 import { MessagesLoadingScreen } from "../../shared-components/LoadingScreens";
 import { SolidHashTag } from "../../icons";
+import { TextParser } from "../display/TextParser";
 
 interface Props {
   room: any;
@@ -34,7 +35,9 @@ const MessagesContainer: React.FC<Props> = ({ room }) => {
               <p>{message.user.username}</p>
               <p>{dayjs(message.createdAt).format("DD/MM/YY")}</p>
             </div>
-            <p>{message.text}</p>
+            <p>
+              <TextParser>{message.text || ""}</TextParser>
+            </p>
           </div>
         </div>
       ))}

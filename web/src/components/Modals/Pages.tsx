@@ -149,7 +149,7 @@ export const Page2: React.FC<Props> = ({ prevPage, onRequestClose }) => {
               <div className="Page2Content__footer">
                 <div>
                   <button type="button" onClick={() => prevPage?.(1)}>
-                    {t("modals.createTeamModal.back")}
+                    {t("common.back")}
                   </button>
                 </div>
                 <div>
@@ -158,7 +158,7 @@ export const Page2: React.FC<Props> = ({ prevPage, onRequestClose }) => {
                     disabled={isSubmitting}
                     onClick={() => handleSubmit()}
                   >
-                    {t("modals.createTeamModal.create")}
+                    {t("common.create")}
                   </button>
                 </div>
               </div>
@@ -224,7 +224,7 @@ export const Page3: React.FC<Props> = ({ onRequestClose, prevPage }) => {
               <div className="Page2Content__footer">
                 <div>
                   <button type="button" onClick={() => prevPage?.(1)}>
-                    {t("modals.createTeamModal.back")}
+                    {t("common.back")}
                   </button>
                 </div>
                 <div>
@@ -233,7 +233,7 @@ export const Page3: React.FC<Props> = ({ onRequestClose, prevPage }) => {
                     disabled={isSubmitting}
                     onClick={() => handleSubmit()}
                   >
-                    {t("modals.createTeamModal.create")}
+                    {t("common.create")}
                   </button>
                 </div>
               </div>

@@ -215,11 +215,26 @@ button:focus {
 }
 
 .MainPage__top {
-  background-color: var(--color-primary-600);
-  opacity: 0.8;
+  background-color: #2a3341;
   height: 50px;
   box-shadow: var(--elevation-low);
   width: 100%;
   display: flex;
   align-items: center;
+}
+
+.text-accent {
+  color: var(--color-accent-hover);
+}
+
+.hover:hover {
+  text-decoration: underline;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.font-bold {
+  font-weight: bold;
 }

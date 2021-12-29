@@ -36,6 +36,14 @@ export class Room extends BaseEntity {
   dm: boolean;
 
   @Field()
+  @Column({ type: "bool", default: false })
+  ann: boolean;
+
+  @Field()
+  @Column({ type: "bool", default: false })
+  rules: boolean;
+
+  @Field()
   @Column()
   teamId: string;
 

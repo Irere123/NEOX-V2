@@ -146,3 +146,46 @@
 .HaveAnInvite__button > p {
   color: var(--color-primary-500);
 }
+
+.Create__input > input {
+  background-color: transparent;
+  border: 1px solid var(--color-primary-100);
+  width: 95%;
+  height: 40px;
+  outline: none;
+  padding: 0px 10px 0px 10px;
+  font-size: 17px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.channelTypes__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.channelTypes__buttonsBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+  padding: 0px 10px 0px 10px;
+  cursor: pointer;
+  border: 1px solid var(--color-primary-100);
+}
+
+.createChannelModal__footerPrivate {
+  display: flex;
+  align-items: center;
+}
+
+.createChannelModal__footerPrivate > div {
+  display: flex;
+  flex: 1 1;
+  justify-content: flex-end;
+}
+
+.checkedType {
+  background-color: rgba(116, 127, 141, 0.08);
+}

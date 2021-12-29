@@ -4,9 +4,10 @@
     "ok": "Ok",
     "yes": "Yes",
     "no": "No",
+    "back": "Back",
     "cancel": "Cancel",
-    "edit": "Edit",
-    "delete": "Delete"
+    "delete": "Delete",
+    "create": "Create"
   },
   "header": {
     "_comment": "Main Header UI Internationalization Strings",
@@ -31,8 +32,6 @@
       "study_group": "Study group",
       "school_club": "School club",
       "friends": "Friends",
-      "back": "Back",
-      "create": "Create",
       "team_name": "Team name",
       "start_from_template": "Start from a template",
       "already_have_invite": "Already have an invite",

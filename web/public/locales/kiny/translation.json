@@ -1,15 +1,12 @@
 {
   "common": {
-    "ok": "ok",
-    "yes": "yego",
-    "no": "oya",
-    "cancel": "annuler",
-    "save": "sauvegarder",
-    "edit": "éditer",
-    "delete": "supprimer",
-    "joinRoom": "rejoindre la salle",
-    "copyLink": "copier le lien",
-    "copied": "copié"
+    "ok": "Ok",
+    "yes": "Yego",
+    "no": "Oya",
+    "cancel": "Cancel",
+    "delete": "Siba",
+    "back": "Subira inyuma",
+    "create": "Create"
   },
   "header": {
     "_comment": "Main Header UI Internationalization Strings",
@@ -29,8 +26,6 @@
       "create_my_own": "Kora ikipe yawe",
       "study_group": "Ikipe yo kwiga",
       "school_club": "Club y'ishuri",
-      "back": "Subira inyuma",
-      "create": "Kora ikipe",
       "friends": "Inshuti",
       "team_name": "Izina ry'ikipe",
       "start_from_template": "Tangirira kuri modele",

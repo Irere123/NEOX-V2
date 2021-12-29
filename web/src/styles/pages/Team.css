@@ -186,7 +186,6 @@
   padding: 10px 20px;
   border-radius: 5px;
   box-shadow: var(--elevation-high);
-  /* border: 2px solid var(--color-accent); */
 }
 
 .teamDropDown__overlay__btn {
@@ -198,4 +197,22 @@
 
 .marked > p {
   color: var(--color-accent-disabled);
+}
+
+.teamPageLayout__leftSidebar__roomsListHeader {
+  display: flex;
+  align-items: center;
+}
+
+.teamPageLayout__leftSidebar__roomsListHeader > span {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1 1;
+  padding-right: 20px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.teamPageLayout__leftSidebar__roomsList {
+  padding-left: 10px;
 }

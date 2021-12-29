@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import LeftSidebarHeader from "./LeftSidebarHeader";
 import { useTeamQuery } from "../../generated/graphql";
+import { PlusIcon } from "../../icons";
+import CreateChannelModal from "../../components/Modals/CreateChannelModal";
 
 interface Props {}
 
@@ -13,6 +15,7 @@ interface Params {
 
 const LeftSidebar: React.FC<Props> = () => {
   const { teamId }: Params = useParams();
+  const [openModal, setOpenModal] = useState(false);
 
   const { data } = useTeamQuery({
     variables: { teamId },
@@ -23,7 +26,14 @@ const LeftSidebar: React.FC<Props> = () => {
     <div className="teamPageLayout__leftSidebar">
       <LeftSidebarHeader teamName={team?.name} />
       <div className="teamPageLayout__leftSidebar__rooms">
-        <h4>Channels</h4>
+        <div className="teamPageLayout__leftSidebar__roomsListHeader">
+          <p style={{ fontSize: "20px", margin: "0", paddingTop: "20px" }}>
+            Text Channels
+          </p>
+          <span onClick={() => setOpenModal(!openModal)}>
+            <PlusIcon />
+          </span>
+        </div>
         <div className="teamPageLayout__leftSidebar__roomsList">
           {team?.rooms.map((room) => (
             <div key={room.id}>
@@ -40,6 +50,12 @@ const LeftSidebar: React.FC<Props> = () => {
           ))}
         </div>
       </div>
+      {openModal && (
+        <CreateChannelModal
+          isOpen={openModal}
+          onRequestClose={() => setOpenModal(!openModal)}
+        />
+      )}
     </div>
   );
 };
