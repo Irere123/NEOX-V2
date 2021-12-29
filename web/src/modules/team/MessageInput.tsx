@@ -19,13 +19,14 @@ const MessageInput: React.FC<Props> = ({ room }) => {
         </span>
         <Formik
           initialValues={{ text: "" }}
-          onSubmit={(values) => {
+          onSubmit={(values, { resetForm }) => {
             createMessage({
               variables: {
                 roomId: room?.id,
                 text: values.text,
               },
             });
+            resetForm();
           }}
         >
           {({

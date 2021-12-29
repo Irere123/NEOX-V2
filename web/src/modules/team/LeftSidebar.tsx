@@ -27,8 +27,15 @@ const LeftSidebar: React.FC<Props> = () => {
       <LeftSidebarHeader teamName={team?.name} />
       <div className="teamPageLayout__leftSidebar__rooms">
         <div className="teamPageLayout__leftSidebar__roomsListHeader">
-          <p style={{ fontSize: "20px", margin: "0", paddingTop: "20px" }}>
-            Text Channels
+          <p
+            style={{
+              fontSize: "18px",
+              margin: "0",
+              paddingTop: "20px",
+              textTransform: "uppercase",
+            }}
+          >
+            Channels
           </p>
           <span onClick={() => setOpenModal(!openModal)}>
             <PlusIcon />

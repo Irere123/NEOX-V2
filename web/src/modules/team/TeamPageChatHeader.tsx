@@ -1,5 +1,5 @@
 import React from "react";
-import { GroupIcon, LightIcon, NeoxNitro } from "../../icons";
+import { GroupIcon, LightIcon, SettingsIcon } from "../../icons";
 
 interface Props {
   team: any;
@@ -18,10 +18,10 @@ const TeamPageChatHeader: React.FC<Props> = ({ room }) => {
       </div>
       <div className="teamPageChatHeader__right">
         <span>
-          <GroupIcon style={{ cursor: "pointer" }} />
+          <GroupIcon />
         </span>
         <span>
-          <NeoxNitro />
+          <SettingsIcon />
         </span>
         <span>
           <LightIcon />
