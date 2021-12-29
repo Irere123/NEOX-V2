@@ -7,7 +7,7 @@ import "./modal.css";
 const customStyles = {
   default: {
     overlay: {
-      backgroundColor: "rgba(0, 0, 0, 0.2)",
+      backgroundColor: "rgba(0, 0, 0, 0.8)",
       zIndex: 1000,
     },
     content: {
@@ -16,14 +16,15 @@ const customStyles = {
       right: "auto",
       bottom: "auto",
       marginRight: "-50%",
-      borderRadius: 3,
+      color: "var(--color-primary-900)",
+      borderRadius: 6,
       padding: "20px",
       transform: "translate(-50%, -50%)",
-      backgroundColor: "var(--color-primary-800)",
+      backgroundColor: "var(--color-button-text)",
       border: "none",
       maxHeight: "80vh",
       width: "90%",
-      maxWidth: 530,
+      maxWidth: 400,
     },
   },
   userPreview: {
@@ -72,8 +73,8 @@ const customStyles = {
 };
 
 const Modal: React.FC<
-  ReactModal["props"] & { variant?: keyof typeof customStyles }
-> = ({ children, variant = "default", ...props }) => {
+  ReactModal["props"] & { variant?: keyof typeof customStyles; title: string }
+> = ({ children, variant = "default", title, ...props }) => {
   return (
     <ReactModal
       shouldCloseOnEsc
@@ -84,11 +85,15 @@ const Modal: React.FC<
       <div className="modalContainer">
         <div tabIndex={-1} className="focus:outline-none">
           <div className="MyModal__header">
-            <span onClick={(e) => props.onRequestClose?.(e)}>
-              <CloseIcon />
+            <h4>{title}</h4>
+            <span
+              onClick={(e) => props.onRequestClose?.(e)}
+              style={{ cursor: "pointer" }}
+            >
+              <CloseIcon fill="#4f5760" />
             </span>
           </div>
-          {children}
+          <div className="MyModal__content">{children}</div>
         </div>
       </div>
     </ReactModal>

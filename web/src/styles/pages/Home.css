@@ -168,3 +168,33 @@
   color: var(--color-buttton-text);
   font-size: 18px;
 }
+
+.homePage__header {
+  display: flex;
+}
+
+.homePage__headerLinks {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-left: 20px;
+}
+
+.homePage__headerLinks > div {
+  cursor: pointer;
+}
+
+.homePage__headerLinks__addFriend > button {
+  background-color: var(--color-accent);
+  color: var(--color-primary-100);
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.homePage__headerLinks__addFriend > button:hover {
+  background-color: var(--color-accent-hover);
+}

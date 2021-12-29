@@ -3,6 +3,7 @@ import ReactModal from "react-modal";
 
 import { CloseIcon } from "../../icons";
 import { Page1, Page2, Page3, Page4 } from "./Pages";
+import { useTypeSafeTranslation } from "../../hooks/useTypeSafeTranslation";
 
 const customStyles = {
   default: {
@@ -36,6 +37,7 @@ const Modal: React.FC<
   }
 > = ({ variant = "default", onRequestClose, ...props }) => {
   const [page, setPage] = useState(0);
+  const { t } = useTypeSafeTranslation();
 
   const setNewPage = (page: number) => {
     setPage(page);
@@ -70,18 +72,17 @@ const Modal: React.FC<
   let cardTitle: string | null = null;
 
   if (page === 0) {
-    cardTitle = "Create a team";
+    cardTitle = t("modals.createTeamModal.title");
   } else if (page === 1) {
-    cardTitle = "Customize your team";
+    cardTitle = t("modals.createTeamModal.subtitle");
   } else if (page === 2) {
-    cardTitle = "Start from a template";
+    cardTitle = t("modals.createTeamModal.start_from_template");
   } else if (page === 3) {
     cardTitle = "Join a team";
   }
 
   return (
     <ReactModal
-      appElement={document.getElementById("#root") as HTMLElement}
       shouldCloseOnEsc
       shouldFocusAfterRender
       style={customStyles[variant]}
@@ -89,13 +90,13 @@ const Modal: React.FC<
     >
       <div className="modalContainer">
         <div tabIndex={-1} className="focus:outline-none">
-          <div className="MyCreateTeamModal__header">
+          <div className="MyCreateModal__header">
             <h4>{cardTitle}</h4>
             <span onClick={onRequestClose}>
               <CloseIcon fill="#4f5760" />
             </span>
           </div>
-          <div className="MyCreateTeamModal__content">{pageToRender}</div>
+          <div className="MyCreateModal__content">{pageToRender}</div>
         </div>
       </div>
     </ReactModal>

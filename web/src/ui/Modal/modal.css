@@ -1,3 +1,25 @@
 .modalContainer {
   margin: 5px;
 }
+
+.MyModal__header {
+  display: flex;
+  align-items: center;
+}
+
+.MyModal__header > span {
+  display: flex;
+  flex: 0.1;
+  justify-content: flex-end;
+  cursor: pointer;
+  align-items: center;
+}
+
+.MyModal__header > h4 {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  flex: 0.9;
+  font-weight: 400;
+  color: var(--color-primary-900);
+}

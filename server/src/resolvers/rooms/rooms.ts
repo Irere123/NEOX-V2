@@ -2,6 +2,7 @@ import {
   Arg,
   Ctx,
   ID,
+  Int,
   Mutation,
   Query,
   Resolver,
@@ -13,6 +14,7 @@ import { RoomResponse } from "./Response";
 import { Member } from "../../entity/Member";
 import { MyContext } from "../../types/MyContext";
 import { isAuth } from "../../utils/isAuth";
+import { getConnection } from "typeorm";
 
 @Resolver(Room)
 export default class RoomsReolver {
@@ -29,6 +31,7 @@ export default class RoomsReolver {
     @Arg("name") name: string,
     @Arg("public") p: boolean,
     @Arg("dm", { nullable: true }) dm: boolean,
+    @Arg("ann", { nullable: true }) ann: boolean,
     @Ctx() { req }: MyContext
   ): Promise<RoomResponse> {
     const userId = (req.session as any).userId;
@@ -51,6 +54,7 @@ export default class RoomsReolver {
       name,
       public: p,
       dm,
+      ann,
       teamId,
     }).save();
 
@@ -58,5 +62,30 @@ export default class RoomsReolver {
       ok: true,
       room,
     };
+  }
+
+  @Mutation(() => Boolean)
+  @UseMiddleware(isAuth)
+  async deleteRoom(@Arg("roomId", () => Int) roomId: number): Promise<Boolean> {
+    await Room.delete({ id: roomId });
+
+    return true;
+  }
+
+  @Mutation(() => Room)
+  @UseMiddleware(isAuth)
+  async updateRoom(
+    @Arg("roomId", () => Int) roomId: number,
+    @Arg("name") name: string
+  ): Promise<Room | undefined> {
+    const room = await getConnection()
+      .createQueryBuilder()
+      .update(Room)
+      .set({ name })
+      .where("id=:id", { id: roomId })
+      .returning("*")
+      .execute();
+
+    return room.raw[0];
   }
 }

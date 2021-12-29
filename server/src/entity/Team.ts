@@ -29,6 +29,9 @@ export class Team extends BaseEntity {
   @Column({ type: "bool", default: false })
   isPublic: boolean;
 
+  @Field(() => Boolean)
+  isAdmin: Boolean;
+
   @Field(() => [Room])
   rooms: Room[];
 

@@ -22,10 +22,22 @@ query Team($teamId: ID!) {
     rooms {
       id
       name
+      ann
       public
       teamId
       createdAt
     }
     createdAt
+  }
+}
+
+query TeamMembers($teamId: ID!) {
+  getTeamMembers(teamId: $teamId) {
+    id
+    username
+    pictureUrl
+    teams {
+      isAdmin
+    }
   }
 }

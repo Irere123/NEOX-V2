@@ -15,14 +15,14 @@ export const studyGroupTemplate = async (
       team = await Team.create({ name, userId }).save();
       await Member.create({ admin: true, userId, teamId: team.id }).save();
       await Room.create({
-        dm: false,
+        rules: true,
         public: true,
         teamId: team.id,
         name: "welcome-and-rules",
       }).save();
 
       await Room.create({
-        dm: false,
+        ann: true,
         public: true,
         teamId: team.id,
         name: "announcements",
@@ -70,9 +70,15 @@ export const friendsTemplate = async (
     await getConnection().transaction(async () => {
       team = await Team.create({ name, userId }).save();
       await Member.create({ admin: true, userId, teamId: team.id }).save();
+      await Room.create({
+        rules: true,
+        public: true,
+        teamId: team.id,
+        name: "welcome-and-rules",
+      }).save();
 
       await Room.create({
-        dm: false,
+        ann: true,
         public: true,
         teamId: team.id,
         name: "announcements",
@@ -128,14 +134,14 @@ export const schoolClubTemplate = async (
       await Member.create({ admin: true, userId, teamId: team.id }).save();
 
       await Room.create({
-        dm: false,
+        rules: true,
         public: true,
         teamId: team.id,
         name: "welcome-and-rules",
       }).save();
 
       await Room.create({
-        dm: false,
+        ann: true,
         public: true,
         teamId: team.id,
         name: "announcements",

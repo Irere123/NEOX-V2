@@ -14,6 +14,7 @@ import {
   useCreateTeamMutation,
 } from "../../generated/graphql";
 import toErrorMap from "../../lib/toErrorMap";
+import { useTypeSafeTranslation } from "../../hooks/useTypeSafeTranslation";
 
 interface Props {
   setPage?: (page: number) => void;
@@ -24,11 +25,11 @@ interface Props {
 const testUsername = "IR123";
 
 export const Page1: React.FC<Props> = ({ setPage }) => {
+  const { t } = useTypeSafeTranslation();
   return (
     <div>
       <p style={{ color: "#4f5660", textAlign: "center" }}>
-        Your team is where you and your friends hangout Make yours and start
-        talking.
+        {t("modals.createTeamModal.text")}
       </p>
       <div className="createTeamChoices">
         <div className="createTeamChoice__card" onClick={() => setPage?.(1)}>
@@ -36,7 +37,7 @@ export const Page1: React.FC<Props> = ({ setPage }) => {
             <span>
               <KeyIcon fill="#4f5760" />
             </span>
-            <p>Create my own</p>
+            <p>{t("modals.createTeamModal.create_my_own")}</p>
           </span>
           <span>
             <ArrowLeft fill="#4f5760" />
@@ -50,7 +51,7 @@ export const Page1: React.FC<Props> = ({ setPage }) => {
           fontSize: "12px",
         }}
       >
-        start from a template
+        {t("modals.createTeamModal.start_from_template")}
       </p>
       <div className="createTeamTemplate__choices">
         <div className="createTeamChoice__card" onClick={() => setPage?.(2)}>
@@ -58,7 +59,7 @@ export const Page1: React.FC<Props> = ({ setPage }) => {
             <span>
               <BackpackIcon fill="#4f5760" />
             </span>
-            <p>Study group</p>
+            <p>{t("modals.createTeamModal.study_group")}</p>
           </span>
           <span>
             <ArrowLeft fill="#4f5760" />
@@ -69,7 +70,7 @@ export const Page1: React.FC<Props> = ({ setPage }) => {
             <span>
               <LightIcon fill="#4f5760" />
             </span>
-            <p>School club</p>
+            <p>{t("modals.createTeamModal.school_club")}</p>
           </span>
           <span>
             <ArrowLeft fill="#4f5760" />
@@ -80,14 +81,14 @@ export const Page1: React.FC<Props> = ({ setPage }) => {
             <span>
               <GroupIcon fill="#4f5760" />
             </span>
-            <p>Friends</p>
+            <p>{t("modals.createTeamModal.friends")}</p>
           </span>
           <span>
             <ArrowLeft fill="#4f5760" />
           </span>
         </div>
         <div className="HaveAnInvite__button" onClick={() => setPage?.(3)}>
-          <p>Already have an invite</p>
+          <p>{t("modals.createTeamModal.already_have_invite")}</p>
         </div>
       </div>
     </div>
@@ -96,16 +97,18 @@ export const Page1: React.FC<Props> = ({ setPage }) => {
 
 export const Page2: React.FC<Props> = ({ prevPage, onRequestClose }) => {
   const [createTeam] = useCreateTeamMutation();
+  const { t } = useTypeSafeTranslation();
   const history = useHistory();
 
   return (
     <div>
       <p style={{ color: "#4f5660", textAlign: "center" }}>
-        Give your new team a personality with a name and online visibility you
-        can always change it later.
+        {t("modals.createTeamModal.text2")}
       </p>
       <div className="Page2Content">
-        <p style={{ color: "#060607" }}>Team name</p>
+        <p style={{ color: "#060607" }}>
+          {t("modals.createTeamModal.team_name")}
+        </p>
         <Formik
           initialValues={{ name: `${testUsername}'s team`, isPublic: false }}
           onSubmit={async (values, { setSubmitting, setErrors }) => {
@@ -146,7 +149,7 @@ export const Page2: React.FC<Props> = ({ prevPage, onRequestClose }) => {
               <div className="Page2Content__footer">
                 <div>
                   <button type="button" onClick={() => prevPage?.(1)}>
-                    Back
+                    {t("common.back")}
                   </button>
                 </div>
                 <div>
@@ -155,7 +158,7 @@ export const Page2: React.FC<Props> = ({ prevPage, onRequestClose }) => {
                     disabled={isSubmitting}
                     onClick={() => handleSubmit()}
                   >
-                    Create
+                    {t("common.create")}
                   </button>
                 </div>
               </div>
@@ -169,16 +172,18 @@ export const Page2: React.FC<Props> = ({ prevPage, onRequestClose }) => {
 
 export const Page3: React.FC<Props> = ({ onRequestClose, prevPage }) => {
   const [createTeam] = useCreateTeamByTemplateMutation();
+  const { t } = useTypeSafeTranslation();
   const history = useHistory();
 
   return (
     <div>
       <p style={{ color: "#4f5660", textAlign: "center" }}>
-        Give your new team a personality with a name and online visibility you
-        can always change it later.
+        {t("modals.createTeamModal.text2")}
       </p>
       <div className="Page2Content">
-        <p style={{ color: "#060607" }}>Team name</p>
+        <p style={{ color: "#060607" }}>
+          {t("modals.createTeamModal.team_name")}
+        </p>
         <Formik
           initialValues={{ name: `${testUsername}'s team`, isPublic: false }}
           onSubmit={async (values, { setSubmitting, setErrors }) => {
@@ -219,7 +224,7 @@ export const Page3: React.FC<Props> = ({ onRequestClose, prevPage }) => {
               <div className="Page2Content__footer">
                 <div>
                   <button type="button" onClick={() => prevPage?.(1)}>
-                    Back
+                    {t("common.back")}
                   </button>
                 </div>
                 <div>
@@ -228,7 +233,7 @@ export const Page3: React.FC<Props> = ({ onRequestClose, prevPage }) => {
                     disabled={isSubmitting}
                     onClick={() => handleSubmit()}
                   >
-                    Create
+                    {t("common.create")}
                   </button>
                 </div>
               </div>

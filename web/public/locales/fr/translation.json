@@ -1,0 +1,50 @@
+{
+  "common": {
+    "ok": "Ok",
+    "yes": "Qui",
+    "no": "Non",
+    "back": "Retour",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "create": "Creer"
+  },
+  "header": {
+    "_comment": "Main Header UI Internationalization Strings",
+    "title": "DogeHouse"
+  },
+  "footer": { "link_1": "Features", "link_2": "Signaler un bug" },
+  "pages": {
+    "team": {
+      "channelEmptyWelcome": "Bienvenue a #{{channel}}",
+      "channelEmptyWelcomeTXt": "C'est le debut de la #{{channel}} chaine"
+    }
+  },
+  "modals": {
+    "createTeamModal": {
+      "title": "Creer une equipe",
+      "subtitle": "Personnalisez votre equipe",
+      "create_my_own": "Creer le mien",
+      "study_group": "Groupe d'etude",
+      "school_club": "Club de l'ecole",
+      "friends": "Amis",
+      "team_name": "Nom de equipe",
+      "start_from_template": "Partir d'un modele",
+      "already_have_invite": "Avez deja une invitation",
+      "text": "Votre equipe est l'endroit ou vous et vos amis rendez-vous faites le votre et commencez a parler",
+      "text2": "Donnez a votre nouvelle equipe une personnalite avec un nom et visibilite en ligne, vous pouvez toujours le modifier plus tard."
+    },
+    "createChannelModal": {
+      "title": "Creer une chaine",
+      "text": "Donnez a votre nouvelle chaine une personnalite avec un nom et visibilite en ligne, vous pouvez toujours le modifier plus tard."
+    }
+  },
+  "overlays": {
+    "teamOverlay": {
+      "invite_people": "Inviter des amis",
+      "create_channel": "Creer une chaine",
+      "team_settings": "Reglages d'equipe",
+      "team_boost": "Elan d'equipe"
+    }
+  },
+  "tooltips": { "settings": "Reglages", "create_team": "Creer une equipe" }
+}

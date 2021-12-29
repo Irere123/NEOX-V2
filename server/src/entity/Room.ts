@@ -28,12 +28,20 @@ export class Room extends BaseEntity {
   name: string;
 
   @Field()
-  @Column({ type: "bool", default: false })
+  @Column({ type: "bool", default: true })
   public: boolean;
 
   @Field()
   @Column({ type: "bool", default: false })
   dm: boolean;
+
+  @Field()
+  @Column({ type: "bool", default: false })
+  ann: boolean;
+
+  @Field()
+  @Column({ type: "bool", default: false })
+  rules: boolean;
 
   @Field()
   @Column()

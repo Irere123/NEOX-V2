@@ -1,5 +1,8 @@
-import React from "react";
-import { GroupIcon, LightIcon, NeoxNitro } from "../../icons";
+import React, { useState } from "react";
+
+import Modal from "../../ui/Modal";
+import { GroupIcon, LightIcon, SettingsIcon } from "../../icons";
+import TeamMembersModal from "../modals/TeamMembersModal";
 
 interface Props {
   team: any;
@@ -7,7 +10,9 @@ interface Props {
   handleToggle?: () => void;
 }
 
-const TeamPageChatHeader: React.FC<Props> = ({ room, handleToggle }) => {
+const TeamPageChatHeader: React.FC<Props> = ({ room, team }) => {
+  const [openMembersModal, setOpenMembersModal] = useState(false);
+
   return (
     <div className="teamPageChatHeader">
       <div className="teamPageChatHeader__left">
@@ -17,16 +22,25 @@ const TeamPageChatHeader: React.FC<Props> = ({ room, handleToggle }) => {
         </p>
       </div>
       <div className="teamPageChatHeader__right">
-        <span onClick={handleToggle}>
-          <GroupIcon style={{ cursor: "pointer" }} />
+        <span onClick={() => setOpenMembersModal(!openMembersModal)}>
+          <GroupIcon />
         </span>
         <span>
-          <NeoxNitro />
+          <SettingsIcon />
         </span>
         <span>
           <LightIcon />
         </span>
       </div>
+      {openMembersModal && (
+        <Modal
+          isOpen={openMembersModal}
+          onRequestClose={() => setOpenMembersModal(!openMembersModal)}
+          title="TEAM MEMBERS"
+        >
+          <TeamMembersModal team={team} />
+        </Modal>
+      )}
     </div>
   );
 };

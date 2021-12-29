@@ -29,11 +29,14 @@ export class Message extends BaseEntity {
   @ManyToOne(() => Room, (user) => user.messages, { onDelete: "CASCADE" })
   room: Room;
 
+  @Field(() => User)
+  user: User;
+
   @Column()
   userId: number;
 
   @ManyToOne(() => User, (user) => user.msgsRel, { onDelete: "CASCADE" })
-  user: User;
+  userRel: User;
 
   @Field()
   @CreateDateColumn()
