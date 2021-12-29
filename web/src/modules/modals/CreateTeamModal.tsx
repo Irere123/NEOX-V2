@@ -91,13 +91,13 @@ const Modal: React.FC<
     >
       <div className="modalContainer">
         <div tabIndex={-1} className="focus:outline-none">
-          <div className="MyCreateTeamModal__header">
+          <div className="MyCreateModal__header">
             <h4>{cardTitle}</h4>
             <span onClick={onRequestClose}>
               <CloseIcon fill="#4f5760" />
             </span>
           </div>
-          <div className="MyCreateTeamModal__content">{pageToRender}</div>
+          <div className="MyCreateModal__content">{pageToRender}</div>
         </div>
       </div>
     </ReactModal>

@@ -120,11 +120,28 @@ export default class TeamsResolver {
     return rooms;
   }
 
+  @FieldResolver(() => Boolean)
+  async isAdmin(@Root() team: Team) {
+    const user = await getConnection().query(
+      `
+      select * from members as m join users as u on m."userId" = u.id
+      where m."teamId" = $1 and m."admin"=true
+     `,
+      [team.id]
+    );
+
+    if (!user) {
+      return false;
+    }
+
+    return true;
+  }
+
   @Query(() => [User])
   async getTeamMembers(@Arg("teamId", () => ID) id: string) {
     const members = await getConnection().query(
       `
-      select * from users as u join members as m on m."userId" = u.id
+      select * from members as m join users as u on m."userId" = u.id
       where m."teamId" = $1
      `,
       [id]

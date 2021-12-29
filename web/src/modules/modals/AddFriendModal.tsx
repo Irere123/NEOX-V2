@@ -43,13 +43,13 @@ const AddFriendModal: React.FC<
     >
       <div className="modalContainer">
         <div tabIndex={-1} className="focus:outline-none">
-          <div className="MyCreateTeamModal__header">
+          <div className="MyCreateModal__header">
             <h4>Add Friend</h4>
             <span onClick={onRequestClose}>
               <CloseIcon fill="#4f5760" />
             </span>
           </div>
-          <div className="MyCreateTeamModal__content">
+          <div className="MyCreateModal__content">
             <div>
               <h3>Hello world</h3>
             </div>

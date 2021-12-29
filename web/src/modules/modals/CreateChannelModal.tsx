@@ -60,13 +60,13 @@ const CreateChannelModal: React.FC<
     >
       <div className="modalContainer">
         <div tabIndex={-1} className="focus:outline-none">
-          <div className="MyCreateTeamModal__header">
+          <div className="MyCreateModal__header">
             <h4>{t("modals.createChannelModal.title")}</h4>
             <span onClick={onRequestClose}>
               <CloseIcon fill="var(--color-primary-300)" />
             </span>
           </div>
-          <div className="MyCreateTeamModal__content">
+          <div className="MyCreateModal__content">
             <div className="channelTypes__buttons">
               <p
                 style={{
