@@ -274,7 +274,7 @@ export type TeamQueryVariables = Exact<{
 }>;
 
 
-export type TeamQuery = { __typename?: 'Query', team?: Maybe<{ __typename?: 'Team', id: string, name: string, createdAt: string, rooms: Array<{ __typename?: 'Room', id: number, name: string, public: boolean, teamId: string, createdAt: string }> }> };
+export type TeamQuery = { __typename?: 'Query', team?: Maybe<{ __typename?: 'Team', id: string, name: string, createdAt: string, rooms: Array<{ __typename?: 'Room', id: number, name: string, ann: boolean, public: boolean, teamId: string, createdAt: string }> }> };
 
 
 export const CreateChannelDocument = gql`
@@ -620,6 +620,7 @@ export const TeamDocument = gql`
     rooms {
       id
       name
+      ann
       public
       teamId
       createdAt

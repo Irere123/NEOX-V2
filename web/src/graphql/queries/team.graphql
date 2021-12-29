@@ -22,6 +22,7 @@ query Team($teamId: ID!) {
     rooms {
       id
       name
+      ann
       public
       teamId
       createdAt

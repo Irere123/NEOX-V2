@@ -28,7 +28,7 @@ export class Room extends BaseEntity {
   name: string;
 
   @Field()
-  @Column({ type: "bool", default: false })
+  @Column({ type: "bool", default: true })
   public: boolean;
 
   @Field()

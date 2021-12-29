@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { SolidExpandMore } from "../../icons";
 import { DropdownController } from "../../ui/DropdownController";
 import TeamDropDown from "./TeamDropdown";
-import CreateChannelModal from "../../components/Modals/CreateChannelModal";
-import InvitePeopleModal from "../../components/Modals/InvitePeopleModal";
+import CreateChannelModal from "../modals/CreateChannelModal";
+import InvitePeopleModal from "../modals/InvitePeopleModal";
 
 const LeftSidebarHeader: React.FC<{ teamName: string | undefined }> = ({
   teamName,

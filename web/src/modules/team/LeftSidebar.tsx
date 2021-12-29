@@ -3,8 +3,8 @@ import { Link, useParams } from "react-router-dom";
 
 import LeftSidebarHeader from "./LeftSidebarHeader";
 import { useTeamQuery } from "../../generated/graphql";
-import { PlusIcon } from "../../icons";
-import CreateChannelModal from "../../components/Modals/CreateChannelModal";
+import { PlusIcon, PodcastsIcon } from "../../icons";
+import CreateChannelModal from "../modals/CreateChannelModal";
 
 interface Props {}
 
@@ -42,7 +42,9 @@ const LeftSidebar: React.FC<Props> = () => {
                 className="teamPageLayout__channelName"
               >
                 <p>
-                  <span className="teamChannelName__hashtag">#</span>
+                  <span className="teamChannelName__hashtag">
+                    {room.ann ? <PodcastsIcon /> : <>#</>}
+                  </span>
                   <span>{room.name}</span>
                 </p>
               </Link>

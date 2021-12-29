@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useTabs, TabPanel } from "react-headless-tabs";
 
-import AddFriendModal from "../../components/Modals/AddFriendModal";
+import AddFriendModal from "../modals/AddFriendModal";
 import { Friends } from "../../icons";
 import DefaultPageLayout from "../layouts/DefaultPageLayout";
 import MainPageTop from "../layouts/MainPageTop";

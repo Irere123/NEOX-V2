@@ -7,7 +7,7 @@ import Teams from "./Sidebar/Teams";
 import { useMeQuery } from "../generated/graphql";
 import { PlusIcon, SettingsIcon } from "../icons";
 import { Tooltip } from "../ui/Tooltip";
-import CreateTeamModal from "../components/Modals/CreateTeamModal";
+import CreateTeamModal from "../modules/modals/CreateTeamModal";
 import { useTypeSafeTranslation } from "../hooks/useTypeSafeTranslation";
 
 const Sidebar = withRouter(({ history }) => {

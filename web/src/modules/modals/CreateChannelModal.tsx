@@ -112,7 +112,7 @@ const CreateChannelModal: React.FC<
                   variables: {
                     ann,
                     name,
-                    public: checked,
+                    public: !checked,
                     teamId,
                   },
                   update: (store) => {

@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { useTypeSafeTranslation } from "../../hooks/useTypeSafeTranslation";
 import { useMessagesQuery } from "../../generated/graphql";
 import { MessagesLoadingScreen } from "../../shared-components/LoadingScreens";
-import { SolidHashTag } from "../../icons";
+import { PodcastsIcon, SolidHashTag } from "../../icons";
 import { TextParser } from "../display/TextParser";
 
 interface Props {
@@ -54,7 +54,7 @@ const MessagesContainer: React.FC<Props> = ({ room }) => {
               borderRadius: "50%",
             }}
           >
-            <SolidHashTag />
+            {room?.ann ? <PodcastsIcon /> : <SolidHashTag />}
           </span>
           <h3 style={{ margin: "0" }}>
             {t("pages.team.channelEmptyWelcome", { channel: room?.name })}
