@@ -1,0 +1,21 @@
+mutation CreateChannel(
+  $teamId: ID!
+  $name: String!
+  $public: Boolean!
+  $ann: Boolean!
+) {
+  createRoom(teamId: $teamId, name: $name, public: $public, ann: $ann) {
+    ok
+    errors {
+      field
+      message
+    }
+    room {
+      id
+      name
+      public
+      ann
+      createdAt
+    }
+  }
+}

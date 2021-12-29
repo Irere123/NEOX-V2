@@ -6,14 +6,10 @@ import { useTeamQuery } from "../../generated/graphql";
 import Layout from "../layouts/Layout";
 import ViewTeamLayout from "../layouts/ViewTeamLayout";
 import TeamPageChatLayout from "../layouts/TeamPageChatLayout";
-
-interface Params {
-  teamId: string;
-  roomId: string;
-}
+import { TeamPageParams } from "../../types/CustomTypes";
 
 const TeamPage: React.FC = () => {
-  const { roomId, teamId }: Params = useParams();
+  const { roomId, teamId }: TeamPageParams = useParams();
   const { data } = useTeamQuery({
     variables: { teamId },
   });

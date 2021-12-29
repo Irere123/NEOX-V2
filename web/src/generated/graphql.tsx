@@ -67,6 +67,7 @@ export type MutationCreateMessageArgs = {
 
 
 export type MutationCreateRoomArgs = {
+  ann?: Maybe<Scalars['Boolean']>;
   dm?: Maybe<Scalars['Boolean']>;
   name: Scalars['String'];
   public: Scalars['Boolean'];
@@ -148,11 +149,13 @@ export type QueryTeamArgs = {
 
 export type Room = {
   __typename?: 'Room';
+  ann: Scalars['Boolean'];
   createdAt: Scalars['String'];
   dm: Scalars['Boolean'];
   id: Scalars['Int'];
   name: Scalars['String'];
   public: Scalars['Boolean'];
+  rules: Scalars['Boolean'];
   teamId: Scalars['String'];
 };
 
@@ -210,6 +213,16 @@ export type AddMemberResponse = {
   ok: Scalars['Boolean'];
 };
 
+export type CreateChannelMutationVariables = Exact<{
+  teamId: Scalars['ID'];
+  name: Scalars['String'];
+  public: Scalars['Boolean'];
+  ann: Scalars['Boolean'];
+}>;
+
+
+export type CreateChannelMutation = { __typename?: 'Mutation', createRoom: { __typename?: 'RoomResponse', ok: boolean, errors?: Maybe<Array<{ __typename?: 'FieldError', field: string, message: string }>>, room?: Maybe<{ __typename?: 'Room', id: number, name: string, public: boolean, ann: boolean, createdAt: string }> } };
+
 export type LogoutMutationVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -264,6 +277,53 @@ export type TeamQueryVariables = Exact<{
 export type TeamQuery = { __typename?: 'Query', team?: Maybe<{ __typename?: 'Team', id: string, name: string, createdAt: string, rooms: Array<{ __typename?: 'Room', id: number, name: string, public: boolean, teamId: string, createdAt: string }> }> };
 
 
+export const CreateChannelDocument = gql`
+    mutation CreateChannel($teamId: ID!, $name: String!, $public: Boolean!, $ann: Boolean!) {
+  createRoom(teamId: $teamId, name: $name, public: $public, ann: $ann) {
+    ok
+    errors {
+      field
+      message
+    }
+    room {
+      id
+      name
+      public
+      ann
+      createdAt
+    }
+  }
+}
+    `;
+export type CreateChannelMutationFn = Apollo.MutationFunction<CreateChannelMutation, CreateChannelMutationVariables>;
+
+/**
+ * __useCreateChannelMutation__
+ *
+ * To run a mutation, you first call `useCreateChannelMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateChannelMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createChannelMutation, { data, loading, error }] = useCreateChannelMutation({
+ *   variables: {
+ *      teamId: // value for 'teamId'
+ *      name: // value for 'name'
+ *      public: // value for 'public'
+ *      ann: // value for 'ann'
+ *   },
+ * });
+ */
+export function useCreateChannelMutation(baseOptions?: Apollo.MutationHookOptions<CreateChannelMutation, CreateChannelMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateChannelMutation, CreateChannelMutationVariables>(CreateChannelDocument, options);
+      }
+export type CreateChannelMutationHookResult = ReturnType<typeof useCreateChannelMutation>;
+export type CreateChannelMutationResult = Apollo.MutationResult<CreateChannelMutation>;
+export type CreateChannelMutationOptions = Apollo.BaseMutationOptions<CreateChannelMutation, CreateChannelMutationVariables>;
 export const LogoutDocument = gql`
     mutation Logout {
   logout

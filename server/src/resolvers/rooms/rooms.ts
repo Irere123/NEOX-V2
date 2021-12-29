@@ -29,6 +29,7 @@ export default class RoomsReolver {
     @Arg("name") name: string,
     @Arg("public") p: boolean,
     @Arg("dm", { nullable: true }) dm: boolean,
+    @Arg("ann", { nullable: true }) ann: boolean,
     @Ctx() { req }: MyContext
   ): Promise<RoomResponse> {
     const userId = (req.session as any).userId;
@@ -51,6 +52,7 @@ export default class RoomsReolver {
       name,
       public: p,
       dm,
+      ann,
       teamId,
     }).save();
 

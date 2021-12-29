@@ -3,3 +3,8 @@ export interface Room {
   name: string;
   public: Boolean;
 }
+
+export interface TeamPageParams {
+  teamId: string;
+  roomId: string;
+}

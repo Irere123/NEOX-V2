@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useParams, useHistory } from "react-router-dom";
 import ReactModal from "react-modal";
 import { Formik } from "formik";
 
 import { CloseIcon, PodcastsIcon, SolidHashTag } from "../../icons";
 import { useTypeSafeTranslation } from "../../hooks/useTypeSafeTranslation";
 import Switch from "../../ui/Switch";
+import { useCreateChannelMutation } from "../../generated/graphql";
+import { TeamPageParams } from "../../types/CustomTypes";
 
 const customStyles = {
   default: {
@@ -33,7 +36,6 @@ const customStyles = {
 
 interface FormValues {
   name: string;
-  public: boolean;
 }
 
 const CreateChannelModal: React.FC<
@@ -45,9 +47,9 @@ const CreateChannelModal: React.FC<
   const [checked, setChecked] = useState(false);
   const [channelType, setChannelType] = useState("text");
   const { t } = useTypeSafeTranslation();
-
-  console.log(checked);
-  console.log(channelType);
+  const [createChannel] = useCreateChannelMutation();
+  const { teamId }: TeamPageParams = useParams();
+  const history = useHistory();
 
   return (
     <ReactModal
@@ -97,8 +99,34 @@ const CreateChannelModal: React.FC<
             </div>
 
             <Formik<FormValues>
-              initialValues={{ name: "", public: true }}
-              onSubmit={() => {}}
+              initialValues={{ name: "" }}
+              onSubmit={async ({ name }) => {
+                let ann = false;
+                if (channelType === "text") {
+                  ann = false;
+                } else if (channelType === "announcement") {
+                  ann = true;
+                }
+
+                const resp = await createChannel({
+                  variables: {
+                    ann,
+                    name,
+                    public: checked,
+                    teamId,
+                  },
+                  update: (store) => {
+                    store.evict({ fieldName: "team" });
+                  },
+                });
+
+                if (resp.data?.createRoom.ok) {
+                  history.push(
+                    `/team/${teamId}/${resp.data.createRoom.room?.id}`
+                  );
+                  onRequestClose();
+                }
+              }}
             >
               {({
                 values,

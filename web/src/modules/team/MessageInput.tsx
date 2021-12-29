@@ -47,6 +47,9 @@ const MessageInput: React.FC<Props> = ({ room }) => {
                 }
               }}
               placeholder={`Message #${room?.name}`}
+              spellCheck={false}
+              autoCorrect="false"
+              autoComplete="off"
             />
           )}
         </Formik>
