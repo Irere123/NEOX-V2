@@ -74,7 +74,7 @@ p.small {
 html,
 body,
 #root {
-  background-color: var(--color-primary-900);
+  background-color: var(--color-button-text);
   height: 100%;
   display: flex;
   width: 100%;
