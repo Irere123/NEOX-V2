@@ -18,7 +18,7 @@ init_i18n();
 ReactModal.setAppElement("#root");
 
 const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
-  uri: "https://api-neox-next.herokuapp.com/graphql",
+  uri: "http://localhost:4000/graphql",
   cache: new InMemoryCache(),
   credentials: "include",
 });
