@@ -1,9 +1,12 @@
 import React from "react";
 
+import { LandingPage } from "../modules/landing_page/LandingPage";
+import { PageHeader } from "../modules/layouts/PageHeader";
+
 export const Login: React.FC = () => {
   return (
-    <div>
-      <h1 className="text-accent">Login page</h1>
-    </div>
+    <PageHeader title="Login | Hermes">
+      <LandingPage />
+    </PageHeader>
   );
 };
