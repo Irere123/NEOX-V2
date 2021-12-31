@@ -1,0 +1,113 @@
+.topCard {
+  background-color: var(--color-primary-800);
+  padding: 20px;
+  margin: 20px;
+  border-radius: 4px;
+  display: flex;
+  gap: 20px;
+  box-shadow: var(--elevation-high);
+  color: var(--color-primary-100);
+}
+
+.topCard > div > h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+.topCard > div > h3 {
+  font-size: 1.5em;
+  color: var(--color-accent-hover);
+  font-weight: bold;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 10px;
+}
+
+.topCard > div > p {
+  max-width: 300px;
+}
+
+.topCard__Creator {
+  display: flex;
+  flex: 1 1;
+  justify-content: flex-end;
+}
+
+.topCard__Creator > img {
+  border-radius: 50%;
+}
+
+.topCard__Creator_quote {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+}
+
+.GetStarted__button {
+  background-color: var(--color-accent);
+  height: 50px;
+  width: 160px;
+  font-size: 18px;
+  text-transform: uppercase;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  color: var(--color-button-text);
+  font-family: "Roboto", sans-serif;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.GetStarted__button:hover {
+  transform: scale(1.04);
+  background-color: var(--color-accent-hover);
+}
+
+section:nth-child(2) {
+  background-color: #f4ede4;
+  padding: 20px;
+  margin: 20px;
+}
+
+section:nth-child(2) > div > p {
+  max-width: 400px;
+}
+
+.features__cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.feature__card {
+  background-color: #fff;
+  padding: 20px 10px;
+  cursor: pointer;
+}
+
+.feature__card:hover {
+  box-shadow: 0 0 2rem rgb(0 0 0 / 20%);
+  color: #1264a3;
+  transform: scale(1.05);
+}
+
+.feature__card > p {
+  width: 250px;
+}
+
+section:nth-child(3) {
+  background-color: #f4ede4;
+  padding: 20px;
+  margin: 20px;
+}
+
+section:nth-child(3) > div > p {
+  max-width: 400px;
+}
+
+section:nth-child(4) {
+  padding: 20px;
+  margin: 20px;
+}

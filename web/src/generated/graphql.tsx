@@ -186,6 +186,7 @@ export type Subscription = {
 
 export type Team = {
   __typename?: 'Team';
+  admin: User;
   createdAt: Scalars['String'];
   id: Scalars['ID'];
   isAdmin: Scalars['Boolean'];
@@ -281,14 +282,14 @@ export type MessagesQuery = { __typename?: 'Query', messages: Array<{ __typename
 export type TeamsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TeamsQuery = { __typename?: 'Query', teams: Array<{ __typename?: 'Team', id: string, name: string, isPublic: boolean, createdAt: string, updatedAt: string, rooms: Array<{ __typename?: 'Room', id: number, name: string, public: boolean, teamId: string, createdAt: string }> }> };
+export type TeamsQuery = { __typename?: 'Query', teams: Array<{ __typename?: 'Team', id: string, name: string, isAdmin: boolean, isPublic: boolean, createdAt: string, updatedAt: string, rooms: Array<{ __typename?: 'Room', id: number, name: string, public: boolean, teamId: string, createdAt: string }> }> };
 
 export type TeamQueryVariables = Exact<{
   teamId: Scalars['ID'];
 }>;
 
 
-export type TeamQuery = { __typename?: 'Query', team?: Maybe<{ __typename?: 'Team', id: string, name: string, createdAt: string, rooms: Array<{ __typename?: 'Room', id: number, name: string, ann: boolean, public: boolean, teamId: string, createdAt: string }> }> };
+export type TeamQuery = { __typename?: 'Query', team?: Maybe<{ __typename?: 'Team', id: string, name: string, isAdmin: boolean, createdAt: string, rooms: Array<{ __typename?: 'Room', id: number, name: string, ann: boolean, rules: boolean, public: boolean, teamId: string, createdAt: string }> }> };
 
 export type TeamMembersQueryVariables = Exact<{
   teamId: Scalars['ID'];
@@ -593,6 +594,7 @@ export const TeamsDocument = gql`
   teams {
     id
     name
+    isAdmin
     rooms {
       id
       name
@@ -638,10 +640,12 @@ export const TeamDocument = gql`
   team(teamId: $teamId) {
     id
     name
+    isAdmin
     rooms {
       id
       name
       ann
+      rules
       public
       teamId
       createdAt

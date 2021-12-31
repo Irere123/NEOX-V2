@@ -17,12 +17,15 @@ interface LoginButtonProps {
 
 const LoginButton: React.FC<LoginButtonProps> = ({ oauthUrl, children }) => {
   return (
-    <a href={`${apiBaseUrl}${oauthUrl}`}>
-      <button className="loginPage__loginCard__button">
-        <span>{children[0]}</span>
-        {children[1]}
-      </button>
-    </a>
+    <button
+      className="loginPage__loginCard__button"
+      onClick={() => {
+        window.location.href = `${apiBaseUrl}${oauthUrl}`;
+      }}
+    >
+      <span>{children[0]}</span>
+      {children[1]}
+    </button>
   );
 };
 
@@ -40,14 +43,8 @@ export const LoginPage: React.FC = () => {
             <h3>Welcome</h3>
             <p>
               By continuing you agree to the{" "}
-              <a href="http://localhost:3000/terms-of-service.html">
-                Terms of Service
-              </a>{" "}
-              and{" "}
-              <a href="http://localhost:3000/privacy-policy.html">
-                Privacy Policy
-              </a>{" "}
-              of NEOX
+              <a href="/terms-of-service.html">Terms of Service</a> and{" "}
+              <a href="/privacy-policy.html">Privacy Policy</a> of NEOX
             </p>
           </div>
           <div className="landingPage__loginCard__buttons">
@@ -70,11 +67,15 @@ export const LoginPage: React.FC = () => {
         <div className="loginPage__layout__bottom_logo">
           <Logo />
         </div>
-        <div className="loginPage__layout__bottom_links">
-          <a href="http://localhost:3000/privacy-policy.html">Privacy policy</a>
-          <a href="/about">Report a bug</a>
-          <Twitter fill="#5d7290" />
-          <Instagram />
+        <div className="loginPage__layout__bottom_links ">
+          <a href="/features">Features</a>
+          <a href="/report">Report a bug</a>
+          <a href="https://twitter.com/neox_inc">
+            <Twitter fill="#5d7290" />
+          </a>
+          <a href="https://instagram.com/neox_inc">
+            <Instagram />
+          </a>
         </div>
       </div>
     </div>
