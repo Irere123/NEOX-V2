@@ -9,17 +9,12 @@
 
 ## Structure
 
-| Codebase               |                  Description                   |
-| :--------------------- | :--------------------------------------------: |
-| [server](server)       |                  Graphql API                   |
-| [web](web)             |               React.js frontend                |
-| [hermes](hermes)       |                Neox admin site                 |
-| [community](community) |              Neox community site               |
-| [pilaf](pilaf)         |                React Native App                |
-| [kibbeh](kibbeh)       |                Next.js frontend                |
-| [kebab](kebab)         |                   API Client                   |
-| [dolma](dolma)         |             Chat Token Transcoder              |
-| [globalkey](globalkey) | [Baklava](baklava)'s Global Keystroke Listener |
+| Codebase               |     Description     |
+| :--------------------- | :-----------------: |
+| [server](server)       |     Graphql API     |
+| [web](web)             |  React.js frontend  |
+| [hermes](hermes)       |   Neox admin site   |
+| [community](community) | Neox community site |
 
 ## Branches
 
@@ -27,3 +22,5 @@
 - dev -> pr this branch for everything
 
 ## Contributions
+
+This is project is now being developed by Irere Emmy
