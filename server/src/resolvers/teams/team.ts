@@ -191,31 +191,30 @@ export default class TeamsResolver {
       await getConnection().transaction(async () => {
         team = await Team.create({ name, isPublic, userId }).save();
         await Member.create({ admin: true, userId, teamId: team.id }).save();
+        await Room.create({
+          rules: true,
+          teamId: team.id,
+          name: "welcome-and-rules",
+        }).save();
 
         await Room.create({
-          dm: false,
-          public: true,
+          ann: true,
           teamId: team.id,
           name: "announcements",
         }).save();
 
         await Room.create({
-          dm: false,
-          public: isPublic,
           teamId: team.id,
           name: "off-topic",
         }).save();
 
         await Room.create({
-          dm: false,
-          public: true,
           teamId: team.id,
           name: "general",
         }).save();
 
         await Room.create({
           dm: false,
-          public: isPublic,
           teamId: team.id,
           name: "random",
         }).save();
@@ -287,42 +286,18 @@ export default class TeamsResolver {
   @Mutation(() => addMemberResponse)
   @UseMiddleware(isAuth)
   async addTeamMember(
-    @Arg("username") username: string,
+    @Arg("userId") userIdArg: string,
     @Arg("teamId", () => ID) teamId: string,
     @Ctx() { req }: MyContext
   ): Promise<addMemberResponse> {
     const userId = (req.session as any).userId;
-
-    if (username === "") {
-      return {
-        ok: false,
-        errors: [
-          {
-            field: "username",
-            message: "You must provide the username",
-          },
-        ],
-      };
-    }
-
-    if (teamId === undefined) {
-      return {
-        ok: false,
-        errors: [
-          {
-            field: "username",
-            message: "You must provide the username",
-          },
-        ],
-      };
-    }
 
     try {
       const memberPromise = Member.findOne({
         where: { teamId, userId },
       });
 
-      const userToAddPromise = User.findOne({ where: { username } });
+      const userToAddPromise = User.findOne({ where: { id: userIdArg } });
 
       const [member, userToAdd] = await Promise.all([
         memberPromise,

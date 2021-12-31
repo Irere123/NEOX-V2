@@ -2,6 +2,7 @@ query Teams {
   teams {
     id
     name
+    isAdmin
     rooms {
       id
       name
@@ -19,10 +20,12 @@ query Team($teamId: ID!) {
   team(teamId: $teamId) {
     id
     name
+    isAdmin
     rooms {
       id
       name
       ann
+      rules
       public
       teamId
       createdAt

@@ -5,11 +5,15 @@ import { useTypeSafeTranslation } from "../../hooks/useTypeSafeTranslation";
 import { NeoxNitro, FriendsAdd, SettingsIcon, PlusIcon } from "../../icons";
 
 interface Props {
+  teamName: string;
+  isOwner: boolean;
   setOpenInviteModal: () => void;
   setOpenChannelModal: () => void;
 }
 
 const TeamDropDown: React.FC<Props> = ({
+  teamName,
+  isOwner,
   setOpenChannelModal,
   setOpenInviteModal,
 }) => {
@@ -31,7 +35,7 @@ const TeamDropDown: React.FC<Props> = ({
           <FriendsAdd fill="var(--color-accent-disabled)" />
         </span>
       </div>
-      <Link to="/team-settings">
+      <Link to={`/${teamName}/settings`}>
         <div className="teamDropDown__overlay__btn">
           <p>{t("overlays.teamOverlay.team_settings")}</p>
           <span>
@@ -45,6 +49,11 @@ const TeamDropDown: React.FC<Props> = ({
           <PlusIcon />
         </span>
       </div>
+      {!isOwner && (
+        <div>
+          <button>Leave team</button>
+        </div>
+      )}
     </div>
   );
 };

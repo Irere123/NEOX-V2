@@ -165,7 +165,7 @@ const CreateChannelModal: React.FC<
                           fontSize: "15px",
                         }}
                       >
-                        Private
+                        Private channel
                       </p>
                       <div>
                         <Switch

@@ -6,8 +6,14 @@ import TeamDropDown from "./TeamDropdown";
 import CreateChannelModal from "../modals/CreateChannelModal";
 import InvitePeopleModal from "../modals/InvitePeopleModal";
 
-const LeftSidebarHeader: React.FC<{ teamName: string | undefined }> = ({
+interface LeftSidebarHeaderProps {
+  teamName: string | undefined;
+  isOwner: boolean | undefined;
+}
+
+const LeftSidebarHeader: React.FC<LeftSidebarHeaderProps> = ({
   teamName,
+  isOwner,
 }) => {
   const [openChannelModal, setOpenChannelModal] = useState(false);
   const [openInviteModal, setOpenInviteModal] = useState(false);
@@ -19,6 +25,8 @@ const LeftSidebarHeader: React.FC<{ teamName: string | undefined }> = ({
         <DropdownController
           overlay={() => (
             <TeamDropDown
+              isOwner={isOwner!}
+              teamName={teamName!}
               setOpenChannelModal={() => setOpenChannelModal(!openChannelModal)}
               setOpenInviteModal={() => setOpenInviteModal(!openInviteModal)}
             />

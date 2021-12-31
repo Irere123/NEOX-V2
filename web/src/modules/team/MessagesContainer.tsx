@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { useTypeSafeTranslation } from "../../hooks/useTypeSafeTranslation";
 import { useMessagesQuery } from "../../generated/graphql";
 import { MessagesLoadingScreen } from "../../shared-components/LoadingScreens";
-import { PodcastsIcon, SolidHashTag } from "../../icons";
+import { PodcastsIcon, SolidBook, SolidHashTag, SolidLock } from "../../icons";
 import { TextParser } from "../display/TextParser";
 
 interface Props {
@@ -21,6 +21,18 @@ const MessagesContainer: React.FC<Props> = ({ room }) => {
 
   if (loading) {
     return <MessagesLoadingScreen />;
+  }
+
+  let icon;
+
+  if (room?.ann) {
+    icon = <PodcastsIcon />;
+  } else if (room?.rules) {
+    icon = <SolidBook />;
+  } else if (!room?.public) {
+    icon = <SolidLock />;
+  } else {
+    icon = <SolidHashTag />;
   }
 
   return (
@@ -54,7 +66,7 @@ const MessagesContainer: React.FC<Props> = ({ room }) => {
               borderRadius: "50%",
             }}
           >
-            {room?.ann ? <PodcastsIcon /> : <SolidHashTag />}
+            {icon}
           </span>
           <h3 style={{ margin: "0" }}>
             {t("pages.team.channelEmptyWelcome", { channel: room?.name })}

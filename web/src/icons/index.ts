@@ -31,3 +31,5 @@ export { default as SolidExpandLess } from "./SolidExpandLess";
 export { default as SolidMicrophone } from "./SolidMicrophone";
 export { default as SolidMegaphone } from "./SolidMegaphone";
 export { default as SolidLink } from "./SolidLink";
+export { default as SolidLock } from "./SolidLock";
+export { default as SolidBook } from "./SolidBook";

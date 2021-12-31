@@ -32,6 +32,9 @@ export class Team extends BaseEntity {
   @Field(() => Boolean)
   isAdmin: Boolean;
 
+  @Field(() => User)
+  admin: User;
+
   @Field(() => [Room])
   rooms: Room[];
 
