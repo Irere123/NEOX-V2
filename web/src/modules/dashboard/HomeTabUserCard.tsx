@@ -1,18 +1,18 @@
 import React from "react";
 
-import { EmojiIcon, PodcastsIcon } from "../../icons";
+import { SolidMessages, SolidMoreVert } from "../../icons";
 import { SingleUser } from "../../ui/Avatar";
 
 interface HomeTabCardProps {
   src: string;
   user: any;
-  isOnline: boolean;
+  status: "Online" | "Offline" | "Busy";
 }
 
 export const HomeTabUserCard: React.FC<HomeTabCardProps> = ({
   src,
   user,
-  isOnline,
+  status,
 }) => {
   return (
     <div className="HomeTab_userCard">
@@ -20,20 +20,20 @@ export const HomeTabUserCard: React.FC<HomeTabCardProps> = ({
         src={src}
         username={user.username}
         size="md"
-        isOnline={isOnline}
+        status={status}
       />
       <div className="HomeTab_userCard_info">
         <div>
           <p>{user.username}</p>
-          <p>{isOnline ? <>Online</> : <>Offline</>}</p>
+          <p style={{ fontSize: "13px" }}>{status}</p>
         </div>
       </div>
       <div className="HomeTab_userCard_btns">
         <div>
-          <PodcastsIcon />
+          <SolidMessages width={20} height={20} />
         </div>
         <div>
-          <EmojiIcon />
+          <SolidMoreVert />
         </div>
       </div>
     </div>

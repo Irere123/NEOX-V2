@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import "./avatar.css";
-import { DevBadge } from "../../icons/badges";
+import { Google, SolidMoon } from "../../icons";
 
 export const avatarSizeMap = {
   default: "80px",
@@ -61,7 +61,7 @@ export interface AvatarProps {
   src: string;
   size?: keyof typeof onlineIndicatorStyleMap;
   className?: string;
-  isOnline?: boolean;
+  status?: "Online" | "Offline" | "Busy";
   username?: string;
   isDeveloper?: boolean;
 }
@@ -70,7 +70,7 @@ export const SingleUser: React.FC<AvatarProps> = ({
   src,
   size = "default",
   className = "",
-  isOnline = false,
+  status = "Offline",
   username,
   isDeveloper,
 }) => {
@@ -97,13 +97,28 @@ export const SingleUser: React.FC<AvatarProps> = ({
         }
       />
 
-      {isOnline && (
+      {status === "Online" && (
         <span
           className={
             "rounded-full absolute box-content bg-green border-primary-800"
           }
           style={sizeStyle}
         ></span>
+      )}
+      {status === "Busy" && (
+        <span
+          className={
+            "rounded-full absolute box-content bg-primary-800 border-primary-800 text-secondary items-center justify-center"
+          }
+          style={{
+            ...sizeStyle,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <SolidMoon width={sizeStyle.width} height={sizeStyle.width} />
+        </span>
       )}
       {isDeveloper && (
         <span
@@ -112,7 +127,7 @@ export const SingleUser: React.FC<AvatarProps> = ({
           }
           style={{ ...sizeStyle, padding: 2, top: -2 }}
         >
-          <DevBadge width={sizeStyle.width} height={sizeStyle.width} />
+          <Google width={sizeStyle.width} height={sizeStyle.width} />
         </span>
       )}
     </div>
