@@ -28,6 +28,10 @@ export class Room extends BaseEntity {
   name: string;
 
   @Field()
+  @Column({ type: "text", nullable: true })
+  description: string;
+
+  @Field()
   @Column({ type: "bool", default: true })
   public: boolean;
 

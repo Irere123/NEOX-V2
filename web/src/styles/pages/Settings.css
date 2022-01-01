@@ -81,8 +81,14 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-  align-items: center;
+  align-items: flex-start;
   flex: 0.3;
+}
+
+.settingsPage__RightSideContent__left > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .settingsPage__RightSideContent__closeBtn {

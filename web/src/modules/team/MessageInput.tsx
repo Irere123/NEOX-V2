@@ -5,14 +5,17 @@ import { useCreateMessageMutation } from "../../generated/graphql";
 import { EmojiIcon, PlusIcon, SolidPoll } from "../../icons";
 
 interface Props {
+  team: any;
   room: any;
 }
 
-const MessageInput: React.FC<Props> = ({ room }) => {
+const MessageInput: React.FC<Props> = ({ room, team }) => {
   const [createMessage] = useCreateMessageMutation();
 
-  return (
-    <div className="teamPageLayout__chatInput">
+  let input;
+
+  if (!room?.ann || !room?.rules) {
+    input = (
       <div>
         <span>
           <PlusIcon fill="white" />
@@ -62,8 +65,22 @@ const MessageInput: React.FC<Props> = ({ room }) => {
           <SolidPoll />
         </span>
       </div>
-    </div>
-  );
+    );
+  } else if ((room?.ann || room?.rules) && !team?.isAdmin) {
+    input = (
+      <div>
+        <p>No allowed</p>
+      </div>
+    );
+  } else if ((room?.ann || room?.rules) && team?.isAdmin) {
+    input = (
+      <div>
+        <p>allowed</p>
+      </div>
+    );
+  }
+
+  return <div className="teamPageLayout__chatInput">{input}</div>;
 };
 
 export default MessageInput;

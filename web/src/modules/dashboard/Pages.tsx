@@ -1,25 +1,52 @@
 import React from "react";
 
+import src from "../../img/avatar.png";
+import { DesktopHomeTabsLayout } from "../layouts/DesktopHomeTabsLayout";
+import { HomeTabUserCard } from "./HomeTabUserCard";
+
+const users = [
+  {
+    username: "Irere",
+  },
+  {
+    username: "Jason",
+  },
+  {
+    username: "Mike",
+  },
+  {
+    username: "Jasper",
+  },
+];
+
+const uPending = [{ username: "Harry" }, { username: "Potter" }];
+
 export const Online: React.FC = () => {
   return (
-    <div>
-      <h2>Online friends</h2>
-    </div>
+    <DesktopHomeTabsLayout pageName="online" pageUserNum={4}>
+      {users.map((u) => (
+        <HomeTabUserCard src={src} user={u} isOnline={true} />
+      ))}
+    </DesktopHomeTabsLayout>
   );
 };
 
 export const All: React.FC = () => {
   return (
-    <div>
-      <p>All friends</p>
-    </div>
+    <DesktopHomeTabsLayout pageName="all friends" pageUserNum={5}>
+      {users.map((u) => (
+        <HomeTabUserCard src={src} user={u} isOnline={false} />
+      ))}
+    </DesktopHomeTabsLayout>
   );
 };
 
 export const Pending: React.FC = () => {
   return (
-    <div>
-      <p>Pending</p>
-    </div>
+    <DesktopHomeTabsLayout pageName="pending requests" pageUserNum={2}>
+      {uPending.map((u) => (
+        <HomeTabUserCard src={src} user={u} isOnline={false} />
+      ))}
+    </DesktopHomeTabsLayout>
   );
 };

@@ -6,7 +6,7 @@ import Layout from "../modules/layouts/Layout";
 
 export default function Explore() {
   return (
-    <Layout title="Explore Trending - NEOX">
+    <Layout title="Explore | NEOX">
       <ExplorePage />
     </Layout>
   );
