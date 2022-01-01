@@ -1,13 +1,22 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import { useTabs, TabPanel } from "react-headless-tabs";
 
+import { useTeamQuery } from "../../../generated/graphql";
 import { TabSelector } from "../../../ui/TabSelector";
 import {
   DefaultSettingsLayout,
   Layout,
 } from "../../layouts/DefaultSettingsLayout";
+import { TeamPageParams } from "../../../types/CustomTypes";
 
 export const TeamSettingsPage: React.FC = () => {
+  const { teamId }: TeamPageParams = useParams();
+  const { data } = useTeamQuery({
+    variables: {
+      teamId,
+    },
+  });
   const [openModal, setOpenModal] = useState(false);
   const [selectedTab, setSelectedTab] = useTabs([
     "Overview",
@@ -16,11 +25,13 @@ export const TeamSettingsPage: React.FC = () => {
     "Bans",
   ]);
 
+  const team = data?.team;
+
   return (
     <DefaultSettingsLayout>
       <>
         <div className="Tab">
-          <p className="TabsCategoryTitle">IR13's Team</p>
+          <p className="TabsCategoryTitle">{team?.name}</p>
           <TabSelector
             isActive={selectedTab === "Overview"}
             onClick={() => setSelectedTab("Overview")}
@@ -47,10 +58,18 @@ export const TeamSettingsPage: React.FC = () => {
           </TabSelector>
         </div>
         <div className="Additional__Info">
-          <span className="logout_btn" onClick={() => setOpenModal(!openModal)}>
-            Delete team
-          </span>
-          <b style={{ fontSize: "15px" }}>{window.navigator.userAgent}</b>
+          {team?.isAdmin ? (
+            <span
+              className="Additional__InfoBtn"
+              onClick={() => setOpenModal(!openModal)}
+            >
+              Delete team
+            </span>
+          ) : (
+            <span className="Additional__InfoBtn">Leave team</span>
+          )}
+
+          <b style={{ fontSize: "15px" }}>{window.navigator.platform}</b>
         </div>
       </>
 

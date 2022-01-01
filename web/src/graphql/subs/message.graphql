@@ -1,0 +1,13 @@
+subscription Message($roomId: Int!) {
+  newMessage(roomId: $roomId) {
+    id
+    text
+    createdAt
+    updatedAt
+    user {
+      id
+      username
+      pictureUrl
+    }
+  }
+}

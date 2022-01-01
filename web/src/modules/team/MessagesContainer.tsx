@@ -1,22 +1,53 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
 
 import { useTypeSafeTranslation } from "../../hooks/useTypeSafeTranslation";
-import { useMessagesQuery } from "../../generated/graphql";
+import {
+  MessageDocument,
+  MessageSubscription,
+  useMessagesQuery,
+} from "../../generated/graphql";
 import { MessagesLoadingScreen } from "../../shared-components/LoadingScreens";
 import { PodcastsIcon, SolidBook, SolidHashTag, SolidLock } from "../../icons";
 import { TextParser } from "../display/TextParser";
+import { TeamPageParams } from "../../types/CustomTypes";
 
 interface Props {
   room: any;
 }
 
+interface MessageSub {
+  subscriptionData: { data: MessageSubscription };
+}
+
 const MessagesContainer: React.FC<Props> = ({ room }) => {
-  const { data, loading } = useMessagesQuery({
+  const { roomId }: TeamPageParams = useParams();
+  const roomIdInt = parseInt(roomId, 10);
+
+  const { data, loading, subscribeToMore } = useMessagesQuery({
     variables: {
       roomId: room?.id,
     },
+    fetchPolicy: "network-only",
   });
+  useEffect(() => {
+    subscribeToMore({
+      document: MessageDocument,
+      variables: {
+        roomId: roomIdInt,
+      },
+      updateQuery: (prev, { subscriptionData }: MessageSub) => {
+        if (!subscriptionData.data) return prev;
+        const newMessage = subscriptionData.data.newMessage;
+        return {
+          ...prev,
+          messages: [...prev.messages, newMessage],
+        };
+      },
+    });
+  }, [subscribeToMore, roomIdInt]);
   const { t } = useTypeSafeTranslation();
 
   if (loading) {
@@ -37,8 +68,8 @@ const MessagesContainer: React.FC<Props> = ({ room }) => {
 
   return (
     <>
-      {data?.messages.map((message) => (
-        <div className="MessageContainer__message" key={message.id}>
+      {data?.messages.map((message, idx) => (
+        <div className="MessageContainer__message" key={idx}>
           <div className="MessageContainer__messageAvatar">
             <img src={message.user.pictureUrl!} alt={message.user.username} />
           </div>

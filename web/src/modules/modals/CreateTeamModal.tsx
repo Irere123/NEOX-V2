@@ -4,6 +4,7 @@ import ReactModal from "react-modal";
 import { CloseIcon } from "../../icons";
 import { Page1, Page2, Page3, Page4 } from "./Pages";
 import { useTypeSafeTranslation } from "../../hooks/useTypeSafeTranslation";
+import { TemplateContext } from "../../hooks/useTemplate";
 
 const customStyles = {
   default: {
@@ -37,6 +38,7 @@ const Modal: React.FC<
   }
 > = ({ variant = "default", onRequestClose, ...props }) => {
   const [page, setPage] = useState(0);
+  const [template, setTemplate] = useState("study_group");
   const { t } = useTypeSafeTranslation();
 
   const setNewPage = (page: number) => {
@@ -80,26 +82,29 @@ const Modal: React.FC<
   } else if (page === 3) {
     cardTitle = "Join a team";
   }
+  const value = { template, setTemplate };
 
   return (
-    <ReactModal
-      shouldCloseOnEsc
-      shouldFocusAfterRender
-      style={customStyles[variant]}
-      {...props}
-    >
-      <div className="modalContainer">
-        <div tabIndex={-1} className="focus:outline-none">
-          <div className="MyCreateModal__header">
-            <h4>{cardTitle}</h4>
-            <span onClick={onRequestClose}>
-              <CloseIcon fill="#4f5760" />
-            </span>
+    <TemplateContext.Provider value={value}>
+      <ReactModal
+        shouldCloseOnEsc
+        shouldFocusAfterRender
+        style={customStyles[variant]}
+        {...props}
+      >
+        <div className="modalContainer">
+          <div tabIndex={-1} className="focus:outline-none">
+            <div className="MyCreateModal__header">
+              <h4>{cardTitle}</h4>
+              <span onClick={onRequestClose}>
+                <CloseIcon fill="#4f5760" />
+              </span>
+            </div>
+            <div className="MyCreateModal__content">{pageToRender}</div>
           </div>
-          <div className="MyCreateModal__content">{pageToRender}</div>
         </div>
-      </div>
-    </ReactModal>
+      </ReactModal>
+    </TemplateContext.Provider>
   );
 };
 

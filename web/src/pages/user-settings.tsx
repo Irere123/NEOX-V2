@@ -6,7 +6,7 @@ import UserSettingsPage from "../modules/settings/userSettings/userSettingsPage"
 
 function UserSettings() {
   return (
-    <Layout title="Settings">
+    <Layout title="Settings | NEOX">
       <UserSettingsPage />
     </Layout>
   );

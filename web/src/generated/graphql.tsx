@@ -58,7 +58,7 @@ export type MutationAddFriendArgs = {
 
 export type MutationAddTeamMemberArgs = {
   teamId: Scalars['ID'];
-  username: Scalars['String'];
+  userId: Scalars['String'];
 };
 
 
@@ -184,6 +184,11 @@ export type Subscription = {
   newMessage: Message;
 };
 
+
+export type SubscriptionNewMessageArgs = {
+  roomId: Scalars['Int'];
+};
+
 export type Team = {
   __typename?: 'Team';
   admin: User;
@@ -297,6 +302,13 @@ export type TeamMembersQueryVariables = Exact<{
 
 
 export type TeamMembersQuery = { __typename?: 'Query', getTeamMembers: Array<{ __typename?: 'User', id: number, username: string, pictureUrl?: Maybe<string>, teams: Array<{ __typename?: 'Team', isAdmin: boolean }> }> };
+
+export type MessageSubscriptionVariables = Exact<{
+  roomId: Scalars['Int'];
+}>;
+
+
+export type MessageSubscription = { __typename?: 'Subscription', newMessage: { __typename?: 'Message', id: string, text: string, createdAt: any, updatedAt: any, user: { __typename?: 'User', id: number, username: string, pictureUrl?: Maybe<string> } } };
 
 
 export const CreateChannelDocument = gql`
@@ -722,3 +734,41 @@ export function useTeamMembersLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type TeamMembersQueryHookResult = ReturnType<typeof useTeamMembersQuery>;
 export type TeamMembersLazyQueryHookResult = ReturnType<typeof useTeamMembersLazyQuery>;
 export type TeamMembersQueryResult = Apollo.QueryResult<TeamMembersQuery, TeamMembersQueryVariables>;
+export const MessageDocument = gql`
+    subscription Message($roomId: Int!) {
+  newMessage(roomId: $roomId) {
+    id
+    text
+    createdAt
+    updatedAt
+    user {
+      id
+      username
+      pictureUrl
+    }
+  }
+}
+    `;
+
+/**
+ * __useMessageSubscription__
+ *
+ * To run a query within a React component, call `useMessageSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useMessageSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMessageSubscription({
+ *   variables: {
+ *      roomId: // value for 'roomId'
+ *   },
+ * });
+ */
+export function useMessageSubscription(baseOptions: Apollo.SubscriptionHookOptions<MessageSubscription, MessageSubscriptionVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useSubscription<MessageSubscription, MessageSubscriptionVariables>(MessageDocument, options);
+      }
+export type MessageSubscriptionHookResult = ReturnType<typeof useMessageSubscription>;
+export type MessageSubscriptionResult = Apollo.SubscriptionResult<MessageSubscription>;

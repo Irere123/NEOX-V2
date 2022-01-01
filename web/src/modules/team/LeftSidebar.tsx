@@ -24,7 +24,7 @@ const LeftSidebar: React.FC<Props> = () => {
 
   return (
     <div className="teamPageLayout__leftSidebar">
-      <LeftSidebarHeader teamName={team?.name} isOwner={team?.isAdmin} />
+      <LeftSidebarHeader team={team} />
       <div className="teamPageLayout__leftSidebar__rooms">
         <div className="teamPageLayout__leftSidebar__roomsListHeader">
           <p
