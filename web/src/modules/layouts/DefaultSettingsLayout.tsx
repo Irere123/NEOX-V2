@@ -10,20 +10,22 @@ export const Layout: React.FC = ({ children }) => {
     <div className="settingsPage__RightSideContent">
       <div className="settingsPage__RightSideContent__middle">{children}</div>
       <div className="settingsPage__RightSideContent__left">
-        <span
-          className="settingsPage__RightSideContent__closeBtn"
-          onClick={() => {
-            history.goBack();
-          }}
-          onKeyPress={(e) => {
-            if (e.keyCode === 27) {
-              console.log("Pressed");
-            }
-          }}
-        >
-          <CloseIcon fill={"var(--color-primary-200)"} />
-        </span>
-        <span style={{ color: "var(--color-primary-200)" }}>ESC</span>
+        <div>
+          <span
+            className="settingsPage__RightSideContent__closeBtn"
+            onClick={() => {
+              history.goBack();
+            }}
+            onKeyPress={(e) => {
+              if (e.keyCode === 27) {
+                console.log("Pressed");
+              }
+            }}
+          >
+            <CloseIcon fill={"var(--color-primary-200)"} />
+          </span>
+          <span style={{ color: "var(--color-primary-200)" }}>ESC</span>
+        </div>
       </div>
     </div>
   );

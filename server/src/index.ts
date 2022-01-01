@@ -236,7 +236,7 @@ const main = async () => {
 
   const subscriptionServer = SubscriptionServer.create(
     { schema, execute, subscribe },
-    { server: httpServer, path: "/graphql" }
+    { server: httpServer, path: "/subscriptions" }
   );
 
   // Server Set up

@@ -18,7 +18,7 @@ const TeamPageChatLayout: React.FC<Props> = ({ room, team }) => {
       >
         <TeamPageChat room={room} />
       </div>
-      <MessageInput room={room} />
+      <MessageInput room={room} team={team} />
     </div>
   );
 };

@@ -16,6 +16,7 @@
 }
 
 .settingsPage__layoutRightSide {
+  width: 100%;
   flex: 1;
 }
 
@@ -56,7 +57,7 @@
   color: var(--color-primary-200);
 }
 
-.Additional__Info > .logout_btn {
+.Additional__InfoBtn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,19 +68,26 @@
   cursor: pointer;
 }
 
-.MyAccount__card {
-  background-color: var(--color-primary-300);
-  width: 400px;
-}
-
 .settingsPage__RightSideContent {
   display: flex;
+  width: 100%;
+}
+
+.settingsPage__RightSideContent__middle {
+  flex: 0.7;
 }
 
 .settingsPage__RightSideContent__left {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  align-items: flex-start;
+  flex: 0.3;
+}
+
+.settingsPage__RightSideContent__left > div {
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
@@ -90,6 +98,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  margin-top: 20px;
   background-color: transparent;
   border: 2px solid var(--color-primary-200);
   cursor: pointer;
@@ -98,4 +107,23 @@
 .settingsPage__RightSideContent__closeBtn:hover {
   background-color: var(--color-primary-600);
   transform: scale(1.05);
+}
+
+.MyAccount__layout {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.MyAccount__card {
+  background-color: var(--color-primary-600);
+  width: 50%;
+  border-radius: 6px;
+}
+
+.MyAccount__card > div:first-child {
+  background-color: var(--color-primary-100);
+  border-radius: 6px 6px 0px 0px;
+  width: 100%;
+  height: 100px;
 }

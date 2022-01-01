@@ -1,24 +1,51 @@
-.avatar {
-  margin: 0;
-  padding: 0;
-  width: 60px;
-  height: 60px;
+.relative {
+  position: relative;
 }
 
-.avatar-normal {
+.inline-block {
+  display: inline-block;
+}
+
+.rounded-full {
   border-radius: 50%;
 }
-
-.avatar-rounded {
-  border-radius: 20%;
+.w-full {
+  width: 100%;
+}
+.h-full {
+  height: 100%;
+}
+.object-cover {
+  object-fit: cover;
 }
 
-.avatar-medium {
-  width: 40px;
-  height: 40px;
+.box-content {
+  box-sizing: content-box;
 }
 
-.avatar-large {
-  width: 50px;
-  height: 50px;
+.bg-green {
+  background-color: lightgreen;
+}
+.border-primary-800 {
+  border: 1px solid var(--color-primary-800);
+}
+
+.bg-primary-800 {
+  background-color: var(--color-primary-800);
+}
+
+.absolute {
+  position: absolute;
+}
+
+.text-secondary {
+  color: var(--color-secondary);
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
 }

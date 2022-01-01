@@ -31,26 +31,26 @@ export const studyGroupTemplate = async (
       await Room.create({
         dm: false,
         teamId: team.id,
-        name: "assignments",
+        name: "study-tips",
       }).save();
 
       await Room.create({
         dm: false,
         teamId: team.id,
-        name: "rounge",
+        name: "motivation",
       }).save();
 
       await Room.create({
         dm: false,
         public: true,
         teamId: team.id,
-        name: "jokes",
+        name: "assignments",
       }).save();
 
       await Room.create({
         dm: false,
         teamId: team.id,
-        name: "memes",
+        name: "tournaments",
       }).save();
     });
   } catch (error) {

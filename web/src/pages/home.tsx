@@ -6,7 +6,7 @@ import Layout from "../modules/layouts/Layout";
 
 export default function Home() {
   return (
-    <Layout title="Home - Neox">
+    <Layout title="Home | NEOX">
       <HomePage />
     </Layout>
   );

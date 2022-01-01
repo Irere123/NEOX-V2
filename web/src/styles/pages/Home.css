@@ -134,8 +134,13 @@
 }
 
 .homePage__layout_mainRightSide {
-  background-color: transparent;
-  width: 100%;
+  background-color: var(--color-primary-800);
+  padding: 10px 20px;
+}
+
+.homePage__layout_mainRightSide > p {
+  font-size: 25px;
+  margin-top: 0;
 }
 
 .homePage__layout_mainMiddle__sendInvite {
@@ -197,4 +202,69 @@
 
 .homePage__headerLinks__addFriend > button:hover {
   background-color: var(--color-accent-hover);
+}
+
+.HomeTab__layout {
+  padding: 0px 10px 0px 10px;
+}
+
+.HomeTab__layoutPageTitle {
+  text-transform: uppercase;
+}
+
+.HomeTab__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.HomeTab_userCard {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background-color: var(--color-primary-800);
+  padding: 0px 10px 0px 10px;
+  border-radius: 5px;
+  height: 65px;
+  cursor: pointer;
+}
+
+.HomeTab_userCard:hover {
+  opacity: 0.8;
+}
+
+.HomeTab_userCard_info {
+  display: flex;
+}
+
+.HomeTab_userCard_info > div:first-child {
+  display: flex;
+  flex-direction: column;
+}
+
+.HomeTab_userCard_info > div > p {
+  margin: 0;
+}
+
+.HomeTab_userCard_btns {
+  width: 100%;
+  display: flex;
+  flex: 1 1;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.HomeTab_userCard_btns > div {
+  background-color: var(--color-primary-700);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.HomeTab_userCard_btns > div:hover {
+  background-color: var(--color-primary-300);
 }

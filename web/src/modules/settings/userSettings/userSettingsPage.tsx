@@ -88,7 +88,7 @@ const UserSettingsPage: React.FC = () => {
         <div className="Additional__Info">
           <span>Changelog</span>
           <span
-            className="logout_btn"
+            className="Additional__InfoBtn"
             onClick={() => setOpenLogoutModal(!openLogoutModal)}
           >
             Log out

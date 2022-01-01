@@ -16,10 +16,18 @@ import { User } from "../../entity/User";
 import { Message } from "../../entity/Message";
 import { MyContext } from "../../types/MyContext";
 
+const NEW_ROOM_MESSAGE = "NEW_ROOM_MESSAGE";
+
 @Resolver(Message)
 export default class MessageResolver {
-  @Subscription(() => Message, { topics: "NEW_MESSAGE" })
-  newMessage(@Root() payload: Message) {
+  @Subscription(() => Message, {
+    topics: NEW_ROOM_MESSAGE,
+    filter: ({ args, payload }) => payload.roomId === args.roomId,
+  })
+  newMessage(
+    @Root() payload: Message,
+    @Arg("roomId", () => Int) _roomId: number
+  ) {
     return payload;
   }
 
@@ -46,7 +54,7 @@ export default class MessageResolver {
     let message;
 
     try {
-      await Message.create({
+      message = await Message.create({
         roomId,
         userId,
         text,
@@ -56,7 +64,7 @@ export default class MessageResolver {
       return false;
     }
 
-    pubsub.publish("NEW_MESSAGE", message);
+    pubsub.publish(NEW_ROOM_MESSAGE, message);
     return true;
   }
 }

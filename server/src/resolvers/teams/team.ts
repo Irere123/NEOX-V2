@@ -121,14 +121,11 @@ export default class TeamsResolver {
   }
 
   @FieldResolver(() => Boolean)
-  async isAdmin(@Root() team: Team) {
-    const user = await getConnection().query(
-      `
-      select * from members as m join users as u on m."userId" = u.id
-      where m."teamId" = $1 and m."admin"=true
-     `,
-      [team.id]
-    );
+  async isAdmin(@Root() team: Team, @Ctx() { req }: MyContext) {
+    const userId = (req.session as any).userId;
+    const user = await Member.findOne({
+      where: { userId, teamId: team.id, admin: true },
+    });
 
     if (!user) {
       return false;

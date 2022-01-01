@@ -33,3 +33,6 @@ export { default as SolidMegaphone } from "./SolidMegaphone";
 export { default as SolidLink } from "./SolidLink";
 export { default as SolidLock } from "./SolidLock";
 export { default as SolidBook } from "./SolidBook";
+export { default as SolidMessages } from "./SolidMessages";
+export { default as SolidMoon } from "./SolidMoon";
+export { default as SolidMoreVert } from "./SolidMoreVert";

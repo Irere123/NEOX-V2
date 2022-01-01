@@ -22,7 +22,7 @@ function Routes() {
         <ProtectedRoute path="/team/:teamId?/:roomId?" exact component={Team} />
         <ProtectedRoute path="/settings" exact component={UserSettings} />
         <ProtectedRoute
-          path="/:teamName/settings"
+          path="/:teamId/settings"
           exact
           component={TeamSettings}
         />

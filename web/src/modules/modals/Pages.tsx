@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
 
@@ -15,6 +15,7 @@ import {
 } from "../../generated/graphql";
 import toErrorMap from "../../lib/toErrorMap";
 import { useTypeSafeTranslation } from "../../hooks/useTypeSafeTranslation";
+import { TemplateContext } from "../../hooks/useTemplate";
 
 interface Props {
   setPage?: (page: number) => void;
@@ -25,7 +26,9 @@ interface Props {
 const testUsername = "IR123";
 
 export const Page1: React.FC<Props> = ({ setPage }) => {
+  const { setTemplate } = useContext(TemplateContext);
   const { t } = useTypeSafeTranslation();
+
   return (
     <div>
       <p style={{ color: "#4f5660", textAlign: "center" }}>
@@ -55,7 +58,10 @@ export const Page1: React.FC<Props> = ({ setPage }) => {
       </p>
       <div className="createTeamTemplate__choices">
         <div className="createTeamChoice__card" onClick={() => setPage?.(2)}>
-          <span className="createTeamChoice__card_iconNword">
+          <span
+            className="createTeamChoice__card_iconNword"
+            onClick={() => setTemplate("study_group")}
+          >
             <span>
               <BackpackIcon fill="#4f5760" />
             </span>
@@ -66,7 +72,10 @@ export const Page1: React.FC<Props> = ({ setPage }) => {
           </span>
         </div>
         <div className="createTeamChoice__card" onClick={() => setPage?.(2)}>
-          <span className="createTeamChoice__card_iconNword">
+          <span
+            className="createTeamChoice__card_iconNword"
+            onClick={() => setTemplate("school_club")}
+          >
             <span>
               <LightIcon fill="#4f5760" />
             </span>
@@ -77,7 +86,10 @@ export const Page1: React.FC<Props> = ({ setPage }) => {
           </span>
         </div>
         <div className="createTeamChoice__card" onClick={() => setPage?.(2)}>
-          <span className="createTeamChoice__card_iconNword">
+          <span
+            className="createTeamChoice__card_iconNword"
+            onClick={() => setTemplate("friends")}
+          >
             <span>
               <GroupIcon fill="#4f5760" />
             </span>
@@ -171,6 +183,7 @@ export const Page2: React.FC<Props> = ({ prevPage, onRequestClose }) => {
 };
 
 export const Page3: React.FC<Props> = ({ onRequestClose, prevPage }) => {
+  const { template } = useContext(TemplateContext);
   const [createTeam] = useCreateTeamByTemplateMutation();
   const { t } = useTypeSafeTranslation();
   const history = useHistory();
@@ -190,7 +203,7 @@ export const Page3: React.FC<Props> = ({ onRequestClose, prevPage }) => {
             const resp = await createTeam({
               variables: {
                 name: values.name,
-                template: "study_group",
+                template: template,
               },
               update: (store) => {
                 store.evict({ fieldName: "me" });
