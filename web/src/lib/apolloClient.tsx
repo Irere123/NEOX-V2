@@ -9,7 +9,7 @@ const httpLink = new HttpLink({
 });
 
 const wsLink = new WebSocketLink({
-  uri: "ws://api-neox-next.herokuapp.com/subscriptions",
+  uri: "wss://api-neox-next.herokuapp.com/subscriptions",
   options: {
     reconnect: true,
     lazy: true,
