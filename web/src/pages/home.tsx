@@ -2,12 +2,12 @@ import React from "react";
 
 import "../styles/pages/Home.css";
 import HomePage from "../modules/dashboard/HomePage";
-import Layout from "../modules/layouts/Layout";
+import PageHead from "../modules/layouts/PageHead";
 
 export default function Home() {
   return (
-    <Layout title="Home | NEOX">
+    <PageHead title="Home | NEOX">
       <HomePage />
-    </Layout>
+    </PageHead>
   );
 }

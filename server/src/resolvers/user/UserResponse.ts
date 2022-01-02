@@ -14,3 +14,12 @@ export class UserResponse {
   @Field(() => User, { nullable: true })
   user?: User | null;
 }
+
+@ObjectType()
+export class FriendResponse {
+  @Field()
+  ok?: Boolean;
+
+  @Field(() => [FieldError], { nullable: true })
+  errors?: FieldError[];
+}

@@ -1,5 +1,5 @@
 // @ts-ignore
-import config from "../.prettierrc.js.js";
+import config from "../.prettierrc.js";
 import english from "../public/locales/en-US/transilation.json";
 import * as fs from "fs";
 import { join } from "path";

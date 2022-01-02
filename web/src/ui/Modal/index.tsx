@@ -86,11 +86,8 @@ const Modal: React.FC<
         <div tabIndex={-1} className="focus:outline-none">
           <div className="MyModal__header">
             <h4>{title}</h4>
-            <span
-              onClick={(e) => props.onRequestClose?.(e)}
-              style={{ cursor: "pointer" }}
-            >
-              <CloseIcon fill="#4f5760" />
+            <span onClick={(e) => props.onRequestClose?.(e)}>
+              <CloseIcon fill="#4f5760" style={{ cursor: "pointer" }} />
             </span>
           </div>
           <div className="MyModal__content">{children}</div>

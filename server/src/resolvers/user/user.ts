@@ -15,6 +15,7 @@ import { MyContext } from "../../types/MyContext";
 import { isAuth } from "../../utils/isAuth";
 import { Team } from "../../entity/Team";
 import { Friend } from "../../entity/Friend";
+import { FriendResponse } from "./UserResponse";
 
 @Resolver(User)
 export default class UserResolver {
@@ -43,8 +44,11 @@ export default class UserResolver {
     const userId = (req.session as any).userId;
     //TODO: Fix Query
     return await getConnection().query(
-      `select * from users as u join friends as f on f."friendId" = u."id"
-       where f."userId" = $1`,
+      `select * from users  u left join friends f on u."id"=f."userId" where
+      f."friendId"= $1
+      union select * from users  u left join friends f on u."id"=f."friendId" where
+      f."userId"=$1 
+      `,
       [userId]
     );
   }
@@ -72,23 +76,38 @@ export default class UserResolver {
     return true;
   }
 
-  @Mutation(() => Boolean)
+  @Mutation(() => FriendResponse)
   async addFriend(
     @Arg("friendId", () => Int) friendId: number,
     @Ctx() { req }: MyContext
-  ): Promise<Boolean> {
+  ): Promise<FriendResponse> {
     const userId = (req.session as any).userId;
+    const friend = await User.findOne(friendId);
+
+    if (!friend) {
+      return {
+        ok: false,
+        errors: [
+          {
+            field: "name",
+            message: "Your friend doesn't exist..",
+          },
+        ],
+      };
+    }
 
     try {
       await Friend.create({
-        friendId,
+        friendId: friend.id,
         userId,
       }).save();
     } catch (err) {
       console.log(err);
     }
 
-    return true;
+    return {
+      ok: true,
+    };
   }
 
   @Mutation(() => Boolean)

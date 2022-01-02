@@ -1,22 +1,26 @@
 import React from "react";
 import { useLocation, useHistory } from "react-router-dom";
 
-import { CompassIcon, Friends, NeoxNitro, PlusIcon } from "../icons";
+import src from "../img/avatar.png";
+import { CloseIcon, CompassIcon, Friends, PlusIcon } from "../icons";
+import { SingleUser } from "../ui/Avatar";
+import { useTypeSafeTranslation } from "../hooks/useTypeSafeTranslation";
 
 const loopArray = [1, 3, 4, 5];
 
 export const LeftSide = () => {
+  const { t } = useTypeSafeTranslation();
   const pathname = useLocation().pathname;
   const history = useHistory();
   const defaultPage = pathname === "/home";
   const explorePage = pathname === "/explore";
-  const nitroPage = pathname === "/nitro";
+  const isEmpty = false;
 
   return (
     <div className="homePage__layout_leftside">
       <div className="homePage__layout_leftside_header">
         <div>
-          <p>Find conversations</p>
+          <p>{t("pages.home.find_conversations")}</p>
         </div>
       </div>
       <div className="homePage__layout_leftside_links_to_otherPages">
@@ -31,7 +35,7 @@ export const LeftSide = () => {
           }}
         >
           <Friends fill="white" />
-          <p>Friends</p>
+          <p>{t("pages.home.friends")}</p>
         </div>
         <div
           className={`homePage__layout_leftside_link ${
@@ -44,20 +48,7 @@ export const LeftSide = () => {
           }}
         >
           <CompassIcon />
-          <p>Explore</p>
-        </div>
-        <div
-          className={`homePage__layout_leftside_link ${
-            nitroPage
-              ? "homePage__layout_leftside_link_active"
-              : "homeLink_hover"
-          }`}
-          onClick={() => {
-            history.push("/nitro");
-          }}
-        >
-          <NeoxNitro />
-          <p>Nitro</p>
+          <p>{t("pages.home.explore")}</p>
         </div>
       </div>
       <div className="directMessages__section">
@@ -69,14 +60,30 @@ export const LeftSide = () => {
             </span>
           </span>
         </div>
-        <div className="directMessages__section__dmEmptyPlaceholder">
-          {loopArray.map(() => (
-            <div className="directMessages__section__dmEmptyPlaceholder_main">
-              <div></div>
-              <div></div>
+        {!isEmpty ? (
+          <div className="directMessages__section_users">
+            <div className="directMessages__section_users_userCard">
+              <SingleUser src={src} status="Online" size="sm" />
+              <div>
+                <p>Irere</p>
+                <div className="hidden_container">
+                  <span className="hidden">
+                    <CloseIcon />
+                  </span>
+                </div>
+              </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ) : (
+          <div className="directMessages__section__dmEmptyPlaceholder">
+            {loopArray.map(() => (
+              <div className="directMessages__section__dmEmptyPlaceholder_main">
+                <div></div>
+                <div></div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

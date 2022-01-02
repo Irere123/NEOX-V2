@@ -1,14 +1,14 @@
 import React from "react";
 
 import "../styles/pages/Settings.css";
-import Layout from "../modules/layouts/Layout";
 import UserSettingsPage from "../modules/settings/userSettings/userSettingsPage";
+import PageHead from "../modules/layouts/PageHead";
 
 function UserSettings() {
   return (
-    <Layout title="Settings | NEOX">
+    <PageHead title="Settings | NEOX">
       <UserSettingsPage />
-    </Layout>
+    </PageHead>
   );
 }
 

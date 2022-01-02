@@ -22,7 +22,13 @@ import { Strategy as FacebookStrategy } from "passport-facebook";
 
 import { apiBaseUrl, redirectUrl, clientAppUrl, __prod__ } from "./constants";
 import { redis } from "./redis";
-import { User as UserResolver, Team, Room, Message } from "./resolvers";
+import {
+  User as UserResolver,
+  Team,
+  Room,
+  Message,
+  Request,
+} from "./resolvers";
 import { User } from "./entity/User";
 import { createUser } from "./utils/createUser";
 import {
@@ -230,7 +236,7 @@ const main = async () => {
   );
 
   const schema = await buildSchema({
-    resolvers: [UserResolver, Team, Room, Message],
+    resolvers: [UserResolver, Team, Room, Message, Request],
     validate: false,
   });
 

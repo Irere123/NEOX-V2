@@ -17,7 +17,8 @@ query Me {
     myFriends {
       id
       username
-      username
+      bio
+      pictureUrl
     }
   }
 }

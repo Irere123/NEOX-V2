@@ -11,7 +11,7 @@
   },
   "header": {
     "_comment": "Main Header UI Internationalization Strings",
-    "title": "Wiomi"
+    "title": "NEOX"
   },
   "footer": {
     "_comment": "Main Footer UI Internationalization Strings",
@@ -22,6 +22,27 @@
     "team": {
       "channelEmptyWelcome": "Welcome to #{{channel}}",
       "channelEmptyWelcomeTXt": "This is the beginning of the #{{channel}} channel"
+    },
+    "home": {
+      "friends": "Friends",
+      "explore": "Explore",
+      "online": "Online",
+      "all": "All",
+      "pending": "Pending",
+      "add_friend": "Add friend",
+      "find_conversations": "Find conversations",
+      "active_now": "Active now",
+      "quite": "It's quite for now",
+      "quite_text": "When a friend starts an activity—like playing a game or hanging out on voice—we’ll show it here!"
+    },
+    "settings": {
+      "my_account": "My account",
+      "user_profile": "User profile",
+      "language": "Language",
+      "appearance": "Appearance",
+      "notifications": "Notifications",
+      "keybinds": "Keybinds",
+      "change_log": " Change log"
     }
   },
   "modals": {

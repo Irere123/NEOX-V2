@@ -2,18 +2,23 @@ import React, { useState } from "react";
 import { useTabs, TabPanel } from "react-headless-tabs";
 
 import AddFriendModal from "../modals/AddFriendModal";
+import Modal from "../../ui/Modal";
 import { Friends } from "../../icons";
 import DefaultPageLayout from "../layouts/DefaultPageLayout";
 import MainPageTop from "../layouts/MainPageTop";
 import { All, Online, Pending } from "./Pages";
 import { RightSide } from "./RightSide";
 import { TabSelector } from "./TabSelector";
+import { useMeQuery } from "../../generated/graphql";
+import { useTypeSafeTranslation } from "../../hooks/useTypeSafeTranslation";
 
 interface Props {}
 
 const HomePage: React.FC<Props> = () => {
+  const { t } = useTypeSafeTranslation();
   const [openModal, setOpenModal] = useState(false);
   const [selectedTab, setSelectedTab] = useTabs(["Online", "All", "Pending"]);
+  const { data } = useMeQuery();
 
   return (
     <DefaultPageLayout>
@@ -24,29 +29,32 @@ const HomePage: React.FC<Props> = () => {
               <span>
                 <Friends fill="white" />
               </span>
-              <p style={{ color: "white" }}>Friends</p>
+              <p style={{ color: "white" }}>{t("pages.home.friends")}</p>
             </div>
             <div className="homePage__headerLinks">
               <TabSelector onClick={() => setSelectedTab("Online")}>
-                <p>Online</p>
+                <p>{t("pages.home.online")}</p>
               </TabSelector>
               <TabSelector onClick={() => setSelectedTab("All")}>
-                <p>All</p>
+                <p>{t("pages.home.all")}</p>
               </TabSelector>
               <TabSelector onClick={() => setSelectedTab("Pending")}>
-                <p>Pending</p>
+                <p>{t("pages.home.pending")}</p>
               </TabSelector>
               <div className="homePage__headerLinks__addFriend">
                 <button onClick={() => setOpenModal(!openModal)}>
-                  Add friend
+                  {t("pages.home.add_friend")}
                 </button>
               </div>
             </div>
             {openModal && (
-              <AddFriendModal
+              <Modal
                 isOpen={openModal}
+                title="Add new friends"
                 onRequestClose={() => setOpenModal(!openModal)}
-              />
+              >
+                <AddFriendModal closeModal={() => setOpenModal(!openModal)} />
+              </Modal>
             )}
           </div>
         </MainPageTop>
@@ -56,7 +64,7 @@ const HomePage: React.FC<Props> = () => {
               <Online />
             </TabPanel>
             <TabPanel hidden={selectedTab !== "All"}>
-              <All />
+              <All friends={data?.me?.myFriends} />
             </TabPanel>
             <TabPanel hidden={selectedTab !== "Pending"}>
               <Pending />

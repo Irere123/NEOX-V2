@@ -17,6 +17,27 @@
     "team": {
       "channelEmptyWelcome": "Bienvenue a #{{channel}}",
       "channelEmptyWelcomeTXt": "C'est le debut de la #{{channel}} chaine"
+    },
+    "home": {
+      "friends": "Amis",
+      "explore": "Explorer",
+      "online": "En ligne",
+      "all": "Toute",
+      "pending": "En attendant",
+      "add_friend": "Ajouter amis",
+      "find_conversations": "Trouver des conversations",
+      "active_now": "Actif maintenant",
+      "quite": "C'est pour maintenant",
+      "quite_text": "Lorsqu'un ami commence une activite comme jouer a un jeu ou a un hangout vocal, nous l'afficherons ici!"
+    },
+    "settings": {
+      "my_account": "Mon compte",
+      "user_profile": "Profil",
+      "language": "Langue",
+      "appearance": "Apparence",
+      "notifications": "Avis",
+      "keybinds": "Keybinds",
+      "change_log": "Modifications"
     }
   },
   "modals": {

@@ -1,0 +1,19 @@
+query Request {
+  requests {
+    id
+    accepted
+    receiverId
+    senderId
+    isSender
+    sender {
+      id
+      username
+      pictureUrl
+    }
+    receiver {
+      id
+      username
+      pictureUrl
+    }
+  }
+}

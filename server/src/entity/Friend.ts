@@ -6,7 +6,6 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
@@ -19,7 +18,7 @@ export class Friend extends BaseEntity {
   id: number;
 
   @Field()
-  @Column({ unique: true })
+  @Column()
   friendId: number;
 
   @ManyToOne(() => User, (u) => u.friends, { onDelete: "CASCADE" })
@@ -30,7 +29,7 @@ export class Friend extends BaseEntity {
   @Column()
   userId: number;
 
-  @OneToOne(() => User, (u) => u.user, { onDelete: "CASCADE" })
+  @ManyToOne(() => User, (u) => u.user, { onDelete: "CASCADE" })
   @JoinColumn({ name: "userId" })
   user: User;
 
