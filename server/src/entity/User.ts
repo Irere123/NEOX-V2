@@ -13,6 +13,7 @@ import { Team } from "./Team";
 import { RMember } from "./Room";
 import { PRMember } from "./PRMember";
 import { Friend } from "./Friend";
+import { Request } from "./Request";
 import { Message } from "./Message";
 
 @ObjectType()
@@ -81,4 +82,10 @@ export class User extends BaseEntity {
 
   @OneToMany(() => Friend, (t) => t.user, { onDelete: "CASCADE" })
   user: Friend[];
+
+  @OneToMany(() => Request, (r) => r.sender, { onDelete: "CASCADE" })
+  receiver: Request[];
+
+  @OneToMany(() => Request, (t) => t.sender, { onDelete: "CASCADE" })
+  sender: Request[];
 }
