@@ -2,7 +2,6 @@ import { Field, ObjectType } from "type-graphql";
 import {
   BaseEntity,
   Column,
-  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
@@ -45,8 +44,4 @@ export class Request extends BaseEntity {
   @ManyToOne(() => User, (u) => u.sender, { onDelete: "CASCADE" })
   @JoinColumn({ name: "senderId" })
   senderRel: User;
-
-  @Field()
-  @CreateDateColumn()
-  createdAt: Date;
 }

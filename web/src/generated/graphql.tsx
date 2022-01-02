@@ -42,6 +42,7 @@ export type Mutation = {
   addFriend: FriendResponse;
   addTeamMember: AddMemberResponse;
   createMessage: Scalars['Boolean'];
+  createRequest: Scalars['Boolean'];
   createRoom: RoomResponse;
   createTeam: TeamResponse;
   createTeamByTemplate: TeamResponse;
@@ -71,6 +72,11 @@ export type MutationAddTeamMemberArgs = {
 export type MutationCreateMessageArgs = {
   roomId: Scalars['Int'];
   text: Scalars['String'];
+};
+
+
+export type MutationCreateRequestArgs = {
+  receiverId: Scalars['Float'];
 };
 
 
@@ -145,6 +151,7 @@ export type Query = {
   me?: Maybe<User>;
   messages: Array<Message>;
   publicTeams: Array<Team>;
+  requests: Array<Request>;
   rooms: Array<Room>;
   team?: Maybe<Team>;
   teams: Array<Team>;
@@ -164,6 +171,17 @@ export type QueryMessagesArgs = {
 
 export type QueryTeamArgs = {
   teamId: Scalars['ID'];
+};
+
+export type Request = {
+  __typename?: 'Request';
+  accepted: Scalars['Boolean'];
+  id: Scalars['Float'];
+  isSender: Scalars['Boolean'];
+  receiver: User;
+  receiverId: Scalars['Float'];
+  sender: User;
+  senderId: Scalars['Float'];
 };
 
 export type Room = {
@@ -291,6 +309,11 @@ export type MessagesQueryVariables = Exact<{
 
 
 export type MessagesQuery = { __typename?: 'Query', messages: Array<{ __typename?: 'Message', id: string, text: string, createdAt: any, updatedAt: any, user: { __typename?: 'User', id: number, username: string, pictureUrl?: Maybe<string> } }> };
+
+export type RequestQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type RequestQuery = { __typename?: 'Query', requests: Array<{ __typename?: 'Request', id: number, accepted: boolean, receiverId: number, senderId: number, isSender: boolean, sender: { __typename?: 'User', id: number, username: string, pictureUrl?: Maybe<string> }, receiver: { __typename?: 'User', id: number, username: string, pictureUrl?: Maybe<string> } }> };
 
 export type TeamsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -610,6 +633,54 @@ export function useMessagesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<M
 export type MessagesQueryHookResult = ReturnType<typeof useMessagesQuery>;
 export type MessagesLazyQueryHookResult = ReturnType<typeof useMessagesLazyQuery>;
 export type MessagesQueryResult = Apollo.QueryResult<MessagesQuery, MessagesQueryVariables>;
+export const RequestDocument = gql`
+    query Request {
+  requests {
+    id
+    accepted
+    receiverId
+    senderId
+    isSender
+    sender {
+      id
+      username
+      pictureUrl
+    }
+    receiver {
+      id
+      username
+      pictureUrl
+    }
+  }
+}
+    `;
+
+/**
+ * __useRequestQuery__
+ *
+ * To run a query within a React component, call `useRequestQuery` and pass it any options that fit your needs.
+ * When your component renders, `useRequestQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useRequestQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useRequestQuery(baseOptions?: Apollo.QueryHookOptions<RequestQuery, RequestQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<RequestQuery, RequestQueryVariables>(RequestDocument, options);
+      }
+export function useRequestLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<RequestQuery, RequestQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<RequestQuery, RequestQueryVariables>(RequestDocument, options);
+        }
+export type RequestQueryHookResult = ReturnType<typeof useRequestQuery>;
+export type RequestLazyQueryHookResult = ReturnType<typeof useRequestLazyQuery>;
+export type RequestQueryResult = Apollo.QueryResult<RequestQuery, RequestQueryVariables>;
 export const TeamsDocument = gql`
     query Teams {
   teams {

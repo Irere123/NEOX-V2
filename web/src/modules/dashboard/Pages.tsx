@@ -1,4 +1,5 @@
 import React from "react";
+import { useRequestQuery } from "../../generated/graphql";
 import { useTypeSafeTranslation } from "../../hooks/useTypeSafeTranslation";
 
 import src from "../../img/avatar.png";
@@ -19,8 +20,6 @@ const users = [
     username: "Jasper",
   },
 ];
-
-const uPending = [{ username: "Harry" }, { username: "Potter" }];
 
 export const Online: React.FC = () => {
   const { t } = useTypeSafeTranslation();
@@ -66,11 +65,19 @@ export const All: React.FC<AllTabProps> = ({ friends }) => {
 
 export const Pending: React.FC = () => {
   const { t } = useTypeSafeTranslation();
+  const { data } = useRequestQuery();
 
   return (
-    <DesktopHomeTabsLayout pageName={t("pages.home.pending")} pageUserNum={2}>
-      {uPending.map((u) => (
-        <HomeTabUserCard src={src} user={u} status="Busy" />
+    <DesktopHomeTabsLayout
+      pageName={t("pages.home.pending")}
+      pageUserNum={data?.requests.length}
+    >
+      {data?.requests.map((r) => (
+        <HomeTabUserCard
+          src={r.isSender ? r.receiver.pictureUrl! : r.sender.pictureUrl!}
+          user={r.isSender ? r.receiver! : r.sender!}
+          status="Busy"
+        />
       ))}
     </DesktopHomeTabsLayout>
   );
