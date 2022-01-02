@@ -36,3 +36,4 @@ export { default as SolidBook } from "./SolidBook";
 export { default as SolidMessages } from "./SolidMessages";
 export { default as SolidMoon } from "./SolidMoon";
 export { default as SolidMoreVert } from "./SolidMoreVert";
+export { default as SolidDone } from "./SolidDone";

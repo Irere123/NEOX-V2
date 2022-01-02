@@ -12,6 +12,8 @@ import Modal from "../../../ui/Modal";
 
 import { TabSelector } from "../../../ui/TabSelector";
 import { Logo } from "../../../icons";
+import { Language } from "./Language";
+import { useTypeSafeTranslation } from "../../../hooks/useTypeSafeTranslation";
 
 const LogoComp: React.FC = () => {
   return (
@@ -22,10 +24,12 @@ const LogoComp: React.FC = () => {
 };
 
 const UserSettingsPage: React.FC = () => {
+  const { t } = useTypeSafeTranslation();
   const [openLogoutModal, setOpenLogoutModal] = useState(false);
   const [selectedTab, setSelectedTab] = useTabs([
     "My acccount",
     "User profile",
+    "Language",
     "Appearance",
     "Notifications",
     "Keybinds",
@@ -53,13 +57,19 @@ const UserSettingsPage: React.FC = () => {
             isActive={selectedTab === "My acccount"}
             onClick={() => setSelectedTab("My acccount")}
           >
-            My account
+            {t("pages.settings.my_account")}
           </TabSelector>
           <TabSelector
             isActive={selectedTab === "User profile"}
             onClick={() => setSelectedTab("User profile")}
           >
-            User profile
+            {t("pages.settings.user_profile")}
+          </TabSelector>
+          <TabSelector
+            isActive={selectedTab === "Language"}
+            onClick={() => setSelectedTab("Language")}
+          >
+            {t("pages.settings.language")}
           </TabSelector>
         </div>
 
@@ -69,24 +79,24 @@ const UserSettingsPage: React.FC = () => {
             isActive={selectedTab === "Appearance"}
             onClick={() => setSelectedTab("Appearance")}
           >
-            Appearance
+            {t("pages.settings.appearance")}
           </TabSelector>
           <TabSelector
             isActive={selectedTab === "Notifications"}
             onClick={() => setSelectedTab("Notifications")}
           >
-            Notifications
+            {t("pages.settings.notifications")}
           </TabSelector>
           <TabSelector
             isActive={selectedTab === "Keybinds"}
             onClick={() => setSelectedTab("Keybinds")}
           >
-            Keybinds
+            {t("pages.settings.keybinds")}
           </TabSelector>
           <br />
         </div>
         <div className="Additional__Info">
-          <span>Changelog</span>
+          <span>{t("pages.settings.change_log")}</span>
           <span
             className="Additional__InfoBtn"
             onClick={() => setOpenLogoutModal(!openLogoutModal)}
@@ -105,6 +115,11 @@ const UserSettingsPage: React.FC = () => {
         <TabPanel hidden={selectedTab !== "User profile"}>
           <Layout>
             <Profile />
+          </Layout>
+        </TabPanel>
+        <TabPanel hidden={selectedTab !== "Language"}>
+          <Layout>
+            <Language />
           </Layout>
         </TabPanel>
         <TabPanel hidden={selectedTab !== "Appearance"}>

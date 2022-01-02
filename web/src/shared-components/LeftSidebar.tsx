@@ -4,10 +4,12 @@ import { useLocation, useHistory } from "react-router-dom";
 import src from "../img/avatar.png";
 import { CloseIcon, CompassIcon, Friends, PlusIcon } from "../icons";
 import { SingleUser } from "../ui/Avatar";
+import { useTypeSafeTranslation } from "../hooks/useTypeSafeTranslation";
 
 const loopArray = [1, 3, 4, 5];
 
 export const LeftSide = () => {
+  const { t } = useTypeSafeTranslation();
   const pathname = useLocation().pathname;
   const history = useHistory();
   const defaultPage = pathname === "/home";
@@ -18,7 +20,7 @@ export const LeftSide = () => {
     <div className="homePage__layout_leftside">
       <div className="homePage__layout_leftside_header">
         <div>
-          <p>Find conversations</p>
+          <p>{t("pages.home.find_conversations")}</p>
         </div>
       </div>
       <div className="homePage__layout_leftside_links_to_otherPages">
@@ -33,7 +35,7 @@ export const LeftSide = () => {
           }}
         >
           <Friends fill="white" />
-          <p>Friends</p>
+          <p>{t("pages.home.friends")}</p>
         </div>
         <div
           className={`homePage__layout_leftside_link ${
@@ -46,7 +48,7 @@ export const LeftSide = () => {
           }}
         >
           <CompassIcon />
-          <p>Explore</p>
+          <p>{t("pages.home.explore")}</p>
         </div>
       </div>
       <div className="directMessages__section">

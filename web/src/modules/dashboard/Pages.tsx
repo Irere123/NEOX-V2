@@ -1,4 +1,5 @@
 import React from "react";
+import { useTypeSafeTranslation } from "../../hooks/useTypeSafeTranslation";
 
 import src from "../../img/avatar.png";
 import { DesktopHomeTabsLayout } from "../layouts/DesktopHomeTabsLayout";
@@ -22,8 +23,10 @@ const users = [
 const uPending = [{ username: "Harry" }, { username: "Potter" }];
 
 export const Online: React.FC = () => {
+  const { t } = useTypeSafeTranslation();
+
   return (
-    <DesktopHomeTabsLayout pageName="online" pageUserNum={4}>
+    <DesktopHomeTabsLayout pageName={t("pages.home.online")} pageUserNum={4}>
       {users.map((u) => (
         <HomeTabUserCard src={src} user={u} status="Online" />
       ))}
@@ -43,8 +46,13 @@ interface Friend {
 }
 
 export const All: React.FC<AllTabProps> = ({ friends }) => {
+  const { t } = useTypeSafeTranslation();
+
   return (
-    <DesktopHomeTabsLayout pageName="all friends" pageUserNum={friends.length}>
+    <DesktopHomeTabsLayout
+      pageName={t("pages.home.friends")}
+      pageUserNum={friends.length}
+    >
       {friends.map((friend: Friend) => (
         <HomeTabUserCard
           src={friend?.pictureUrl}
@@ -57,8 +65,10 @@ export const All: React.FC<AllTabProps> = ({ friends }) => {
 };
 
 export const Pending: React.FC = () => {
+  const { t } = useTypeSafeTranslation();
+
   return (
-    <DesktopHomeTabsLayout pageName="pending requests" pageUserNum={2}>
+    <DesktopHomeTabsLayout pageName={t("pages.home.pending")} pageUserNum={2}>
       {uPending.map((u) => (
         <HomeTabUserCard src={src} user={u} status="Busy" />
       ))}

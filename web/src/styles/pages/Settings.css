@@ -127,3 +127,24 @@
   width: 100%;
   height: 100px;
 }
+
+.languageTab__layout {
+  padding: 0px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.languageTab__langCard {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-primary-800);
+  gap: 20px;
+  padding: 0px 10px 0px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.activeLang {
+  background-color: var(--color-primary-600);
+}
