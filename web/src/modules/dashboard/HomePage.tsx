@@ -8,12 +8,14 @@ import MainPageTop from "../layouts/MainPageTop";
 import { All, Online, Pending } from "./Pages";
 import { RightSide } from "./RightSide";
 import { TabSelector } from "./TabSelector";
+import { useMeQuery } from "../../generated/graphql";
 
 interface Props {}
 
 const HomePage: React.FC<Props> = () => {
   const [openModal, setOpenModal] = useState(false);
   const [selectedTab, setSelectedTab] = useTabs(["Online", "All", "Pending"]);
+  const { data } = useMeQuery();
 
   return (
     <DefaultPageLayout>
@@ -56,7 +58,7 @@ const HomePage: React.FC<Props> = () => {
               <Online />
             </TabPanel>
             <TabPanel hidden={selectedTab !== "All"}>
-              <All />
+              <All friends={data?.me?.myFriends} />
             </TabPanel>
             <TabPanel hidden={selectedTab !== "Pending"}>
               <Pending />

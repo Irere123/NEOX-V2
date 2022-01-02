@@ -116,6 +116,48 @@
   flex: 0.75;
 }
 
+.directMessages__section_users {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 10px 0px 10px;
+}
+
+.directMessages__section_users_userCard {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-radius: 4px;
+  gap: 10px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.directMessages__section_users_userCard:hover {
+  background-color: var(--color-primary-800);
+}
+
+.directMessages__section_users_userCard > div:last-child {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.hidden {
+  display: none;
+  flex: 1 1;
+  padding-right: 10px;
+}
+
+.directMessages__section_users_userCard:hover .hidden {
+  display: block;
+}
+
+.hidden_container {
+  display: flex;
+  flex: 1 1;
+  justify-content: left;
+}
+
 .homePage__layout {
   display: grid;
   grid-template-rows: 50px 1fr;

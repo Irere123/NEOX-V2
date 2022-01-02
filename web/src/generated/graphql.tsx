@@ -22,6 +22,12 @@ export type FieldError = {
   message: Scalars['String'];
 };
 
+export type FriendResponse = {
+  __typename?: 'FriendResponse';
+  errors?: Maybe<Array<FieldError>>;
+  ok: Scalars['Boolean'];
+};
+
 export type Message = {
   __typename?: 'Message';
   createdAt: Scalars['DateTime'];
@@ -33,7 +39,7 @@ export type Message = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  addFriend: Scalars['Boolean'];
+  addFriend: FriendResponse;
   addTeamMember: AddMemberResponse;
   createMessage: Scalars['Boolean'];
   createRoom: RoomResponse;
@@ -164,6 +170,7 @@ export type Room = {
   __typename?: 'Room';
   ann: Scalars['Boolean'];
   createdAt: Scalars['String'];
+  description: Scalars['String'];
   dm: Scalars['Boolean'];
   id: Scalars['Int'];
   name: Scalars['String'];
@@ -193,6 +200,7 @@ export type Team = {
   __typename?: 'Team';
   admin: User;
   createdAt: Scalars['String'];
+  description: Scalars['String'];
   id: Scalars['ID'];
   isAdmin: Scalars['Boolean'];
   isPublic: Scalars['Boolean'];
@@ -275,7 +283,7 @@ export type CreateTeamByTemplateMutation = { __typename?: 'Mutation', createTeam
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type MeQuery = { __typename?: 'Query', me?: Maybe<{ __typename?: 'User', id: number, username: string, email?: Maybe<string>, bio?: Maybe<string>, pictureUrl?: Maybe<string>, teams: Array<{ __typename?: 'Team', id: string, name: string, isPublic: boolean, rooms: Array<{ __typename?: 'Room', id: number, name: string }> }>, myFriends: Array<{ __typename?: 'User', id: number, username: string }> }> };
+export type MeQuery = { __typename?: 'Query', me?: Maybe<{ __typename?: 'User', id: number, username: string, email?: Maybe<string>, bio?: Maybe<string>, pictureUrl?: Maybe<string>, teams: Array<{ __typename?: 'Team', id: string, name: string, isPublic: boolean, rooms: Array<{ __typename?: 'Room', id: number, name: string }> }>, myFriends: Array<{ __typename?: 'User', id: number, username: string, bio?: Maybe<string>, pictureUrl?: Maybe<string> }> }> };
 
 export type MessagesQueryVariables = Exact<{
   roomId: Scalars['Int'];
@@ -526,7 +534,8 @@ export const MeDocument = gql`
     myFriends {
       id
       username
-      username
+      bio
+      pictureUrl
     }
   }
 }

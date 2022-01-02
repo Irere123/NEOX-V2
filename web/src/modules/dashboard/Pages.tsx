@@ -31,11 +31,26 @@ export const Online: React.FC = () => {
   );
 };
 
-export const All: React.FC = () => {
+interface AllTabProps {
+  friends: any;
+}
+
+interface Friend {
+  id: any;
+  username: string;
+  pictureUrl: string;
+  bio: string;
+}
+
+export const All: React.FC<AllTabProps> = ({ friends }) => {
   return (
-    <DesktopHomeTabsLayout pageName="all friends" pageUserNum={5}>
-      {users.map((u) => (
-        <HomeTabUserCard src={src} user={u} status="Offline" />
+    <DesktopHomeTabsLayout pageName="all friends" pageUserNum={friends.length}>
+      {friends.map((friend: Friend) => (
+        <HomeTabUserCard
+          src={friend?.pictureUrl}
+          user={friend}
+          status="Offline"
+        />
       ))}
     </DesktopHomeTabsLayout>
   );
