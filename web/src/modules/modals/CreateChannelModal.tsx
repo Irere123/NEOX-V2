@@ -3,7 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import ReactModal from "react-modal";
 import { Formik } from "formik";
 
-import { CloseIcon, PodcastsIcon, SolidHashTag } from "../../icons";
+import { CloseIcon, PodcastsIcon, SolidDone, SolidHashTag } from "../../icons";
 import { useTypeSafeTranslation } from "../../hooks/useTypeSafeTranslation";
 import Switch from "../../ui/Switch";
 import { useCreateChannelMutation } from "../../generated/graphql";
@@ -86,6 +86,17 @@ const CreateChannelModal: React.FC<
               >
                 <SolidHashTag fill="#4f5760" />
                 <p style={{ color: "#4f5760" }}>Text channel</p>
+                {channelType === "text" && (
+                  <div
+                    style={{
+                      display: "flex",
+                      flex: "1",
+                      justifyContent: "flex-end",
+                    }}
+                  >
+                    <SolidDone fill="#4f5760" />
+                  </div>
+                )}
               </div>
               <div
                 className={`channelTypes__buttonsBtn ${
@@ -95,6 +106,17 @@ const CreateChannelModal: React.FC<
               >
                 <PodcastsIcon fill="#4f5760" />
                 <p style={{ color: "#4f5760" }}>Announcement channel</p>
+                {channelType === "announcement" && (
+                  <div
+                    style={{
+                      display: "flex",
+                      flex: "1",
+                      justifyContent: "flex-end",
+                    }}
+                  >
+                    <SolidDone fill="#4f5760" />
+                  </div>
+                )}
               </div>
             </div>
 
