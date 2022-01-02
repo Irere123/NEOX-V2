@@ -9,6 +9,7 @@ import UserSettings from "./pages/user-settings";
 import Team from "./pages/team";
 import Features from "./pages/features";
 import TeamSettings from "./pages/team-settings";
+import DMRoom from "./pages/dm-room";
 
 function Routes() {
   return (
@@ -19,6 +20,7 @@ function Routes() {
         <ProtectedRoute path="/home" exact component={Home} />
         <ProtectedRoute path="/explore" exact component={Explore} />
         <ProtectedRoute path="/team/:teamId?/:roomId?" exact component={Team} />
+        <ProtectedRoute path="/dm/:userId?" exact component={DMRoom} />
         <ProtectedRoute path="/settings" exact component={UserSettings} />
         <ProtectedRoute
           path="/:teamId/settings"

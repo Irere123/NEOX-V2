@@ -27,7 +27,7 @@ export const Online: React.FC = () => {
   return (
     <DesktopHomeTabsLayout pageName={t("pages.home.online")} pageUserNum={4}>
       {users.map((u) => (
-        <HomeTabUserCard src={src} user={u} status="Online" />
+        <HomeTabUserCard src={src} user={u} status="Online" userId={0} />
       ))}
     </DesktopHomeTabsLayout>
   );
@@ -57,6 +57,7 @@ export const All: React.FC<AllTabProps> = ({ friends }) => {
           src={friend?.pictureUrl}
           user={friend}
           status="Offline"
+          userId={friend?.id}
         />
       ))}
     </DesktopHomeTabsLayout>
@@ -77,6 +78,7 @@ export const Pending: React.FC = () => {
           src={r.isSender ? r.receiver.pictureUrl! : r.sender.pictureUrl!}
           user={r.isSender ? r.receiver! : r.sender!}
           status="Busy"
+          userId={r.receiver.id}
         />
       ))}
     </DesktopHomeTabsLayout>
