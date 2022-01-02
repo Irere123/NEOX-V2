@@ -83,9 +83,9 @@ export class User extends BaseEntity {
   @OneToMany(() => Friend, (t) => t.user, { onDelete: "CASCADE" })
   user: Friend[];
 
-  @OneToMany(() => Request, (r) => r.sender, { onDelete: "CASCADE" })
+  @OneToMany(() => Request, (r) => r.senderRel, { onDelete: "CASCADE" })
   receiver: Request[];
 
-  @OneToMany(() => Request, (t) => t.sender, { onDelete: "CASCADE" })
+  @OneToMany(() => Request, (t) => t.senderRel, { onDelete: "CASCADE" })
   sender: Request[];
 }

@@ -21,13 +21,22 @@ export class Request extends BaseEntity {
   @Column({ type: "bool", default: false })
   accepted: boolean;
 
+  @Field(() => User)
+  sender: User;
+
+  @Field(() => User)
+  receiver: User;
+
+  @Field(() => Boolean)
+  isSender: boolean;
+
   @Field()
   @Column()
   receiverId: number;
 
   @ManyToOne(() => User, (u) => u.receiver, { onDelete: "CASCADE" })
   @JoinColumn({ name: "receiverId" })
-  receiver: User;
+  receiverRel: User;
 
   @Field()
   @Column()
@@ -35,7 +44,7 @@ export class Request extends BaseEntity {
 
   @ManyToOne(() => User, (u) => u.sender, { onDelete: "CASCADE" })
   @JoinColumn({ name: "senderId" })
-  sender: User;
+  senderRel: User;
 
   @Field()
   @CreateDateColumn()
