@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useTabs, TabPanel } from "react-headless-tabs";
 
 import AddFriendModal from "../modals/AddFriendModal";
+import Modal from "../../ui/Modal";
 import { Friends } from "../../icons";
 import DefaultPageLayout from "../layouts/DefaultPageLayout";
 import MainPageTop from "../layouts/MainPageTop";
@@ -45,10 +46,13 @@ const HomePage: React.FC<Props> = () => {
               </div>
             </div>
             {openModal && (
-              <AddFriendModal
+              <Modal
                 isOpen={openModal}
+                title="Add new friends"
                 onRequestClose={() => setOpenModal(!openModal)}
-              />
+              >
+                <AddFriendModal closeModal={() => setOpenModal(!openModal)} />
+              </Modal>
             )}
           </div>
         </MainPageTop>

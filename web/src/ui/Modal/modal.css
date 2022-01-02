@@ -11,7 +11,7 @@
   display: flex;
   flex: 0.1;
   justify-content: flex-end;
-  cursor: pointer;
+  cursor: pointer !important;
   align-items: center;
 }
 
@@ -21,5 +21,9 @@
   justify-content: center;
   flex: 0.9;
   font-weight: 400;
+  color: var(--color-primary-900);
+}
+
+.MyModal__header__closeIcon:hover > svg {
   color: var(--color-primary-900);
 }
