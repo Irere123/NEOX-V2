@@ -2,13 +2,13 @@ import React from "react";
 import { useHistory } from "react-router";
 
 import "../styles/pages/Features.css";
-import Layout from "../modules/layouts/Layout";
+import PageHead from "../modules/layouts/PageHead";
 
 function Features() {
   const history = useHistory();
 
   return (
-    <Layout title="Features | NEOX">
+    <PageHead title="Features | NEOX">
       <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
         <section className="topCard">
           <div>
@@ -122,7 +122,7 @@ function Features() {
           </footer>
         </section>
       </div>
-    </Layout>
+    </PageHead>
   );
 }
 

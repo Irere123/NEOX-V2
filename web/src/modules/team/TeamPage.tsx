@@ -3,7 +3,7 @@ import findIndex from "lodash/findIndex";
 import { useParams } from "react-router-dom";
 
 import { useTeamQuery } from "../../generated/graphql";
-import Layout from "../layouts/Layout";
+import Layout from "../layouts/PageHead";
 import ViewTeamLayout from "../layouts/ViewTeamLayout";
 import TeamPageChatLayout from "../layouts/TeamPageChatLayout";
 import { TeamPageParams } from "../../types/CustomTypes";

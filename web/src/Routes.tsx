@@ -6,7 +6,6 @@ import Home from "./pages/home";
 import Login from "./pages/login";
 import Explore from "./pages/explore";
 import UserSettings from "./pages/user-settings";
-import Nitro from "./pages/nitro";
 import Team from "./pages/team";
 import Features from "./pages/features";
 import TeamSettings from "./pages/team-settings";
@@ -26,7 +25,6 @@ function Routes() {
           exact
           component={TeamSettings}
         />
-        <ProtectedRoute path="/nitro" exact component={Nitro} />
       </Switch>
     </Router>
   );
