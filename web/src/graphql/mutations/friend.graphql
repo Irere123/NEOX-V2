@@ -1,0 +1,9 @@
+mutation AddFriend($friendId: Int!) {
+  addFriend(friendId: $friendId) {
+    ok
+    errors {
+      field
+      message
+    }
+  }
+}

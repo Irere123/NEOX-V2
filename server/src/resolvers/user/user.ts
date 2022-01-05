@@ -43,7 +43,7 @@ export default class UserResolver {
   async myFriends(@Ctx() { req }: MyContext) {
     const userId = (req.session as any).userId;
     //TODO: Fix Query
-    return await getConnection().query(
+    const friends = await getConnection().query(
       `select * from users  u left join friends f on u."id"=f."userId" where
       f."friendId"= $1
       union select * from users  u left join friends f on u."id"=f."friendId" where
@@ -51,6 +51,9 @@ export default class UserResolver {
       `,
       [userId]
     );
+    console.log(friends);
+
+    return friends;
   }
 
   @Query(() => User, { nullable: true })
