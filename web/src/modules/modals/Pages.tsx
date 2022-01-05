@@ -16,14 +16,13 @@ import {
 import toErrorMap from "../../lib/toErrorMap";
 import { useTypeSafeTranslation } from "../../hooks/useTypeSafeTranslation";
 import { TemplateContext } from "../../hooks/useTemplate";
+import { UserContext } from "../../hooks/userContext";
 
 interface Props {
   setPage?: (page: number) => void;
   prevPage?: (page: number) => void;
   onRequestClose?: () => void;
 }
-
-const testUsername = "IR123";
 
 export const Page1: React.FC<Props> = ({ setPage }) => {
   const { setTemplate } = useContext(TemplateContext);
@@ -108,6 +107,7 @@ export const Page1: React.FC<Props> = ({ setPage }) => {
 };
 
 export const Page2: React.FC<Props> = ({ prevPage, onRequestClose }) => {
+  const { user } = useContext(UserContext);
   const [createTeam] = useCreateTeamMutation();
   const { t } = useTypeSafeTranslation();
   const history = useHistory();
@@ -122,7 +122,10 @@ export const Page2: React.FC<Props> = ({ prevPage, onRequestClose }) => {
           {t("modals.createTeamModal.team_name")}
         </p>
         <Formik
-          initialValues={{ name: `${testUsername}'s team`, isPublic: false }}
+          initialValues={{
+            name: `${user?.username}'s team`,
+            isPublic: false,
+          }}
           onSubmit={async (values, { setSubmitting, setErrors }) => {
             const resp = await createTeam({
               variables: {
@@ -184,6 +187,7 @@ export const Page2: React.FC<Props> = ({ prevPage, onRequestClose }) => {
 
 export const Page3: React.FC<Props> = ({ onRequestClose, prevPage }) => {
   const { template } = useContext(TemplateContext);
+  const { user } = useContext(UserContext);
   const [createTeam] = useCreateTeamByTemplateMutation();
   const { t } = useTypeSafeTranslation();
   const history = useHistory();
@@ -198,7 +202,7 @@ export const Page3: React.FC<Props> = ({ onRequestClose, prevPage }) => {
           {t("modals.createTeamModal.team_name")}
         </p>
         <Formik
-          initialValues={{ name: `${testUsername}'s team`, isPublic: false }}
+          initialValues={{ name: `${user?.username}'s team`, isPublic: false }}
           onSubmit={async (values, { setSubmitting, setErrors }) => {
             const resp = await createTeam({
               variables: {
