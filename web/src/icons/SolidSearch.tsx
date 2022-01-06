@@ -6,7 +6,7 @@ function SvgSolidSearch(props: React.SVGProps<SVGSVGElement>) {
       width={16}
       height={16}
       viewBox="0 0 16 16"
-      fill="currentColor"
+      fill="white"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >

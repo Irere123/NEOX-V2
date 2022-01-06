@@ -37,3 +37,5 @@ export { default as SolidMessages } from "./SolidMessages";
 export { default as SolidMoon } from "./SolidMoon";
 export { default as SolidMoreVert } from "./SolidMoreVert";
 export { default as SolidDone } from "./SolidDone";
+export { default as SolidExplore } from "./SolidExplore";
+export { default as SolidHome } from "./SolidHome";
