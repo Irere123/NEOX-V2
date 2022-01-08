@@ -20,10 +20,6 @@ export class Request extends BaseEntity {
   @Column({ type: "bool", default: false })
   accepted: boolean;
 
-  @Field()
-  @Column("bool", { default: false })
-  canceled: boolean;
-
   @Field(() => User)
   sender: User;
 

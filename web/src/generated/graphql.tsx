@@ -45,6 +45,7 @@ export type Message = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  CancelRequest: GlobalResponse;
   addFriend: FriendResponse;
   addTeamMember: AddMemberResponse;
   createMessage: Scalars['Boolean'];
@@ -52,8 +53,6 @@ export type Mutation = {
   createRoom: RoomResponse;
   createTeam: TeamResponse;
   createTeamByTemplate: TeamResponse;
-  deleteAcceptedRequest: GlobalResponse;
-  deleteCanceledRequest: GlobalResponse;
   deleteRoom: Scalars['Boolean'];
   deleteTeam: Scalars['Boolean'];
   deleteUser: Scalars['Boolean'];
@@ -62,9 +61,13 @@ export type Mutation = {
   removeFriend: Scalars['Boolean'];
   transferTeam: TransferTeamResponse;
   updateAcceptRequest: GlobalResponse;
-  updateCancelRequest: GlobalResponse;
   updateRoom: Room;
   updateTeam: TeamResponse;
+};
+
+
+export type MutationCancelRequestArgs = {
+  id: Scalars['Int'];
 };
 
 
@@ -148,12 +151,6 @@ export type MutationUpdateAcceptRequestArgs = {
 };
 
 
-export type MutationUpdateCancelRequestArgs = {
-  id: Scalars['Int'];
-  value: Scalars['Boolean'];
-};
-
-
 export type MutationUpdateRoomArgs = {
   name: Scalars['String'];
   roomId: Scalars['Int'];
@@ -198,7 +195,6 @@ export type QueryTeamArgs = {
 export type Request = {
   __typename?: 'Request';
   accepted: Scalars['Boolean'];
-  canceled: Scalars['Boolean'];
   id: Scalars['Float'];
   isSender: Scalars['Boolean'];
   receiver: User;
@@ -321,13 +317,12 @@ export type UpdateAcceptReqMutationVariables = Exact<{
 
 export type UpdateAcceptReqMutation = { __typename?: 'Mutation', updateAcceptRequest: { __typename?: 'GlobalResponse', ok: boolean, errors?: Maybe<Array<{ __typename?: 'FieldError', field: string, message: string }>> } };
 
-export type UpdateCancelReqMutationVariables = Exact<{
+export type CancelRequestMutationVariables = Exact<{
   id: Scalars['Int'];
-  value: Scalars['Boolean'];
 }>;
 
 
-export type UpdateCancelReqMutation = { __typename?: 'Mutation', updateCancelRequest: { __typename?: 'GlobalResponse', ok: boolean, errors?: Maybe<Array<{ __typename?: 'FieldError', field: string, message: string }>> } };
+export type CancelRequestMutation = { __typename?: 'Mutation', CancelRequest: { __typename?: 'GlobalResponse', ok: boolean, errors?: Maybe<Array<{ __typename?: 'FieldError', field: string, message: string }>> } };
 
 export type CreateTeamMutationVariables = Exact<{
   public: Scalars['Boolean'];
@@ -573,9 +568,9 @@ export function useUpdateAcceptReqMutation(baseOptions?: Apollo.MutationHookOpti
 export type UpdateAcceptReqMutationHookResult = ReturnType<typeof useUpdateAcceptReqMutation>;
 export type UpdateAcceptReqMutationResult = Apollo.MutationResult<UpdateAcceptReqMutation>;
 export type UpdateAcceptReqMutationOptions = Apollo.BaseMutationOptions<UpdateAcceptReqMutation, UpdateAcceptReqMutationVariables>;
-export const UpdateCancelReqDocument = gql`
-    mutation UpdateCancelReq($id: Int!, $value: Boolean!) {
-  updateCancelRequest(id: $id, value: $value) {
+export const CancelRequestDocument = gql`
+    mutation CancelRequest($id: Int!) {
+  CancelRequest(id: $id) {
     ok
     errors {
       field
@@ -584,33 +579,32 @@ export const UpdateCancelReqDocument = gql`
   }
 }
     `;
-export type UpdateCancelReqMutationFn = Apollo.MutationFunction<UpdateCancelReqMutation, UpdateCancelReqMutationVariables>;
+export type CancelRequestMutationFn = Apollo.MutationFunction<CancelRequestMutation, CancelRequestMutationVariables>;
 
 /**
- * __useUpdateCancelReqMutation__
+ * __useCancelRequestMutation__
  *
- * To run a mutation, you first call `useUpdateCancelReqMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateCancelReqMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useCancelRequestMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCancelRequestMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [updateCancelReqMutation, { data, loading, error }] = useUpdateCancelReqMutation({
+ * const [cancelRequestMutation, { data, loading, error }] = useCancelRequestMutation({
  *   variables: {
  *      id: // value for 'id'
- *      value: // value for 'value'
  *   },
  * });
  */
-export function useUpdateCancelReqMutation(baseOptions?: Apollo.MutationHookOptions<UpdateCancelReqMutation, UpdateCancelReqMutationVariables>) {
+export function useCancelRequestMutation(baseOptions?: Apollo.MutationHookOptions<CancelRequestMutation, CancelRequestMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateCancelReqMutation, UpdateCancelReqMutationVariables>(UpdateCancelReqDocument, options);
+        return Apollo.useMutation<CancelRequestMutation, CancelRequestMutationVariables>(CancelRequestDocument, options);
       }
-export type UpdateCancelReqMutationHookResult = ReturnType<typeof useUpdateCancelReqMutation>;
-export type UpdateCancelReqMutationResult = Apollo.MutationResult<UpdateCancelReqMutation>;
-export type UpdateCancelReqMutationOptions = Apollo.BaseMutationOptions<UpdateCancelReqMutation, UpdateCancelReqMutationVariables>;
+export type CancelRequestMutationHookResult = ReturnType<typeof useCancelRequestMutation>;
+export type CancelRequestMutationResult = Apollo.MutationResult<CancelRequestMutation>;
+export type CancelRequestMutationOptions = Apollo.BaseMutationOptions<CancelRequestMutation, CancelRequestMutationVariables>;
 export const CreateTeamDocument = gql`
     mutation CreateTeam($public: Boolean!, $name: String!) {
   createTeam(public: $public, name: $name) {

@@ -3,7 +3,7 @@ import React from "react";
 import {
   useAddFriendMutation,
   useUpdateAcceptReqMutation,
-  useUpdateCancelReqMutation,
+  useCancelRequestMutation,
 } from "../../generated/graphql";
 import { CloseIcon, SolidDone } from "../../icons";
 
@@ -25,7 +25,7 @@ export const AcceptButton: React.FC<{ r: any }> = ({ r }) => {
         });
         await addFriend({
           variables: {
-            friendId: r.receiver.id,
+            friendId: r.sender.id,
           },
           update: (store) => {
             store.evict({ fieldName: "me" });
@@ -39,20 +39,28 @@ export const AcceptButton: React.FC<{ r: any }> = ({ r }) => {
 };
 
 export const CancelButton: React.FC<{ r: any }> = ({ r }) => {
-  const [cancel] = useUpdateCancelReqMutation();
+  console.log(r);
+  const [cancel] = useCancelRequestMutation({
+    onError: (err) => {
+      console.log(err);
+    },
+  });
 
   return (
     <div
       onClick={async () => {
-        await cancel({
+        const res = await cancel({
           variables: {
             id: r.id,
-            value: true,
           },
           update: (store) => {
             store.evict({ fieldName: "me" });
           },
         });
+
+        if (res.data?.CancelRequest.errors) {
+          console.log(res.data.CancelRequest.errors);
+        }
       }}
     >
       <CloseIcon />

@@ -8,8 +8,8 @@ mutation UpdateAcceptReq($id: Int!, $value: Boolean!) {
   }
 }
 
-mutation UpdateCancelReq($id: Int!, $value: Boolean!) {
-  updateCancelRequest(id: $id, value: $value) {
+mutation CancelRequest($id: Int!) {
+  CancelRequest(id: $id) {
     ok
     errors {
       field

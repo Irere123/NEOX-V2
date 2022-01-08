@@ -6,6 +6,9 @@ import {
   Mutation,
   Query,
   Resolver,
+  Subscription,
+  PubSub,
+  PubSubEngine,
   Root,
 } from "type-graphql";
 import { getConnection } from "typeorm";
@@ -16,8 +19,15 @@ import { User } from "../../entity/User";
 import { GlobalResponse } from "./Responses";
 import { Friend } from "../../entity/Friend";
 
+const NEW_REQUEST = "NEW_REQUEST";
+
 @Resolver(Request)
 export default class RequestResolver {
+  @Subscription(() => Request, { topics: NEW_REQUEST })
+  newRequest(@Root() payload: Request) {
+    return payload;
+  }
+
   @FieldResolver()
   async sender(@Root() req: Request) {
     return await User.findOne(req.senderId);
@@ -41,20 +51,23 @@ export default class RequestResolver {
   async requests(@Ctx() { req }: MyContext) {
     const userId = (req.session as any).userId;
 
-    return await getConnection().query(
+    const requests = await getConnection().query(
       `
-      select * from requests  r left join users u on u."id"=r."senderId" where
-      (r."receiverId"= $1) and (r."canceled"=false and r."accepted"=false)
-      union select * from requests  r left join users u on u."id"=r."receiverId" where
-      (r."senderId"=$1) and (r."canceled"=false and r."accepted"=false) 
+      select * from users  u left join requests r on u."id"=r."senderId" where
+      r."receiverId"= $1 and r."accepted"=false
+      union select * from users  u left join requests r on u."id"=r."receiverId" where
+      r."senderId"=$1 and r."accepted"=false 
     `,
       [userId]
     );
+
+    return requests;
   }
 
   @Mutation(() => GlobalResponse)
   async createRequest(
     @Arg("receiverId") receiverId: number,
+    @PubSub() pubsub: PubSubEngine,
     @Ctx() { req }: MyContext
   ): Promise<GlobalResponse> {
     const senderId = (req.session as any).userId;
@@ -103,8 +116,10 @@ export default class RequestResolver {
       };
     }
 
+    let request;
+
     try {
-      await Request.create({
+      request = await Request.create({
         receiverId,
         senderId,
       }).save();
@@ -114,24 +129,8 @@ export default class RequestResolver {
         ok: false,
       };
     }
-    return {
-      ok: true,
-    };
-  }
 
-  @Mutation(() => GlobalResponse)
-  async deleteCanceledRequest(): Promise<GlobalResponse> {
-    await Request.delete({ canceled: true });
-
-    return {
-      ok: true,
-    };
-  }
-
-  @Mutation(() => GlobalResponse)
-  async deleteAcceptedRequest(): Promise<GlobalResponse> {
-    await Request.delete({ accepted: true });
-
+    pubsub.publish(NEW_REQUEST, request);
     return {
       ok: true,
     };
@@ -150,11 +149,23 @@ export default class RequestResolver {
   }
 
   @Mutation(() => GlobalResponse)
-  async updateCancelRequest(
-    @Arg("id", () => Int) id: number,
-    @Arg("value") value: boolean
+  async CancelRequest(
+    @Arg("id", () => Int) id: number
   ): Promise<GlobalResponse> {
-    await Request.update({ id }, { canceled: value });
+    const req = await Request.findOne(id);
+
+    if (!req) {
+      return {
+        ok: false,
+        errors: [
+          {
+            field: "name",
+            message: "Request not found",
+          },
+        ],
+      };
+    }
+    await Request.delete({ id });
 
     return {
       ok: true,

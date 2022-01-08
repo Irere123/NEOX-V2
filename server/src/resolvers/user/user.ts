@@ -51,7 +51,6 @@ export default class UserResolver {
       `,
       [userId]
     );
-    console.log(friends);
 
     return friends;
   }
