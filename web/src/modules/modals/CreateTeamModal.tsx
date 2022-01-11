@@ -73,12 +73,22 @@ const Modal: React.FC<
 
   let cardTitle: string | null = null;
 
+  let title = null;
+
+  if (template === "study_group") {
+    title = "Customize your group";
+  } else if (template === "school_club") {
+    title = "Customize your club";
+  } else if (template === "friends") {
+    title = "Customize your group";
+  }
+
   if (page === 0) {
     cardTitle = t("modals.createTeamModal.title");
   } else if (page === 1) {
     cardTitle = t("modals.createTeamModal.subtitle");
   } else if (page === 2) {
-    cardTitle = t("modals.createTeamModal.start_from_template");
+    cardTitle = title;
   } else if (page === 3) {
     cardTitle = "Join a team";
   }
