@@ -1,10 +1,14 @@
 import React from "react";
 
+import DefaultPageLayout from "../layouts/DefaultPageLayout";
+
 const ExplorePage: React.FC = () => {
   return (
-    <div>
-      <h3>Explore neox</h3>
-    </div>
+    <DefaultPageLayout>
+      <div>
+        <h2>Page</h2>
+      </div>
+    </DefaultPageLayout>
   );
 };
 

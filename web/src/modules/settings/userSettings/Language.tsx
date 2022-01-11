@@ -5,11 +5,11 @@ import { useTypeSafeTranslation } from "../../../hooks/useTypeSafeTranslation";
 import { SolidDone } from "../../../icons";
 
 const languages = [
-  { value: "en", flag: "🇬🇧", label: "English" }, // English,
-  { value: "en-US", flag: "🇬🇧", label: "English US" }, // English,
+  { value: "en", flag: "🇬🇧", label: "English`" }, // English,
+  { value: "en-US", flag: "🇺🇸", label: "English US" }, // English,
   { value: "fr", flag: "🇫🇷", label: "Français" }, // French
-  { value: "kiny", flag: "🇫🇷", label: "Kinyarwanda" }, // kinyirwanda
-  { value: "kisw", flag: "🇫🇷", label: "Kiswahili" }, // kiswahili
+  { value: "kiny", flag: "🇷🇼", label: "Kinyarwanda" }, // kinyirwanda
+  { value: "kisw", flag: "", label: "Kiswahili" }, // kiswahili
 ];
 
 export const Language: React.FC = () => {

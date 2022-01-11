@@ -5,7 +5,7 @@ import { PageHeader } from "../modules/layouts/PageHeader";
 
 export const Login: React.FC = () => {
   return (
-    <PageHeader title="Login | Hermes">
+    <PageHeader title="Login | NEOX">
       <LandingPage />
     </PageHeader>
   );

@@ -1,21 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { withRouter } from "react-router-dom";
 
 import "../styles/Modals.css";
 import placeholder from "../img/neox.png";
 import Teams from "./Sidebar/Teams";
-import { useMeQuery } from "../generated/graphql";
+import CreateTeamModal from "../modules/modals/CreateTeamModal";
 import { PlusIcon, SettingsIcon } from "../icons";
 import { Tooltip } from "../ui/Tooltip";
-import CreateTeamModal from "../modules/modals/CreateTeamModal";
 import { useTypeSafeTranslation } from "../hooks/useTypeSafeTranslation";
+import { UserContext } from "../hooks/userContext";
 
 const Sidebar = withRouter(({ history }) => {
   const [isError, setError] = React.useState(false);
   const [modal, setModal] = React.useState(false);
-  const { data } = useMeQuery();
-  const me = data?.me;
-  const hasTeams = me?.teams.length! > 0;
+  const { user } = useContext(UserContext);
+  const hasTeams = user?.teams.length! > 0;
   const { t } = useTypeSafeTranslation();
 
   return (
@@ -24,8 +23,8 @@ const Sidebar = withRouter(({ history }) => {
         <Tooltip content="Home" direction="right">
           <div className="appSidebar__Avatar ">
             <img
-              src={isError ? placeholder : me?.pictureUrl!}
-              alt={me?.username}
+              src={isError ? placeholder : user?.pictureUrl!}
+              alt={user?.username}
               onError={() => setError(true)}
               onClick={() => {
                 history.push("/home");
@@ -38,7 +37,7 @@ const Sidebar = withRouter(({ history }) => {
       </div>
       {hasTeams ? (
         <div className="appSidebar__Teams_container">
-          <Teams teams={me?.teams} />
+          <Teams teams={user?.teams} />
         </div>
       ) : null}
       <div className="appSidebar__Buttons_container">

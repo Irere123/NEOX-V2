@@ -6,7 +6,6 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
-  BeforeInsert,
 } from "typeorm";
 import { ObjectType, Field, Int } from "type-graphql";
 import { Member } from "./Member";
@@ -16,8 +15,6 @@ import { PRMember } from "./PRMember";
 import { Friend } from "./Friend";
 import { Request } from "./Request";
 import { Message } from "./Message";
-
-const year = new Date().getFullYear();
 
 @ObjectType()
 @Entity("users")
@@ -84,10 +81,10 @@ export class User extends BaseEntity {
   @OneToMany(() => PRMember, (t) => t.members, { onDelete: "CASCADE" })
   PRooms: PRMember[];
 
-  @OneToMany(() => Friend, (t) => t.friend, { onDelete: "CASCADE" })
+  @OneToMany(() => Friend, (t) => t.friendRel, { onDelete: "CASCADE" })
   friends: Friend[];
 
-  @OneToMany(() => Friend, (t) => t.user, { onDelete: "CASCADE" })
+  @OneToMany(() => Friend, (t) => t.userRel, { onDelete: "CASCADE" })
   user: Friend[];
 
   @OneToMany(() => Request, (r) => r.senderRel, { onDelete: "CASCADE" })
@@ -95,9 +92,4 @@ export class User extends BaseEntity {
 
   @OneToMany(() => Request, (t) => t.senderRel, { onDelete: "CASCADE" })
   sender: Request[];
-
-  @BeforeInsert()
-  addNameTag() {
-    this.nameTag = `neox#${year}${this.id}`;
-  }
 }

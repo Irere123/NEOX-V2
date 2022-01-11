@@ -5,7 +5,7 @@ import { PageHeader } from "../modules/layouts/PageHeader";
 
 export const Dashboard: React.FC = () => {
   return (
-    <PageHeader title="Dashboard | Hermes">
+    <PageHeader title="Dashboard | NEOX">
       <DashboardPage />
     </PageHeader>
   );

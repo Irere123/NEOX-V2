@@ -28,6 +28,12 @@ export type FriendResponse = {
   ok: Scalars['Boolean'];
 };
 
+export type GlobalResponse = {
+  __typename?: 'GlobalResponse';
+  errors?: Maybe<Array<FieldError>>;
+  ok: Scalars['Boolean'];
+};
+
 export type Message = {
   __typename?: 'Message';
   createdAt: Scalars['DateTime'];
@@ -39,10 +45,11 @@ export type Message = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  CancelRequest: GlobalResponse;
   addFriend: FriendResponse;
   addTeamMember: AddMemberResponse;
   createMessage: Scalars['Boolean'];
-  createRequest: Scalars['Boolean'];
+  createRequest: GlobalResponse;
   createRoom: RoomResponse;
   createTeam: TeamResponse;
   createTeamByTemplate: TeamResponse;
@@ -53,8 +60,14 @@ export type Mutation = {
   logout: Scalars['Boolean'];
   removeFriend: Scalars['Boolean'];
   transferTeam: TransferTeamResponse;
+  updateAcceptRequest: GlobalResponse;
   updateRoom: Room;
   updateTeam: TeamResponse;
+};
+
+
+export type MutationCancelRequestArgs = {
+  id: Scalars['Int'];
 };
 
 
@@ -129,6 +142,12 @@ export type MutationRemoveFriendArgs = {
 export type MutationTransferTeamArgs = {
   receiverId: Scalars['Int'];
   teamId: Scalars['ID'];
+};
+
+
+export type MutationUpdateAcceptRequestArgs = {
+  id: Scalars['Int'];
+  value: Scalars['Boolean'];
 };
 
 
@@ -247,6 +266,7 @@ export type User = {
   email?: Maybe<Scalars['String']>;
   id: Scalars['Int'];
   myFriends: Array<User>;
+  nameTag: Scalars['String'];
   pictureUrl?: Maybe<Scalars['String']>;
   teams: Array<Team>;
   updatedAt: Scalars['String'];
@@ -269,6 +289,13 @@ export type CreateChannelMutationVariables = Exact<{
 
 export type CreateChannelMutation = { __typename?: 'Mutation', createRoom: { __typename?: 'RoomResponse', ok: boolean, errors?: Maybe<Array<{ __typename?: 'FieldError', field: string, message: string }>>, room?: Maybe<{ __typename?: 'Room', id: number, name: string, public: boolean, ann: boolean, createdAt: string }> } };
 
+export type AddFriendMutationVariables = Exact<{
+  friendId: Scalars['Int'];
+}>;
+
+
+export type AddFriendMutation = { __typename?: 'Mutation', addFriend: { __typename?: 'FriendResponse', ok: boolean, errors?: Maybe<Array<{ __typename?: 'FieldError', field: string, message: string }>> } };
+
 export type LogoutMutationVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -281,6 +308,21 @@ export type CreateMessageMutationVariables = Exact<{
 
 
 export type CreateMessageMutation = { __typename?: 'Mutation', createMessage: boolean };
+
+export type UpdateAcceptReqMutationVariables = Exact<{
+  id: Scalars['Int'];
+  value: Scalars['Boolean'];
+}>;
+
+
+export type UpdateAcceptReqMutation = { __typename?: 'Mutation', updateAcceptRequest: { __typename?: 'GlobalResponse', ok: boolean, errors?: Maybe<Array<{ __typename?: 'FieldError', field: string, message: string }>> } };
+
+export type CancelRequestMutationVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type CancelRequestMutation = { __typename?: 'Mutation', CancelRequest: { __typename?: 'GlobalResponse', ok: boolean, errors?: Maybe<Array<{ __typename?: 'FieldError', field: string, message: string }>> } };
 
 export type CreateTeamMutationVariables = Exact<{
   public: Scalars['Boolean'];
@@ -389,6 +431,43 @@ export function useCreateChannelMutation(baseOptions?: Apollo.MutationHookOption
 export type CreateChannelMutationHookResult = ReturnType<typeof useCreateChannelMutation>;
 export type CreateChannelMutationResult = Apollo.MutationResult<CreateChannelMutation>;
 export type CreateChannelMutationOptions = Apollo.BaseMutationOptions<CreateChannelMutation, CreateChannelMutationVariables>;
+export const AddFriendDocument = gql`
+    mutation AddFriend($friendId: Int!) {
+  addFriend(friendId: $friendId) {
+    ok
+    errors {
+      field
+      message
+    }
+  }
+}
+    `;
+export type AddFriendMutationFn = Apollo.MutationFunction<AddFriendMutation, AddFriendMutationVariables>;
+
+/**
+ * __useAddFriendMutation__
+ *
+ * To run a mutation, you first call `useAddFriendMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddFriendMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addFriendMutation, { data, loading, error }] = useAddFriendMutation({
+ *   variables: {
+ *      friendId: // value for 'friendId'
+ *   },
+ * });
+ */
+export function useAddFriendMutation(baseOptions?: Apollo.MutationHookOptions<AddFriendMutation, AddFriendMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<AddFriendMutation, AddFriendMutationVariables>(AddFriendDocument, options);
+      }
+export type AddFriendMutationHookResult = ReturnType<typeof useAddFriendMutation>;
+export type AddFriendMutationResult = Apollo.MutationResult<AddFriendMutation>;
+export type AddFriendMutationOptions = Apollo.BaseMutationOptions<AddFriendMutation, AddFriendMutationVariables>;
 export const LogoutDocument = gql`
     mutation Logout {
   logout
@@ -451,6 +530,81 @@ export function useCreateMessageMutation(baseOptions?: Apollo.MutationHookOption
 export type CreateMessageMutationHookResult = ReturnType<typeof useCreateMessageMutation>;
 export type CreateMessageMutationResult = Apollo.MutationResult<CreateMessageMutation>;
 export type CreateMessageMutationOptions = Apollo.BaseMutationOptions<CreateMessageMutation, CreateMessageMutationVariables>;
+export const UpdateAcceptReqDocument = gql`
+    mutation UpdateAcceptReq($id: Int!, $value: Boolean!) {
+  updateAcceptRequest(id: $id, value: $value) {
+    ok
+    errors {
+      field
+      message
+    }
+  }
+}
+    `;
+export type UpdateAcceptReqMutationFn = Apollo.MutationFunction<UpdateAcceptReqMutation, UpdateAcceptReqMutationVariables>;
+
+/**
+ * __useUpdateAcceptReqMutation__
+ *
+ * To run a mutation, you first call `useUpdateAcceptReqMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateAcceptReqMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateAcceptReqMutation, { data, loading, error }] = useUpdateAcceptReqMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      value: // value for 'value'
+ *   },
+ * });
+ */
+export function useUpdateAcceptReqMutation(baseOptions?: Apollo.MutationHookOptions<UpdateAcceptReqMutation, UpdateAcceptReqMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateAcceptReqMutation, UpdateAcceptReqMutationVariables>(UpdateAcceptReqDocument, options);
+      }
+export type UpdateAcceptReqMutationHookResult = ReturnType<typeof useUpdateAcceptReqMutation>;
+export type UpdateAcceptReqMutationResult = Apollo.MutationResult<UpdateAcceptReqMutation>;
+export type UpdateAcceptReqMutationOptions = Apollo.BaseMutationOptions<UpdateAcceptReqMutation, UpdateAcceptReqMutationVariables>;
+export const CancelRequestDocument = gql`
+    mutation CancelRequest($id: Int!) {
+  CancelRequest(id: $id) {
+    ok
+    errors {
+      field
+      message
+    }
+  }
+}
+    `;
+export type CancelRequestMutationFn = Apollo.MutationFunction<CancelRequestMutation, CancelRequestMutationVariables>;
+
+/**
+ * __useCancelRequestMutation__
+ *
+ * To run a mutation, you first call `useCancelRequestMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCancelRequestMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [cancelRequestMutation, { data, loading, error }] = useCancelRequestMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useCancelRequestMutation(baseOptions?: Apollo.MutationHookOptions<CancelRequestMutation, CancelRequestMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CancelRequestMutation, CancelRequestMutationVariables>(CancelRequestDocument, options);
+      }
+export type CancelRequestMutationHookResult = ReturnType<typeof useCancelRequestMutation>;
+export type CancelRequestMutationResult = Apollo.MutationResult<CancelRequestMutation>;
+export type CancelRequestMutationOptions = Apollo.BaseMutationOptions<CancelRequestMutation, CancelRequestMutationVariables>;
 export const CreateTeamDocument = gql`
     mutation CreateTeam($public: Boolean!, $name: String!) {
   createTeam(public: $public, name: $name) {

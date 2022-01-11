@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation, useHistory } from "react-router-dom";
 
 import src from "../img/avatar.png";
-import { CloseIcon, CompassIcon, Friends, PlusIcon } from "../icons";
+import { CloseIcon, Friends, PlusIcon, SolidExplore } from "../icons";
 import { SingleUser } from "../ui/Avatar";
 import { useTypeSafeTranslation } from "../hooks/useTypeSafeTranslation";
 
@@ -47,7 +47,7 @@ export const LeftSide = () => {
             history.push("/explore");
           }}
         >
-          <CompassIcon />
+          <SolidExplore width={20} height={20} />
           <p>{t("pages.home.explore")}</p>
         </div>
       </div>

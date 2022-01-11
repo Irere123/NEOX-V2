@@ -3,9 +3,8 @@ import { useTabs, TabPanel } from "react-headless-tabs";
 
 import AddFriendModal from "../modals/AddFriendModal";
 import Modal from "../../ui/Modal";
-import { Friends } from "../../icons";
+import { Friends, FriendsAdd } from "../../icons";
 import DefaultPageLayout from "../layouts/DefaultPageLayout";
-import MainPageTop from "../layouts/MainPageTop";
 import { All, Online, Pending } from "./Pages";
 import { RightSide } from "./RightSide";
 import { TabSelector } from "./TabSelector";
@@ -23,7 +22,7 @@ const HomePage: React.FC<Props> = () => {
   return (
     <DefaultPageLayout>
       <div className="homePage__layout">
-        <MainPageTop>
+        <div className="MainPage__top">
           <div className="homePage__header">
             <div className="HomePage__layoutPageTitle">
               <span>
@@ -57,7 +56,7 @@ const HomePage: React.FC<Props> = () => {
               </Modal>
             )}
           </div>
-        </MainPageTop>
+        </div>
         <div className="homePage__layout__main">
           <div className="homePage__layout_mainMiddle">
             <TabPanel hidden={selectedTab !== "Online"}>
@@ -70,7 +69,14 @@ const HomePage: React.FC<Props> = () => {
               <Pending />
             </TabPanel>
           </div>
+
           <RightSide />
+          <div
+            className="Homepage__floatingAddFriends"
+            onClick={() => setOpenModal(!openModal)}
+          >
+            <FriendsAdd />
+          </div>
         </div>
       </div>
     </DefaultPageLayout>

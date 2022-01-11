@@ -1,0 +1,36 @@
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.text-button {
+  color: var(--color-button-text);
+}
+
+.h-2 {
+  height: 10px;
+}
+
+.w-2 {
+  width: 10px;
+}
+
+.h-4 {
+  height: 20px;
+}
+
+.w-4 {
+  width: 20px;
+}
+
+.h-6 {
+  height: 40px;
+}
+
+.w-6 {
+  width: 40px;
+}

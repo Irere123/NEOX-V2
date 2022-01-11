@@ -23,15 +23,24 @@ export class Friend extends BaseEntity {
 
   @ManyToOne(() => User, (u) => u.friends, { onDelete: "CASCADE" })
   @JoinColumn({ name: "friendId" })
-  friend: User;
+  friendRel: User;
 
   @Field()
   @Column()
   userId: number;
 
+  @Field(() => User)
+  friend: User;
+
+  @Field(() => Boolean)
+  isUser: boolean;
+
+  @Field(() => User)
+  user: User;
+
   @ManyToOne(() => User, (u) => u.user, { onDelete: "CASCADE" })
   @JoinColumn({ name: "userId" })
-  user: User;
+  userRel: User;
 
   @Field()
   @CreateDateColumn()

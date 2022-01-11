@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { SolidRocket } from "../../icons";
 
 export const avatarSizeMap = {
   default: "80px",
@@ -60,6 +59,7 @@ export interface AvatarProps {
   size?: keyof typeof onlineIndicatorStyleMap;
   className?: string;
   username?: string;
+  isOnline?: boolean;
 }
 
 export const SingleUser: React.FC<AvatarProps> = ({
@@ -67,6 +67,7 @@ export const SingleUser: React.FC<AvatarProps> = ({
   size = "default",
   className = "",
   username,
+  isOnline,
 }) => {
   const [isError, setError] = useState(false);
   const sizeStyle = onlineIndicatorStyleMap[size];
@@ -91,15 +92,14 @@ export const SingleUser: React.FC<AvatarProps> = ({
             : src
         }
       />
-      <span
-        className={
-          "rounded-full absolute box-content bg-button border-primary-800 text-accent items-center justify-center"
-        }
-        style={{ ...sizeStyle, padding: 2 }}
-        data-testid="online-indictor"
-      >
-        <SolidRocket width={sizeStyle.width} height={sizeStyle.width} />
-      </span>
+      {isOnline && (
+        <span
+          className={
+            "rounded-full absolute box-content bg-accent border-primary-800 text-accent items-center justify-center"
+          }
+          style={{ ...sizeStyle, padding: 2 }}
+        ></span>
+      )}
     </div>
   );
 };

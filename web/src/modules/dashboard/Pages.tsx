@@ -1,10 +1,13 @@
 import React from "react";
-import { useRequestQuery } from "../../generated/graphql";
-import { useTypeSafeTranslation } from "../../hooks/useTypeSafeTranslation";
 
 import src from "../../img/avatar.png";
+import { SingleUser } from "../../ui/Avatar";
+
+import { useTypeSafeTranslation } from "../../hooks/useTypeSafeTranslation";
 import { DesktopHomeTabsLayout } from "../layouts/DesktopHomeTabsLayout";
 import { HomeTabUserCard } from "./HomeTabUserCard";
+import { useRequestQuery } from "../../generated/graphql";
+import { AcceptButton, CancelButton } from "./Components";
 
 const users = [
   {
@@ -73,13 +76,31 @@ export const Pending: React.FC = () => {
       pageName={t("pages.home.pending")}
       pageUserNum={data?.requests.length}
     >
-      {data?.requests.map((r) => (
-        <HomeTabUserCard
-          src={r.isSender ? r.receiver.pictureUrl! : r.sender.pictureUrl!}
-          user={r.isSender ? r.receiver! : r.sender!}
-          status="Busy"
-          userId={r.receiver.id}
-        />
+      {data?.requests.map((r, idx) => (
+        <div className="HomeTab_userCard" key={idx}>
+          <SingleUser
+            src={r.isSender ? r.receiver?.pictureUrl! : r.sender?.pictureUrl!}
+            username={r.isSender ? r.receiver?.username! : r.sender.username}
+            size="md"
+            status="Offline"
+          />
+          <div className="HomeTab_userCard_info">
+            <div>
+              <p>{r.isSender ? r.receiver?.username! : r.sender.username}</p>
+              <p style={{ fontSize: "13px" }}>Offline</p>
+            </div>
+          </div>
+          <div className="HomeTab_userCard_btns">
+            {r.isSender ? (
+              <CancelButton r={r!} />
+            ) : (
+              <>
+                <AcceptButton r={r!} />
+                <CancelButton r={r!} />
+              </>
+            )}
+          </div>
+        </div>
       ))}
     </DesktopHomeTabsLayout>
   );

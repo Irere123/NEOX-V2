@@ -22,12 +22,12 @@
       "friends": "Amis",
       "explore": "Explorer",
       "online": "En ligne",
-      "all": "Toute",
-      "pending": "En attendant",
-      "add_friend": "Ajouter amis",
+      "all": "Tous",
+      "pending": "En attente",
+      "add_friend": "Ajouter un ami",
       "find_conversations": "Trouver des conversations",
-      "active_now": "Actif maintenant",
-      "quite": "C'est pour maintenant",
+      "active_now": "En ligne",
+      "quite": "Tout est calme...pour moment",
       "quite_text": "Lorsqu'un ami commence une activite comme jouer a un jeu ou a un hangout vocal, nous l'afficherons ici!"
     },
     "settings": {

@@ -238,3 +238,54 @@ button:focus {
 .font-bold {
   font-weight: bold;
 }
+
+.MobileHeader__layout {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.MobileHeader__layout_icons {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
+
+.MobileHeader__layout_icons > span {
+  cursor: pointer;
+}
+
+.smallScreen__homePage {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+.smallScreen__homePage > div:nth-child(2) {
+  flex: 1;
+}
+
+.BottomNavbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-top: 2px solid var(--color-primary-600);
+  border-radius: 8px 8px 0px 0px;
+}
+
+.BottomNavbar > div > svg {
+  cursor: pointer;
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}

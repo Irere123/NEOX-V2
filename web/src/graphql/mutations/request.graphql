@@ -1,0 +1,19 @@
+mutation UpdateAcceptReq($id: Int!, $value: Boolean!) {
+  updateAcceptRequest(id: $id, value: $value) {
+    ok
+    errors {
+      field
+      message
+    }
+  }
+}
+
+mutation CancelRequest($id: Int!) {
+  CancelRequest(id: $id) {
+    ok
+    errors {
+      field
+      message
+    }
+  }
+}
